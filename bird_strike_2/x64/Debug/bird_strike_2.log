@@ -1,5 +1,4 @@
-﻿  GameState.cpp
-C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\crow.h(20,25): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\crow.h(20,31): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\GameState.cpp(80,29): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  bird_strike_2.vcxproj -> C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\x64\Debug\bird_strike_2.exe
+﻿  Main.cpp
+C:\Users\admin\Desktop\유용해요\Bird_Strike\bird_sprite_2\bird_strike_2\H_Crow.h(20,25): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\admin\Desktop\유용해요\Bird_Strike\bird_sprite_2\bird_strike_2\H_Crow.h(20,31): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+  bird_strike_2.vcxproj -> C:\Users\admin\Desktop\유용해요\Bird_Strike\bird_sprite_2\x64\Debug\bird_strike_2.exe

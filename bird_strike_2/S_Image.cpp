@@ -1,4 +1,4 @@
-#include "image.h"
+#include "H_Image.h"
 
 Image capybara_image;
 Texture2D Capybara_texture;

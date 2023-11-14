@@ -1,7 +1,6 @@
 #include <iostream>
 #include <raylib.h>
-#include "beat_system.h"
-#include "crow.h"
+#include "H_Crow.h"
 
 constexpr int start_BPM = 100;
 constexpr int end_BPM = 200;

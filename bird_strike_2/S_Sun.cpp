@@ -1,6 +1,6 @@
 #include <raylib.h>
 #include <iostream>
-#include "sun.h"
+#include "H_Sun.h"
 
 constexpr int window_width{ 768 };
 constexpr int window_height{ 432 };

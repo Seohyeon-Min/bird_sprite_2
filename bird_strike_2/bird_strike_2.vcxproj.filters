@@ -53,13 +53,16 @@
     <ClInclude Include="H_Crow.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="S_Sun.h">
+    <ClInclude Include="H_Sun.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="H_Image.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="H_GameState.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Beat_system.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

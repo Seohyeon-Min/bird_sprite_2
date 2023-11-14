@@ -137,13 +137,14 @@
     <ClCompile Include="S_Sun.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="H_Beat_system.h" />
     <ClInclude Include="H_Crow.h" />
     <ClInclude Include="H_Drag.h" />
     <ClInclude Include="H_GameState.h" />
     <ClInclude Include="H_Image.h" />
     <ClInclude Include="H_Main.h" />
     <ClInclude Include="H_Mouse.h" />
-    <ClInclude Include="S_Sun.h" />
+    <ClInclude Include="H_Sun.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

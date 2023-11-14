@@ -2,13 +2,12 @@
 #define GAMESTATE_H
 
 #include <raylib.h>
-#include "sun.h"
-#include "crow.h"
-#include "beat_system.h"
-#include "main.h"
-#include "drag.h"
-#include "mouse.h"
-#include "image.h"
+#include "H_Sun.h"
+#include "H_Crow.h"
+#include "H_Main.h"
+#include "H_Drag.h"
+#include "H_Mouse.h"
+#include "H_Image.h"
 
 enum GameState {
     Startloading,

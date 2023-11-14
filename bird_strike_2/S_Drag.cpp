@@ -3,8 +3,8 @@
 #include <vector>
 #include <thread>
 #include <ctime>
-#include "drag.h"
-#include "crow.h"
+#include "H_Drag.h"
+#include "H_Crow.h"
 
 NewLine::NewLine(Vector2 prepos, Vector2 post, int ex, Color color)
 {

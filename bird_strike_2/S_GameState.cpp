@@ -1,4 +1,6 @@
-#include "GameState.h"
+#include "H_GameState.h"
+#include "H_Beat_system.h"
+
 
 Vector2 mousepostion{ 0,0 };
 GameState gamestate = GameState::Startloading;
