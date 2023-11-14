@@ -127,20 +127,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="beat_system.cpp" />
-    <ClCompile Include="crow.cpp" />
-    <ClCompile Include="drag.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="mouse.cpp" />
-    <ClCompile Include="sun.cpp" />
+    <ClCompile Include="S_Beat_system.cpp" />
+    <ClCompile Include="S_Crow.cpp" />
+    <ClCompile Include="S_Drag.cpp" />
+    <ClCompile Include="S_GameState.cpp" />
+    <ClCompile Include="S_Image.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="S_Mouse.cpp" />
+    <ClCompile Include="S_Sun.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="crow.h" />
-    <ClInclude Include="drag.h" />
-    <ClInclude Include="image.h" />
-    <ClInclude Include="main.h" />
-    <ClInclude Include="mouse.h" />
-    <ClInclude Include="sun.h" />
+    <ClInclude Include="H_Crow.h" />
+    <ClInclude Include="H_Drag.h" />
+    <ClInclude Include="H_GameState.h" />
+    <ClInclude Include="H_Image.h" />
+    <ClInclude Include="H_Main.h" />
+    <ClInclude Include="H_Mouse.h" />
+    <ClInclude Include="S_Sun.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

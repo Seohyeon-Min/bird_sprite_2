@@ -15,42 +15,51 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="beat_system.cpp">
+    <ClCompile Include="S_Beat_system.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="crow.cpp">
+    <ClCompile Include="S_Crow.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="drag.cpp">
+    <ClCompile Include="S_Drag.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="mouse.cpp">
+    <ClCompile Include="S_Mouse.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="sun.cpp">
+    <ClCompile Include="S_Sun.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="S_GameState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="S_Image.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="drag.h">
+    <ClInclude Include="H_Drag.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
+    <ClInclude Include="H_Main.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="mouse.h">
+    <ClInclude Include="H_Mouse.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="crow.h">
+    <ClInclude Include="H_Crow.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="sun.h">
+    <ClInclude Include="S_Sun.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="image.h">
+    <ClInclude Include="H_Image.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="H_GameState.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
