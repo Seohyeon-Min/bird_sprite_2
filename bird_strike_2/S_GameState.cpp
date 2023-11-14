@@ -2,7 +2,7 @@
 #include "H_Beat_system.h"
 
 
-Vector2 mousepostion{ 0,0 };
+extern Vector2 mousepostion;
 GameState gamestate = GameState::Startloading;
 
 

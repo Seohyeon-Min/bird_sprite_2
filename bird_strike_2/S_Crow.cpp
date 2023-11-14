@@ -94,7 +94,7 @@ bool Crow::mouse_click() { //checking whether the mouse is down or not
 
 
 //decide the spawn point (left or right side of window)
-Crow::Crow() { 
+Crow::Crow() {
 	position.x = GetRandomValue(0, 1) == 0 ? -radius * 2, speed.x *= -1 : GetScreenWidth() + radius * 2, speed.x *= -1;
 	position.y = GetRandomValue(radius * 2, GetScreenHeight() - GetScreenHeight() / 3);
 	if (position.y > GetScreenHeight() / 3) {
@@ -118,7 +118,7 @@ void Crow::check_game_over() {
 }
 extern bool judge;
 int Switch = 1;
- //check that it shares the same data with judge of beat_system
+//check that it shares the same data with judge of beat_system
 void Crow::_crow() { //TODO: change into normal func, and spllit it some
 	mouse_click();
 	Drag drag;
@@ -128,21 +128,20 @@ void Crow::_crow() { //TODO: change into normal func, and spllit it some
 			hover = &crow;
 			if (mouse_click() && Switch == 1 && judge) { //if mouse is down and on the crow... 
 				//TODO: seperate the crow clicking func and drag clicking func
-				
+
 				crow.marked = true;
 				crow.speed = { 0,0 };
 				crow.acc = { 0,0 };
 				drag.check_Fdrag(crow.get_position());
 			}
 			else if (mouse_click() && Switch == -1 && judge) {
-				
+
 				crow.marked = true;
 				crow.speed = { 0,0 };
 				crow.acc = { 0,0 };
 				drag.check_Sdrag(crow.get_position());
 			}
 		}
-		drag.not_click();
 	}
 	for (int i = crows.size() - 1; i >= 0; i--) {
 		if (crows[i].spawn_count == 0) {
