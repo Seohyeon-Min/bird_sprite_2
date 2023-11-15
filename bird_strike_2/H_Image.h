@@ -10,6 +10,10 @@ extern Image capybara_image;
 extern Texture2D Capybara_texture;
 extern Image DigiPenlogo_image;
 extern Texture2D DigiPenlogo_texture;
+extern Image grass_image;
+extern Texture2D grass_texture;
+extern Image Sprite_crow_image;
+extern Texture2D Sprite_crow_texture;
 
 void loadimage();
 

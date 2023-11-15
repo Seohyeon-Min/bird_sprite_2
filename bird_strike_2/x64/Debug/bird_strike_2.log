@@ -1,4 +1,4 @@
 ﻿  S_GameState.cpp
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\H_Crow.h(20,21): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\H_Crow.h(20,27): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
-  bird_strike_2.vcxproj -> C:\Users\gtg06\Documents\GitHub\bird_sprite_2\x64\Debug\bird_strike_2.exe
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\H_Crow.h(20,21): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\H_Crow.h(20,27): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+  bird_strike_2.vcxproj -> C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\x64\Debug\bird_strike_2.exe

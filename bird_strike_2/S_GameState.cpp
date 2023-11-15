@@ -96,6 +96,7 @@ void stage_1() {
         end_game();
     }
     mouse_control();
+    DrawTexture(grass_texture, 0, 0, WHITE);
 }
 
 void stage_2() {

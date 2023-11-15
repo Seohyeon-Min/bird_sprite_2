@@ -19,9 +19,11 @@ private:
     Vector2 speed = { 2, 1 };
     Vector2 acc = { 0.05, 0.008 };
     int spawn_count = 60;
-
+    int animation_timer{ 0 };
+    bool direction = true;
 
 public:
+    
     Crow();
     bool mouse_click();
     bool marked = false;
@@ -33,6 +35,8 @@ public:
     void _crow();
     void draw(bool hover);
     void move();
+    void checkdirection();
+    void animation_move();
 };
 
 

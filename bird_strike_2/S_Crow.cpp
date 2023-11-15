@@ -5,8 +5,16 @@
 #include <ctime>
 #include "H_Crow.h"
 #include "H_Drag.h"
+#include "H_Image.h"
 
 std::vector<Crow> crows{};
+
+double animation_timer = 0;
+const double animation_speed = 1;
+float sprite_scale{ 1.5 };
+int texture_sizes{ 50 };
+
+
 
 Vector2 Crow::get_position() {
 	return position;
@@ -26,18 +34,43 @@ bool Crow::intersection(float x, float y) {
 void Crow::draw(bool hover) {
 	if (hover)
 		DrawCircle(position.x, position.y, radius, RED);
-	else
-		DrawCircle(position.x, position.y, radius, BLACK);
+	else {
+		//DrawCircle(position.x, position.y, radius, BLACK);
+		DrawTexturePro(
+			Sprite_crow_texture,
+			{
+				float(((float)texture_sizes * animation_timer)),
+				0,
+				float((direction * 2 - 1) * texture_sizes),
+				float(texture_sizes)
+			},
+			{
+				(float)(position.x - texture_sizes * sprite_scale / 2),
+				(float)(position.y - texture_sizes * sprite_scale / 2),
+				float(texture_sizes * sprite_scale),
+				float(texture_sizes * sprite_scale)
+			},
+			{ 0, 0 },
+			0.0f,
+			WHITE
+		);
+	}
 }
 
 void Crow::first_move() {
+	
 	position.x += speed.x;
 	speed.y += acc.y;
 	position.y += speed.y;
 	spawn_count--;
 }
 
+void Crow::animation_move() {
+	animation_timer += animation_speed;
+}
+
 void Crow::move() {
+	
 	speed.y += acc.y;
 
 	position.y += speed.y;
@@ -81,6 +114,15 @@ void Crow::move() {
 	}
 }
 
+void Crow::checkdirection() {
+	if (speed.x == 1) {
+		direction = true;
+	}
+	else if (speed.x == -1) {
+		direction = false;
+	}
+}
+
 
 
 bool Crow::mouse_click() { //checking whether the mouse is down or not
@@ -97,6 +139,9 @@ bool Crow::mouse_click() { //checking whether the mouse is down or not
 Crow::Crow() {
 	position.x = GetRandomValue(0, 1) == 0 ? -radius * 2, speed.x *= -1 : GetScreenWidth() + radius * 2, speed.x *= -1;
 	position.y = GetRandomValue(radius * 2, GetScreenHeight() - GetScreenHeight() / 3);
+	animation_timer = GetRandomValue(0,15);
+	direction = true;
+
 	if (position.y > GetScreenHeight() / 3) {
 		acc.y *= -1;
 		speed.y = -0.5;
@@ -151,6 +196,8 @@ void Crow::_crow() { //TODO: change into normal func, and spllit it some
 		else {
 			crows[i].first_move();
 		}
+		crows[i].animation_move();
+		crows[i].checkdirection();
 		crows[i].draw(hover == &crows[i]);
 	}
 	check_game_over();

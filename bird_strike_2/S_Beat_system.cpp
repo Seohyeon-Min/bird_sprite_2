@@ -11,7 +11,7 @@ bool judge = false;
 int beat_count = 0;
 
 void IsOnBeat() {
-    std::cout << GetTime() << std::endl;
+   
     int BPM = start_BPM;
     int time = static_cast<int>(GetTime());
     judge = false;
@@ -39,7 +39,6 @@ void IsOnBeat() {
 
         if (i % n == 0 &&
             GetTime() < SecondTerms + offSet && GetTime() > SecondTerms - offSet) {
-            std::cout << "Now we are on BEAT!!!" << std::endl;
             
             for (int c = 0; c < 3; c++) {
                 Crow crow{};

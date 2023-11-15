@@ -76,7 +76,7 @@ void Drag::check_Fdrag(Vector2 pos) {
 }
 
 void Drag::check_Sdrag(Vector2 pos) {
-	std::cout << "click" << std::endl;
+	//std::cout << "click" << std::endl;
 	Sdrag_position = pos;
 	mousepostion = Sdrag_position;
 	Switch *= -1;
