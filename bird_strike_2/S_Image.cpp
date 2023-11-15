@@ -8,6 +8,8 @@ Image grass_image;
 Texture2D grass_texture;
 Image Sprite_crow_image;
 Texture2D Sprite_crow_texture;
+Image Sprite_crow_outline_image;
+Texture2D Sprite_crow_outline_texture;
 
 void loadimage() {
     capybara_image = LoadImage("textures/capybara.png");
@@ -25,4 +27,8 @@ void loadimage() {
     Sprite_crow_image = LoadImage("textures/Sprite_crow.png");
     Sprite_crow_texture = LoadTextureFromImage(Sprite_crow_image);
     UnloadImage(Sprite_crow_image);
+
+    Sprite_crow_outline_image = LoadImage("textures/Sprite_crow_outline.png");
+    Sprite_crow_outline_texture = LoadTextureFromImage(Sprite_crow_outline_image);
+    UnloadImage(Sprite_crow_outline_image);
 }

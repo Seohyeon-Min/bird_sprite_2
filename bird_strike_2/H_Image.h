@@ -14,6 +14,8 @@ extern Image grass_image;
 extern Texture2D grass_texture;
 extern Image Sprite_crow_image;
 extern Texture2D Sprite_crow_texture;
+extern Image Sprite_crow_outline_image;
+extern Texture2D Sprite_crow_outline_texture;
 
 void loadimage();
 

@@ -34,8 +34,10 @@ bool Crow::intersection(float x, float y) {
 void Crow::draw(bool hover) {
 	if (hover)
 	{
+		DrawCircle(position.x, position.y, radius, Color{ 0,0,0 , 100 });
+
 		DrawTexturePro(
-			Sprite_crow_texture,
+			Sprite_crow_outline_texture,
 			{
 				float(((float)texture_sizes * (int)animation_timer)),
 				0,
@@ -52,12 +54,12 @@ void Crow::draw(bool hover) {
 			0.0f,
 			WHITE
 		);
-		DrawCircle(position.x, position.y, radius, Color{ 0,0,0 , 100 });
+		
 	}
 	else {
 		//DrawCircle(position.x, position.y, radius, BLACK);
 		DrawTexturePro(
-			Sprite_crow_texture,
+			Sprite_crow_outline_texture,
 			{
 				float(((float)texture_sizes * (int)animation_timer)),
 				0,
