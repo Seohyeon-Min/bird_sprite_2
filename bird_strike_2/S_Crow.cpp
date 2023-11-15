@@ -10,7 +10,7 @@
 std::vector<Crow> crows{};
 
 double animation_timer = 0;
-const double animation_speed = 1;
+const double animation_speed = 15;
 float sprite_scale{ 1.5 };
 int texture_sizes{ 50 };
 
@@ -33,13 +33,33 @@ bool Crow::intersection(float x, float y) {
 
 void Crow::draw(bool hover) {
 	if (hover)
-		DrawCircle(position.x, position.y, radius, RED);
+	{
+		DrawTexturePro(
+			Sprite_crow_texture,
+			{
+				float(((float)texture_sizes * (int)animation_timer)),
+				0,
+				float((direction * 2 - 1) * texture_sizes),
+				float(texture_sizes)
+			},
+			{
+				(float)(position.x - texture_sizes * sprite_scale / 2),
+				(float)(position.y - texture_sizes * sprite_scale / 2),
+				float(texture_sizes * sprite_scale),
+				float(texture_sizes * sprite_scale)
+			},
+			{ 0, 0 },
+			0.0f,
+			WHITE
+		);
+		DrawCircle(position.x, position.y, radius, Color{ 0,0,0 , 100 });
+	}
 	else {
 		//DrawCircle(position.x, position.y, radius, BLACK);
 		DrawTexturePro(
 			Sprite_crow_texture,
 			{
-				float(((float)texture_sizes * animation_timer)),
+				float(((float)texture_sizes * (int)animation_timer)),
 				0,
 				float((direction * 2 - 1) * texture_sizes),
 				float(texture_sizes)
@@ -66,7 +86,7 @@ void Crow::first_move() {
 }
 
 void Crow::animation_move() {
-	animation_timer += animation_speed;
+	animation_timer += GetFrameTime() * animation_speed;
 }
 
 void Crow::move() {
@@ -115,10 +135,10 @@ void Crow::move() {
 }
 
 void Crow::checkdirection() {
-	if (speed.x == 1) {
+	if (speed.x > 0) {
 		direction = true;
 	}
-	else if (speed.x == -1) {
+	else {
 		direction = false;
 	}
 }
@@ -140,7 +160,6 @@ Crow::Crow() {
 	position.x = GetRandomValue(0, 1) == 0 ? -radius * 2, speed.x *= -1 : GetScreenWidth() + radius * 2, speed.x *= -1;
 	position.y = GetRandomValue(radius * 2, GetScreenHeight() - GetScreenHeight() / 3);
 	animation_timer = GetRandomValue(0,15);
-	direction = true;
 
 	if (position.y > GetScreenHeight() / 3) {
 		acc.y *= -1;

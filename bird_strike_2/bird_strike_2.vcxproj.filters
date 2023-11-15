@@ -39,6 +39,9 @@
     <ClCompile Include="S_Image.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="S_Player.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="H_Drag.h">
@@ -63,6 +66,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="H_Beat_system.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Player.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

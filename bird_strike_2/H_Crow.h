@@ -19,9 +19,8 @@ private:
     Vector2 speed = { 2, 1 };
     Vector2 acc = { 0.05, 0.008 };
     int spawn_count = 60;
-    int animation_timer{ 0 };
+    double animation_timer;
     bool direction = true;
-
 public:
     
     Crow();

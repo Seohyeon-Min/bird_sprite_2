@@ -134,6 +134,7 @@
     <ClCompile Include="S_Image.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="S_Mouse.cpp" />
+    <ClCompile Include="S_Player.cpp" />
     <ClCompile Include="S_Sun.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +145,7 @@
     <ClInclude Include="H_Image.h" />
     <ClInclude Include="H_Main.h" />
     <ClInclude Include="H_Mouse.h" />
+    <ClInclude Include="H_Player.h" />
     <ClInclude Include="H_Sun.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
