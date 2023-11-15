@@ -8,14 +8,14 @@
 #include "H_Image.h"
 #include "H_GameState.h"
 
-
+Music music;
 
 int main() {
     InitWindow(window_width, window_height, "Bird Strike!");
 
     InitAudioDevice();
 
-    Music music = LoadMusicStream("audio/test_sound.mp3");
+    music = LoadMusicStream("audio/test_sound.mp3");
 
     PlayMusicStream(music);
 
@@ -47,7 +47,7 @@ int main() {
             stage_2();
             break;
         case GameState::Gameover:
-            UnloadMusicStream(music);
+            PauseMusicStream(music);
             gameover();
             break;
         case GameState::Setting:
@@ -56,6 +56,10 @@ int main() {
         }
         EndDrawing();
     }
+
+    UnloadMusicStream(music);
+
+    CloseAudioDevice();
 
     CloseWindow();
     return 0;
