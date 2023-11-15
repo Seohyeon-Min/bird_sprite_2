@@ -12,7 +12,8 @@
 enum GameState {
     Startloading,
     LobbyScreen,
-    Gameplay,
+    Stage_1,
+    Stage_2,
     Gameover,
     Setting
 };
@@ -23,7 +24,8 @@ void startloding();
 void start_game();
 void end_game();
 void lobbyscreen();
-void gameplay();
+void stage_1();
+void stage_2();
 void gameover();
 void setting();
 

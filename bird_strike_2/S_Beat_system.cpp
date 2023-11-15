@@ -3,14 +3,15 @@
 #include "H_Crow.h"
 
 constexpr int start_BPM = 100;
-constexpr int end_BPM = 200;
 constexpr double offSet = 0.008;
 constexpr double judge_offSet = 0.07;
 constexpr int trigger_bar = 1;
 
 bool judge = false;
+int beat_count = 0;
 
 void IsOnBeat() {
+    std::cout << GetTime() << std::endl;
     int BPM = start_BPM;
     int time = static_cast<int>(GetTime());
     judge = false;
@@ -19,11 +20,12 @@ void IsOnBeat() {
         double SecondTerm = static_cast<double>(60) / BPM; //compute the term between beats
 
         double SecondTerms = SecondTerm * i;
-        int i_use = i;
         if (GetTime() < SecondTerms + judge_offSet && GetTime() > SecondTerms - judge_offSet) {
 
             DrawCircle(40, 40, 30, RED);
             judge = true;
+            beat_count++;
+           
             
         }
 
@@ -35,9 +37,10 @@ void IsOnBeat() {
         //every Nth beat increase cout the "Now we are on BEAT!!!"
         int n = 5;
 
-        if (i_use % n == 0 &&
+        if (i % n == 0 &&
             GetTime() < SecondTerms + offSet && GetTime() > SecondTerms - offSet) {
             std::cout << "Now we are on BEAT!!!" << std::endl;
+            
             for (int c = 0; c < 3; c++) {
                 Crow crow{};
                 crow.add_crow();

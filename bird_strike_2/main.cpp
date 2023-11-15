@@ -39,9 +39,12 @@ int main() {
         case GameState::LobbyScreen:
             lobbyscreen();
             break;
-        case GameState::Gameplay:
+        case GameState::Stage_1:
             UpdateMusicStream(music);
-            gameplay();
+            stage_1();
+            break;
+        case GameState::Stage_2:
+            stage_2();
             break;
         case GameState::Gameover:
             UnloadMusicStream(music);

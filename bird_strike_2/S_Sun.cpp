@@ -37,3 +37,14 @@ void draw_sun(float sun_y) {
 	DrawCircle(window_width / 2, sun_y, sun_radius - 24, sun_color_2);
 	DrawCircle(window_width / 2, sun_y, sun_radius - 50, sun_color_1);
 }
+
+bool _sun() {
+	float y = drop_v(GetTime());
+	draw_sun(y);
+	//std::cout << i - 325 << "    ,    " << GetTime() << std::endl;
+	if (y >= GetScreenHeight() + sun_radius) {
+		return true;
+	}
+	return false;
+}
+

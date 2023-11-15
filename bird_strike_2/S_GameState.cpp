@@ -1,13 +1,13 @@
 #include "H_GameState.h"
 #include "H_Beat_system.h"
-
+#include "H_Sun.h"
 
 extern Vector2 mousepostion;
 GameState gamestate = GameState::Startloading;
 
 
 void startloding() {
-    if (int(GetTime() < 2)) {
+    if (int(GetTime() < 3)) {
         ClearBackground(WHITE);
 
         DrawTexturePro(
@@ -20,7 +20,7 @@ void startloding() {
 
     }
 
-    else if (int(GetTime()) > 2 && int(GetTime()) < 6) {
+    else if (int(GetTime()) > 3 && int(GetTime()) < 7) {
         ClearBackground(WHITE);
         DrawTexturePro(
             DigiPenlogo_texture,
@@ -30,15 +30,21 @@ void startloding() {
             0,
             Color{ 255,255,255,255 });
     }
-    if (IsKeyReleased(MOUSE_BUTTON_LEFT) || IsKeyReleased(KEY_SPACE) || int(GetTime()) > 6) {
+    if (IsKeyReleased(MOUSE_BUTTON_LEFT) || IsKeyReleased(KEY_SPACE) || int(GetTime()) > 7) {
         gamestate = GameState::LobbyScreen;
     }
 }
 
 void start_game() {
-    gamestate = GameState::Gameplay;
+    gamestate = GameState::Stage_1;
 
 }
+
+void start_stage_2() {
+    gamestate = GameState::Stage_2;
+
+}
+
 void end_game() {
     gamestate = GameState::Gameover;
 
@@ -75,13 +81,13 @@ void lobbyscreen() {
     mouse_control();
 }
 
-void gameplay() {
+void stage_1() {
     Crow crow;
     Drag drag;
     extern bool is_gameover;
-    float i = drop_v(GetTime());
-    draw_sun(i);
-    //std::cout << i - 325 << "    ,    " << GetTime() << std::endl;
+    if (_sun()) {
+        start_stage_2();
+    }
     IsOnBeat();
     crow._crow();
     drag.Fx();
@@ -90,6 +96,10 @@ void gameplay() {
         end_game();
     }
     mouse_control();
+}
+
+void stage_2() {
+    DrawText("state 2 !!", 270, window_height / 2 - 30, 40, BLACK);
 }
 
 void gameover() {
