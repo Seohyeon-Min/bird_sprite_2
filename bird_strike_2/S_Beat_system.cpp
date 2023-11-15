@@ -3,35 +3,30 @@
 #include "H_Crow.h"
 #include "H_Main.h"
 
-constexpr int start_BPM = 100;
-constexpr double judge_offSet = 0.5;
+constexpr int BPM = 100;
+constexpr double judge_offSet = 0.1;
 constexpr int trigger_bar = 1;
 static bool hasRun = false;
 bool judge = false;
-int beat_count = 1;
+int beat_count = 0;
 
 void IsOnBeat() {
 
-    int BPM = start_BPM;
-    double time = static_cast<double>(GetMusicTimePlayed(music));
+    double SecondTerm = 60.0 / BPM; //compute the term between beats
+    double time = double(GetMusicTimePlayed(music));
+    int beat_count = time / SecondTerm;
+    
     judge = false;
-    //count the beat and cout the courrent number of beat and BPM
-    double SecondTerm = static_cast<double>(60) / BPM; //compute the term between beats
-    double SecondTerms = SecondTerm * beat_count;
-
-    if (GetMusicTimePlayed(music) < SecondTerms + judge_offSet && 
-        GetMusicTimePlayed(music) > SecondTerms - judge_offSet) {
+    //judge
+    if (time < double(beat_count * SecondTerm + judge_offSet)  &&
+        time >  double(beat_count * SecondTerm - judge_offSet)) {
 
         DrawCircle(40, 40, 30, RED);
         judge = true;
-        beat_count++;
-        
-
     }
 
-    std::cout << SecondTerms - judge_offSet << " < " << GetMusicTimePlayed(music) << "  <" << SecondTerms + judge_offSet << std::endl;
+    //std::cout << beat_count << "   :   " << double(beat_count * SecondTerm - judge_offSet) << "  <  " << time << "  <  " << double(beat_count * SecondTerm + judge_offSet) << std::endl;
   
-
     
     if (beat_count % 5 == 0) {
         if (!hasRun) {
