@@ -33,31 +33,18 @@ bool Crow::intersection(float x, float y) {
 }
 
 void Crow::draw(bool hover) {
-	if (hover)
-	{
-		DrawCircle(position.x, position.y, radius, Color{ 0,0,0 , 100 });
 
-		DrawTexturePro(
-			Sprite_crow_outline_texture,
-			{
-				float(((float)texture_sizes * (int)animation_timer)),
-				0,
-				float((direction * 2 - 1) * texture_sizes),
-				float(texture_sizes)
-			},
-			{
-				(float)(position.x - texture_sizes * sprite_scale / 2),
-				(float)(position.y - texture_sizes * sprite_scale / 2),
-				float(texture_sizes * sprite_scale),
-				float(texture_sizes * sprite_scale)
-			},
-			{ 0, 0 },
-			0.0f,
-			WHITE
-		);
+	if (marked) {
+		if (hover)
+		{
+			DrawCircle(position.x, position.y, radius, Color{ 0,0,0 , 100 });
+		}
 		
-	}
-	else if (marked) {
+		if (!((int)animation_timer % 15)) {
+			animation_timer = 15;
+
+		}
+		std::cout << "animation timer:" << animation_timer << std::endl;
 		DrawTexturePro(
 			crow_click_outline_texture,
 			{
@@ -76,6 +63,7 @@ void Crow::draw(bool hover) {
 			0.0f,
 			WHITE
 		);
+		
 	}
 	else {
 		//DrawCircle(position.x, position.y, radius, BLACK);
@@ -101,7 +89,7 @@ void Crow::draw(bool hover) {
 }
 
 void Crow::first_move() {
-	
+
 	position.x += speed.x;
 	speed.y += acc.y;
 	position.y += speed.y;
@@ -113,7 +101,7 @@ void Crow::animation_move() {
 }
 
 void Crow::move() {
-	
+
 	speed.y += acc.y;
 
 	position.y += speed.y;
@@ -182,7 +170,7 @@ bool Crow::mouse_click() { //checking whether the mouse is down or not
 Crow::Crow() {
 	position.x = GetRandomValue(0, 1) == 0 ? -radius * 2, speed.x *= -1 : GetScreenWidth() + radius * 2, speed.x *= -1;
 	position.y = GetRandomValue(radius * 2, GetScreenHeight() - GetScreenHeight() / 3);
-	animation_timer = GetRandomValue(0,15);
+	animation_timer = GetRandomValue(0, 15);
 
 	if (position.y > GetScreenHeight() / 3) {
 		acc.y *= -1;
@@ -223,14 +211,13 @@ void Crow::_crow() {
 				crow.speed = { 0,0 };
 				crow.acc = { 0,0 };
 				crow.order = order_counter;
-				if(Switch == 1)
+				if (Switch == 1)
 					drag.check_Fdrag(crow.get_position());
-				else if (Switch != 1) 
+				else if (Switch != 1)
 					drag.check_Sdrag(crow.get_position());
 
 				order_counter++;
 			}
-			std::cout << order_counter << "   the order of crow : " << crow.order << std::endl;
 		}
 	}
 
@@ -238,9 +225,7 @@ void Crow::_crow() {
 		erase_flag = true;
 	}
 
-	std::cout << "erase_flag : " << erase_flag << std::endl;
-	
-	if (erase_flag == true && is_changed == true && judge == true)
+	if (erase_flag == true && is_changed == true && splited_beat == true)
 	{
 		delete_crow();
 		erase_number++;
@@ -270,11 +255,16 @@ void Crow::_crow() {
 
 void delete_crow() {
 	for (int i = crows.size() - 1; i >= 0; i--) { //delete the crow
-		std::cout << "before delete " << crows.size() << std::endl;
+		//std::cout << "before delete " << crows.size() << std::endl;
 		if (crows[i].marked == true && crows[i].order == erase_number) { //i need a counter to check the order of crow by it clicked
 			crows.erase(crows.begin() + i);
-			std::cout << "after delete " << crows.size() << std::endl;
+			//std::cout << "after delete " << crows.size() << std::endl;
 			break;
 		}
 	}
 } //crow does not erased when it is double clicked
+
+int return_order_counter() {
+	int cnt = order_counter - 1;
+	return cnt;
+}

@@ -89,6 +89,7 @@ void stage_1() {
         start_stage_2();
     }
     IsOnBeat();
+    beat_spliting();
     crow._crow();
     drag.Fx();
     //std::cout << "gameover " << is_gameover() << std::endl;

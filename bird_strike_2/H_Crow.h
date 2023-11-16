@@ -45,6 +45,6 @@ public:
 };
 
 void delete_crow();
-extern int order_counter;
+int return_order_counter();
 
 #endif
