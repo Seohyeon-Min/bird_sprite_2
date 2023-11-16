@@ -10,6 +10,10 @@ Image Sprite_crow_image;
 Texture2D Sprite_crow_texture;
 Image Sprite_crow_outline_image;
 Texture2D Sprite_crow_outline_texture;
+Image player_go_image;
+Texture2D player_go_texture;
+Image crow_click_outline_image;
+Texture2D crow_click_outline_texture;
 
 void loadimage() {
     capybara_image = LoadImage("textures/capybara.png");
@@ -31,4 +35,12 @@ void loadimage() {
     Sprite_crow_outline_image = LoadImage("textures/Sprite_crow_outline.png");
     Sprite_crow_outline_texture = LoadTextureFromImage(Sprite_crow_outline_image);
     UnloadImage(Sprite_crow_outline_image);
+
+    player_go_image = LoadImage("textures/player_go.png");
+    player_go_texture = LoadTextureFromImage(player_go_image);
+    UnloadImage(player_go_image);
+
+    crow_click_outline_image = LoadImage("textures/crow_click_outline.png");
+    crow_click_outline_texture = LoadTextureFromImage(crow_click_outline_image);
+    UnloadImage(crow_click_outline_image);
 }

@@ -16,6 +16,10 @@ extern Image Sprite_crow_image;
 extern Texture2D Sprite_crow_texture;
 extern Image Sprite_crow_outline_image;
 extern Texture2D Sprite_crow_outline_texture;
+extern Image player_go_image;
+extern Texture2D player_go_texture;
+extern Image crow_click_outline_image;
+extern Texture2D crow_click_outline_texture;
 
 void loadimage();
 

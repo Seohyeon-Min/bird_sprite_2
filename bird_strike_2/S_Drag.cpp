@@ -8,8 +8,8 @@
 
 Vector2 mouse_click{ -1,-1 };
 Vector2 mousepostion{ 0,0 };
-Vector2 Fdrag_position = { 0,0 };
-Vector2 Sdrag_position = { 0,0 };
+Vector2 Fdrag_position = { -1,-1};
+Vector2 Sdrag_position = { -1,-1 };
 
 std::vector<NewLine> nlines{};
 std::vector<ConLine> clines{};
@@ -59,7 +59,7 @@ void Drag::makeNewDrag() {
 			mouse_click = { float(GetMouseX()), float(GetMouseY()) };
 		}
 		if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
-			if (Sdrag_position.x != 0 && Sdrag_position.y != 0) {
+			if (Sdrag_position.x >0 && Sdrag_position.y > 0) {
 				NewLine new_line(Fdrag_position, { float(GetMouseX()), float(GetMouseY()) }, drag_ex, drag_color);
 				nlines.push_back(new_line);
 
@@ -90,7 +90,7 @@ void Drag::makeConDrag() {
 		if (mouse_click.x == -1 && mouse_click.y == -1) {
 			mouse_click = { float(GetMouseX()), float(GetMouseY()) };
 		}
-		if (Sdrag_position.x != 0 && Sdrag_position.y != 0 && Fdrag_position.x != 0 && Fdrag_position.y != 0) {
+		if (Sdrag_position.x > 0 && Sdrag_position.y > 0 && Fdrag_position.x > 0 && Fdrag_position.y > 0) {
 			int count = 0;
 			ConLine new_cline(Fdrag_position, Sdrag_position, drag_ex, drag_color);
 			clines.push_back(new_cline);

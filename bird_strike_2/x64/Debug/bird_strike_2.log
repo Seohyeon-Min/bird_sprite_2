@@ -1,5 +1,7 @@
-﻿  S_Beat_system.cpp
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\H_Crow.h(20,21): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\H_Crow.h(20,27): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Beat_system.cpp(17,20): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  bird_strike_2.vcxproj -> C:\Users\gtg06\Documents\GitHub\bird_sprite_2\x64\Debug\bird_strike_2.exe
+﻿  S_Drag.cpp
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\H_Crow.h(20,21): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\H_Crow.h(20,27): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_Drag.cpp(39,35): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_Drag.cpp(46,35): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_Drag.cpp(131,14): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  bird_strike_2.vcxproj -> C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\x64\Debug\bird_strike_2.exe
