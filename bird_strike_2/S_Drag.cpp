@@ -9,9 +9,10 @@
 #include "H_Beat_system.h"
 
 Vector2 mouse_click{ -1,-1 };
-Vector2 mousepostion{ 0,0 };
-Vector2 Fdrag_position = { 0,0 };
-Vector2 Sdrag_position = { 0,0 };
+Vector2 mousepostion{ -1,-1 };
+Vector2 Fdrag_position = { -1,-1 };
+Vector2 Sdrag_position = { -1,-1 };
+Vector2 Firstpos = { -1,-1 };
 
 std::vector<NewLine> nlines{};
 std::vector<ConLine> clines{};
@@ -50,7 +51,8 @@ void ConLine::condraw() {
 }
 
 
-//Effect when dragging mouse
+
+
 
 //make new line
 void Drag::makeNewDrag() {
@@ -61,13 +63,17 @@ void Drag::makeNewDrag() {
 			mouse_click = { float(GetMouseX()), float(GetMouseY()) };
 		}
 		if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
-			if (Sdrag_position.x != 0 && Sdrag_position.y != 0) {
-				NewLine new_line(Fdrag_position, { float(GetMouseX()), float(GetMouseY()) }, drag_ex, drag_color);
+			if (Fdrag_position.x > 0 || Sdrag_position.x > 0) {
+				NewLine new_line(mousepostion, { float(GetMouseX()), float(GetMouseY()) }, drag_ex, drag_color);
 				nlines.push_back(new_line);
 
 			}
 		}
 	}
+}
+
+void Drag::givedrag(Vector2 pos) {
+	Firstpos = pos;
 }
 
 void Drag::check_Fdrag(Vector2 pos) {
@@ -92,13 +98,13 @@ void Drag::makeConDrag() {
 		if (mouse_click.x == -1 && mouse_click.y == -1) {
 			mouse_click = { float(GetMouseX()), float(GetMouseY()) };
 		}
-		if (Sdrag_position.x != 0 && Sdrag_position.y != 0 && Fdrag_position.x != 0 && Fdrag_position.y != 0) {
-			int count = 0;
+		if (Sdrag_position.x > 0 && Sdrag_position.y > 0 && Fdrag_position.x > 0 && Fdrag_position.y > 0) {
 			ConLine new_cline(Fdrag_position, Sdrag_position, drag_ex, drag_color);
 			clines.push_back(new_cline);
 		}
 	}
 }
+
 double currentTime = 0.0;
 double previousTime = 0.0;
 double elapsedTime = 0.0;
@@ -138,9 +144,10 @@ void Drag::Fx() {
 
 			clines.clear();
 			nlines.clear();
-			mousepostion = { 0,0 };
-			Fdrag_position = { 0,0 };
-			Sdrag_position = { 0,0 };
+			mousepostion = {  -1,-1 };
+			Fdrag_position = {  -1,-1 };
+			Sdrag_position = {  -1,-1 };
+			Firstpos = { -1,-1 };
 		} while (false);
 		//sleep(/*비트카운트가 바뀌는 순간까지 wait*/);
 		//일정한 간격으로 오르는 숫자가 바뀌는 순간을 알 수 있는 코드가 뭘까

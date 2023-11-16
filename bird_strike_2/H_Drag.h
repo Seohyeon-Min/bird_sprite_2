@@ -47,8 +47,10 @@ private:
 public:
 	void check_Fdrag(Vector2 pos);
 	void check_Sdrag(Vector2 pos);
+	void givedrag(Vector2 pos);
 	void makeNewDrag();
 	void makeConDrag();
+
 	void Fx();
 };
 

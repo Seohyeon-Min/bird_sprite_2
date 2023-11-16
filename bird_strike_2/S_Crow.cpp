@@ -57,6 +57,26 @@ void Crow::draw(bool hover) {
 		);
 		
 	}
+	else if (marked) {
+		DrawTexturePro(
+			crow_click_outline_texture,
+			{
+				float(((float)texture_sizes * (int)animation_timer)),
+				0,
+				float((direction * 2 - 1) * texture_sizes),
+				float(texture_sizes)
+			},
+			{
+				(float)(position.x - texture_sizes * sprite_scale / 2),
+				(float)(position.y - texture_sizes * sprite_scale / 2),
+				float(texture_sizes * sprite_scale),
+				float(texture_sizes * sprite_scale)
+			},
+			{ 0, 0 },
+			0.0f,
+			WHITE
+		);
+	}
 	else {
 		//DrawCircle(position.x, position.y, radius, BLACK);
 		DrawTexturePro(

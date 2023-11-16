@@ -1,45 +1,6 @@
-﻿  Main.cpp
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\H_Crow.h(21,21): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\H_Crow.h(21,27): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
-  S_Beat_system.cpp
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\H_Crow.h(21,21): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\H_Crow.h(21,27): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Beat_system.cpp(22,20): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  S_Crow.cpp
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\H_Crow.h(21,21): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\H_Crow.h(21,27): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Crow.cpp(38,38): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Crow.cpp(38,34): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Crow.cpp(38,22): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Crow.cpp(115,33): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Crow.cpp(121,16): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Crow.cpp(127,34): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Crow.cpp(133,16): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Crow.cpp(164,29): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Crow.cpp(198,67): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Crow.cpp(198,54): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Crow.cpp(235,13): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Crow.cpp(252,13): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  S_Drag.cpp
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\H_Crow.h(21,21): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\H_Crow.h(21,27): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Drag.cpp(41,35): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Drag.cpp(48,35): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  S_GameState.cpp
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\H_Crow.h(21,21): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\H_Crow.h(21,27): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
-  S_Image.cpp
-  S_Mouse.cpp
-  S_Player.cpp
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Player.cpp(29,30): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Player.cpp(29,26): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Player.cpp(29,19): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  S_Sun.cpp
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Sun.cpp(35,31): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Sun.cpp(36,31): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Sun.cpp(37,31): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Sun.cpp(38,31): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Sun.cpp(42,26): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  코드를 생성하고 있습니다...
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\S_Crow.cpp(158): warning C4715: 'Crow::mouse_click': 모든 제어 경로에서 값을 반환하지는 않습니다.
-  bird_strike_2.vcxproj -> C:\Users\gtg06\Documents\GitHub\bird_sprite_2\x64\Debug\bird_strike_2.exe
+﻿  S_Drag.cpp
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\H_Crow.h(21,21): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\H_Crow.h(21,27): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_Drag.cpp(42,35): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_Drag.cpp(49,35): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  bird_strike_2.vcxproj -> C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\x64\Debug\bird_strike_2.exe
