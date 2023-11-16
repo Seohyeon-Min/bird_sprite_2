@@ -5,11 +5,13 @@
 #include <ctime>
 #include "H_Crow.h"
 #include "H_Drag.h"
+#include "H_Main.h"
+#include "H_Beat_system.h"
 
 Vector2 mouse_click{ -1,-1 };
 Vector2 mousepostion{ 0,0 };
-Vector2 Fdrag_position = { -1,-1};
-Vector2 Sdrag_position = { -1,-1 };
+Vector2 Fdrag_position = { 0,0 };
+Vector2 Sdrag_position = { 0,0 };
 
 std::vector<NewLine> nlines{};
 std::vector<ConLine> clines{};
@@ -59,7 +61,7 @@ void Drag::makeNewDrag() {
 			mouse_click = { float(GetMouseX()), float(GetMouseY()) };
 		}
 		if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
-			if (Sdrag_position.x >0 && Sdrag_position.y > 0) {
+			if (Sdrag_position.x != 0 && Sdrag_position.y != 0) {
 				NewLine new_line(Fdrag_position, { float(GetMouseX()), float(GetMouseY()) }, drag_ex, drag_color);
 				nlines.push_back(new_line);
 
@@ -90,49 +92,60 @@ void Drag::makeConDrag() {
 		if (mouse_click.x == -1 && mouse_click.y == -1) {
 			mouse_click = { float(GetMouseX()), float(GetMouseY()) };
 		}
-		if (Sdrag_position.x > 0 && Sdrag_position.y > 0 && Fdrag_position.x > 0 && Fdrag_position.y > 0) {
+		if (Sdrag_position.x != 0 && Sdrag_position.y != 0 && Fdrag_position.x != 0 && Fdrag_position.y != 0) {
 			int count = 0;
 			ConLine new_cline(Fdrag_position, Sdrag_position, drag_ex, drag_color);
 			clines.push_back(new_cline);
-
 		}
 	}
 }
+double currentTime = 0.0;
+double previousTime = 0.0;
+double elapsedTime = 0.0;
+
 
 void Drag::Fx() {
 
 
 	// Error : click never go to true
 
-		makeConDrag();
-		makeNewDrag();
+	makeConDrag();
+	makeNewDrag();
 
 
-		//draw line
-		for (size_t i = 0; i < nlines.size(); i++) {
-			nlines[i].newdraw();
+	//draw line
+	for (size_t i = 0; i < nlines.size(); i++) {
+		nlines[i].newdraw();
 
 
-		}
+	}
 
-		for (size_t i = 0; i < clines.size(); i++) {
-			clines[i].condraw();
-		}
+	for (size_t i = 0; i < clines.size(); i++) {
+		clines[i].condraw();
+	}
 
+
+	//double SecondTerm = 60.0 / BPM; //compute the term between beats
+	//double time = double(GetMusicTimePlayed(music));
+	//int beat_count = time / SecondTerm;
+
+	// Set your variables including SecondTerm value
+	extern double SecondTerm; // Replace this with your desired time delay
 
 	if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
 		do {
+			//time_now = time;
+
 			clines.clear();
 			nlines.clear();
 			mousepostion = { 0,0 };
 			Fdrag_position = { 0,0 };
 			Sdrag_position = { 0,0 };
 		} while (false);
-		for (int i = crows.size() - 1; i >= 0; i--) { //delete the crow
-			if (crows[i].marked == true) {
-				crows.erase(crows.begin() + i);
-			}
-		}
+		//sleep(/*비트카운트가 바뀌는 순간까지 wait*/);
+		//일정한 간격으로 오르는 숫자가 바뀌는 순간을 알 수 있는 코드가 뭘까
 	}
+
+
 
 }

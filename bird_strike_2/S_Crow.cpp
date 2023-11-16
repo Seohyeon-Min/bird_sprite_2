@@ -6,6 +6,7 @@
 #include "H_Crow.h"
 #include "H_Drag.h"
 #include "H_Image.h"
+#include "H_Beat_system.h"
 
 std::vector<Crow> crows{};
 
@@ -14,7 +15,7 @@ const double animation_speed = 15;
 float sprite_scale{ 1.5 };
 int texture_sizes{ 50 };
 
-
+int erase_number = 1;
 
 Vector2 Crow::get_position() {
 	return position;
@@ -182,33 +183,55 @@ void Crow::check_game_over() {
 		crows.clear();
 	}
 }
-extern bool judge;
+
 int Switch = 1;
+int order_counter = 1;
+
+bool erase_flag = false;
+
 //check that it shares the same data with judge of beat_system
-void Crow::_crow() { //TODO: change into normal func, and spllit it some
+void Crow::_crow() {
 	mouse_click();
 	Drag drag;
 	Crow* hover = nullptr;
 	for (Crow& crow : crows) { //checking whether the mouse is on the crow or not
 		if (hover == nullptr && crow.intersection(GetMouseX(), GetMouseY())) {
 			hover = &crow;
-			if (mouse_click() && Switch == 1 && judge) { //if mouse is down and on the crow... 
-				//TODO: seperate the crow clicking func and drag clicking func
+			if (mouse_click() && judge && !crow.marked) { //if mouse is down and on the crow... 
 
 				crow.marked = true;
 				crow.speed = { 0,0 };
 				crow.acc = { 0,0 };
-				drag.check_Fdrag(crow.get_position());
-			}
-			else if (mouse_click() && Switch == -1 && judge) {
+				crow.order = order_counter;
+				if(Switch == 1)
+					drag.check_Fdrag(crow.get_position());
+				else if (Switch != 1) 
+					drag.check_Sdrag(crow.get_position());
 
-				crow.marked = true;
-				crow.speed = { 0,0 };
-				crow.acc = { 0,0 };
-				drag.check_Sdrag(crow.get_position());
+				order_counter++;
 			}
+			std::cout << order_counter << "   the order of crow : " << crow.order << std::endl;
 		}
 	}
+
+	if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
+		erase_flag = true;
+	}
+
+	std::cout << "erase_flag : " << erase_flag << std::endl;
+	
+	if (erase_flag == true && is_changed == true && judge == true)
+	{
+		delete_crow();
+		erase_number++;
+		if (order_counter == erase_number)
+		{
+			order_counter = 1;
+			erase_number = 1;
+			erase_flag = false;
+		}
+	}
+
 	for (int i = crows.size() - 1; i >= 0; i--) {
 		if (crows[i].spawn_count == 0) {
 			crows[i].move();
@@ -224,3 +247,14 @@ void Crow::_crow() { //TODO: change into normal func, and spllit it some
 	check_game_over();
 
 }
+
+void delete_crow() {
+	for (int i = crows.size() - 1; i >= 0; i--) { //delete the crow
+		std::cout << "before delete " << crows.size() << std::endl;
+		if (crows[i].marked == true && crows[i].order == erase_number) { //i need a counter to check the order of crow by it clicked
+			crows.erase(crows.begin() + i);
+			std::cout << "after delete " << crows.size() << std::endl;
+			break;
+		}
+	}
+} //crow does not erased when it is double clicked

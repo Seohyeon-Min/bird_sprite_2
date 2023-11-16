@@ -4,13 +4,14 @@
 #include <vector>
 
 constexpr int drag_ex{ 5 };
-constexpr int max_crow = 20;
+constexpr int max_crow = 30;
 constexpr int crow_per_sec = 3;
 
 struct Crow;
 
 extern Vector2 drag_position;
 extern std::vector<Crow> crows;
+extern int erase_number;
 
 struct Crow {
 private:
@@ -21,11 +22,15 @@ private:
     int spawn_count = 60;
     double animation_timer;
     bool direction = true;
+
 public:
-    
+
     Crow();
+
+    int erase_index = 0;
+    int order = 0;
     bool mouse_click();
-    bool marked = false;
+    bool marked = false;  //mark the crow that will be deleted
     Vector2 get_position();
     void add_crow();
     void check_game_over();
@@ -36,8 +41,9 @@ public:
     void move();
     void checkdirection();
     void animation_move();
+
 };
 
-
+void delete_crow();
 
 #endif
