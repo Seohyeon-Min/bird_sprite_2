@@ -20,6 +20,8 @@ extern Image player_go_image;
 extern Texture2D player_go_texture;
 extern Image crow_click_outline_image;
 extern Texture2D crow_click_outline_texture;
+extern Image title_Sheet_image;
+extern Texture2D title_Sheet_texture;
 
 void loadimage();
 
