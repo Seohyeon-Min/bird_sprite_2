@@ -3,8 +3,9 @@
 #include "H_Sun.h"
 
 extern Vector2 mousepostion;
+double animation_timer_title = 0;
+int title_x = 0;
 GameState gamestate = GameState::Startloading;
-
 
 void startloding() {
     if (int(GetTime() < 3)) {
@@ -50,31 +51,41 @@ void end_game() {
 
 }
 
+void animation_move() {
+    if (animation_timer_title < 40) {
+        animation_timer_title += GetFrameTime() * 17;
+        title_x = float(((float)title_Sheet_texture.width / 41 * (int)animation_timer_title));
+    }
+}
+
 void lobbyscreen() {
+    animation_move();
     int btnState = 0;
     bool btnAcion = false;
-    
-    mousepostion = GetMousePosition();
-
-    DrawText("Created by [Second Row Capybara]", 110, window_height / 2 - 50, text_size, BLACK);
-
-    DrawText("DigiPen 2023", 280, window_height / 2, text_size, BLACK);
-
-    DrawText("Press Space To Start", 200, window_height / 2 + 50, text_size, BLACK);
-
-    DrawCircle(20, window_height -20, 10, BLACK);
+    ClearBackground(GRAY);
+    DrawTexturePro(
+        title_Sheet_texture,
+        { float(title_x),0,window_width / 2,  window_height / 2
+        },
+        { 0,0,window_width, window_height
+        },
+        { 0,0 },
+        0,
+        WHITE
+    );
+    DrawCircle(20, window_height - 20, 10, BLACK);//setting butten
 
     if (IsKeyPressed(KEY_SPACE)) {
         start_game();
     }
-    if (CheckCollisionPointCircle(mousepostion, Vector2{ 20, window_height -20  }, 10)) {
+    if (CheckCollisionPointCircle(mousepostion, Vector2{ 20, window_height - 20 }, 10)) {
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) btnState = 2;
         else btnState = 1;
 
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) btnAcion = true;
     }
     else btnState = 0;
-    
+
     if (btnAcion) {
         gamestate = GameState::Setting;
     }
@@ -116,3 +127,6 @@ void setting() {
     DrawText("Welcome! This is setting screen!", 110, window_height / 2 - 50, text_size, BLACK);
     mouse_control();
 }
+
+
+

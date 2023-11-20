@@ -13,6 +13,7 @@ Vector2 mousepostion{ -1,-1 };
 Vector2 Fdrag_position = { -1,-1 };
 Vector2 Sdrag_position = { -1,-1 };
 Vector2 Firstpos = { -1,-1 };
+bool drawonce = false;
 
 std::vector<NewLine> nlines{};
 std::vector<ConLine> clines{};
@@ -81,6 +82,7 @@ void Drag::check_Fdrag(Vector2 pos) {
 	Fdrag_position = pos;
 	mousepostion = Fdrag_position;
 	Switch *= -1;
+	drawonce = true;
 }
 
 void Drag::check_Sdrag(Vector2 pos) {
@@ -88,13 +90,14 @@ void Drag::check_Sdrag(Vector2 pos) {
 	Sdrag_position = pos;
 	mousepostion = Sdrag_position;
 	Switch *= -1;
+	drawonce = true;
 }
 
 
 
 //make connection line
 void Drag::makeConDrag() {
-	if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+	if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && drawonce) {
 		if (mouse_click.x == -1 && mouse_click.y == -1) {
 			mouse_click = { float(GetMouseX()), float(GetMouseY()) };
 		}
@@ -102,6 +105,7 @@ void Drag::makeConDrag() {
 			ConLine new_cline(Fdrag_position, Sdrag_position, drag_ex, drag_color);
 			clines.push_back(new_cline);
 		}
+		drawonce = false;
 	}
 }
 
@@ -117,7 +121,7 @@ void Drag::Fx() {
 
 	makeConDrag();
 	makeNewDrag();
-
+	std::cout << clines.size() << std::endl;
 
 	//draw line
 	for (size_t i = 0; i < nlines.size(); i++) {
@@ -139,16 +143,16 @@ void Drag::Fx() {
 	extern double SecondTerm; // Replace this with your desired time delay
 
 	if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
-		do {
-			//time_now = time;
 
-			clines.clear();
-			nlines.clear();
-			mousepostion = {  -1,-1 };
-			Fdrag_position = {  -1,-1 };
-			Sdrag_position = {  -1,-1 };
-			Firstpos = { -1,-1 };
-		} while (false);
+		//time_now = time;
+
+		clines.clear();
+		nlines.clear();
+		mousepostion = { -1,-1 };
+		Fdrag_position = { -1,-1 };
+		Sdrag_position = { -1,-1 };
+		Firstpos = { -1,-1 };
+
 		//sleep(/*비트카운트가 바뀌는 순간까지 wait*/);
 		//일정한 간격으로 오르는 숫자가 바뀌는 순간을 알 수 있는 코드가 뭘까
 	}
@@ -156,3 +160,5 @@ void Drag::Fx() {
 
 
 }
+
+

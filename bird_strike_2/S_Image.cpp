@@ -16,6 +16,8 @@ Image crow_click_outline_image;
 Texture2D crow_click_outline_texture;
 Image title_Sheet_image;
 Texture2D title_Sheet_texture;
+Image crow_die_Sheet_image;
+Texture2D crow_die_Sheet_texture;
 
 void loadimage() {
     capybara_image = LoadImage("textures/capybara.png");
@@ -49,4 +51,12 @@ void loadimage() {
     title_Sheet_image = LoadImage("textures/title_Sheet.png");
     title_Sheet_texture = LoadTextureFromImage(title_Sheet_image);
     UnloadImage(title_Sheet_image);
+
+    crow_die_Sheet_image = LoadImage("textures/crow_die_Sheet.png");
+    crow_die_Sheet_texture = LoadTextureFromImage(crow_die_Sheet_image);
+    UnloadImage(crow_die_Sheet_image);
 }
+
+
+
+

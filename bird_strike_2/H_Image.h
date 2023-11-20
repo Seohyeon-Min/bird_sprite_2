@@ -5,7 +5,6 @@
 
 constexpr float capybara_size{ 250 };
 
-
 extern Image capybara_image;
 extern Texture2D Capybara_texture;
 extern Image DigiPenlogo_image;
@@ -22,6 +21,8 @@ extern Image crow_click_outline_image;
 extern Texture2D crow_click_outline_texture;
 extern Image title_Sheet_image;
 extern Texture2D title_Sheet_texture;
+extern Image crow_die_Sheet_image;
+extern Texture2D crow_die_Sheet_texture;
 
 void loadimage();
 
