@@ -149,11 +149,13 @@ void Crow::checkdirection() {
 	if (speed.x > 0) {
 		direction = true;
 	}
+	else if (speed.x == 0 && acc.x == 0) {
+		direction = direction;
+	}
 	else {
 		direction = false;
 	}
 }
-
 
 
 bool Crow::mouse_click() { //checking whether the mouse is down or not
