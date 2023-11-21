@@ -1,12 +1,11 @@
 #include <raylib.h>
 #include <iostream>
 #include <vector>
-#include <thread>
-#include <ctime>
 #include "H_Crow.h"
 #include "H_Drag.h"
 #include "H_Image.h"
 #include "H_Beat_system.h"
+#include "H_Main.h"
 
 std::vector<Crow> crows{};
 
@@ -14,7 +13,6 @@ double animation_timer = 0;
 const double animation_speed = 15;
 float sprite_scale{ 1.5 };
 int texture_sizes{ 50 };
-
 int erase_number = 1;
 
 Vector2 Crow::get_position() {
@@ -39,12 +37,11 @@ void Crow::draw(bool hover) {
 		{
 			DrawCircle(position.x, position.y, radius, Color{ 0,0,0 , 100 });
 		}
-		
+
 		if (!((int)animation_timer % 15)) {
 			animation_timer = 15;
 
 		}
-		std::cout << "animation timer:" << animation_timer << std::endl;
 		DrawTexturePro(
 			crow_click_outline_texture,
 			{
@@ -63,7 +60,7 @@ void Crow::draw(bool hover) {
 			0.0f,
 			WHITE
 		);
-		
+
 	}
 	else {
 		//DrawCircle(position.x, position.y, radius, BLACK);
@@ -157,13 +154,16 @@ void Crow::checkdirection() {
 	}
 }
 
+bool isMouseInputAllowed = true;
 
 bool Crow::mouse_click() { //checking whether the mouse is down or not
-	if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
-		return true;
-	}
-	if (IsMouseButtonUp(MOUSE_BUTTON_LEFT)) {
-		return false;
+	if (isMouseInputAllowed) {
+		if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+			return true;
+		}
+		if (IsMouseButtonUp(MOUSE_BUTTON_LEFT)) {
+			return false;
+		}
 	}
 }
 
@@ -196,35 +196,58 @@ void Crow::check_game_over() {
 
 int Switch = 1;
 int order_counter = 1;
-
+bool continuous_start = false;
 bool erase_flag = false;
 
-//check that it shares the same data with judge of beat_system
+
+
 void Crow::_crow() {
+	static bool hasRun = false;
+
 	mouse_click();
 	Drag drag;
 	Crow* hover = nullptr;
 	for (Crow& crow : crows) { //checking whether the mouse is on the crow or not
 		if (hover == nullptr && crow.intersection(GetMouseX(), GetMouseY())) {
 			hover = &crow;
-			if (mouse_click() && judge && !crow.marked) { //if mouse is down and on the crow... 
+			if (mouse_click() && judge && !crow.marked && !continuous_fail) { //if mouse is down and on the crow... 
+				if (!hasRun) {
+					continuous_start = true;
+					crow.marked = true;
+					crow.speed = { 0,0 };
+					crow.acc = { 0,0 };
+					crow.order = order_counter;
+					if (Switch == 1)
+						drag.check_Fdrag(crow.get_position());
+					else if (Switch != 1)
+						drag.check_Sdrag(crow.get_position());
 
-				crow.marked = true;
-				crow.speed = { 0,0 };
-				crow.acc = { 0,0 };
-				crow.order = order_counter;
-				if (Switch == 1)
-					drag.check_Fdrag(crow.get_position());
-				else if (Switch != 1)
-					drag.check_Sdrag(crow.get_position());
+					order_counter++;
 
-				order_counter++;
+					hasRun = true;
+				}
+			}
+			if (!judge) {
+				hasRun = false;
 			}
 		}
+		if (continuous_fail) {
+			continuous_start = false;
+			for (Crow& crow : crows) {
+				if (crow.marked) {
+					crow.speed = { float(GetRandomValue(0,1) == 0 ? 2 : 1), 1 };
+					crow.acc = { 0.05, 0.008 };
+					crow.order = 0;
+					crow.marked = false;
+				}
+			}
+		}
+		continuous_fail = false;
 	}
-
-	if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
+	if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && continuous_start) {
 		erase_flag = true;
+		isMouseInputAllowed = false;
+		continuous_start = false;
 	}
 
 	if (erase_flag == true && is_changed == true && splited_beat == true)
@@ -233,9 +256,12 @@ void Crow::_crow() {
 		erase_number++;
 		if (order_counter == erase_number)
 		{
+
 			order_counter = 1;
 			erase_number = 1;
 			erase_flag = false;
+			isMouseInputAllowed = true;
+
 		}
 	}
 
@@ -255,16 +281,16 @@ void Crow::_crow() {
 
 }
 
-void delete_crow() {
+void Crow::delete_crow() {
 	for (int i = crows.size() - 1; i >= 0; i--) { //delete the crow
-		//std::cout << "before delete " << crows.size() << std::endl;
 		if (crows[i].marked == true && crows[i].order == erase_number) { //i need a counter to check the order of crow by it clicked
+			UpdateMusicStream(crow_blow);
 			crows.erase(crows.begin() + i);
-			//std::cout << "after delete " << crows.size() << std::endl;
 			break;
 		}
 	}
-} //crow does not erased when it is double clicked
+
+}
 
 int return_order_counter() {
 	int cnt = order_counter - 1;

@@ -58,11 +58,13 @@ void animation_move() {
     }
 }
 
+Color co = Color{ 227, 98, 66 ,255 };
+
 void lobbyscreen() {
     animation_move();
     int btnState = 0;
     bool btnAcion = false;
-    ClearBackground(GRAY);
+    ClearBackground(co);
     DrawTexturePro(
         title_Sheet_texture,
         { float(title_x),0,window_width / 2,  window_height / 2
@@ -101,6 +103,7 @@ void stage_1() {
     }
     IsOnBeat();
     beat_spliting();
+    continuous_beat();
     crow._crow();
     drag.Fx();
     //std::cout << "gameover " << is_gameover() << std::endl;

@@ -2,11 +2,12 @@
 #include <raylib.h>
 #include "H_Crow.h"
 #include "H_Main.h"
+#include "H_Drag.h"
 
 constexpr int BPM = 100;
 constexpr double judge_offSet = 0.1;
 constexpr int trigger_bar = 1;
-static bool hasRun = false;
+
 
 int beat_count = 0;
 double SecondTerm = 60.0 / BPM;
@@ -14,15 +15,15 @@ bool crow_delete_flag = false;
 bool prev_judge = false;
 bool judge = false;
 
+bool is_changed_j = false;
 bool is_changed = false;
+bool continuous_fail = false;
 
 void IsOnBeat() {
-    //is_changed = false;
-
-    //compute the term between beats
+    is_changed_j = false;
+    static bool hasRun = false;
     double time = double(GetMusicTimePlayed(music));
     int beat_count = time / SecondTerm;
-
     //judge
     if (time < double(beat_count * SecondTerm + judge_offSet) &&
         time >  double(beat_count * SecondTerm - judge_offSet)) {
@@ -34,9 +35,6 @@ void IsOnBeat() {
     {
         judge = false;
     }
-
-    //std::cout << beat_count << "   :   " << double(beat_count * SecondTerm - judge_offSet) << "  <  " << time << "  <  " << double(beat_count * SecondTerm + judge_offSet) << std::endl;
-
 
     if (beat_count % 5 == 0) {
         if (!hasRun) {
@@ -51,14 +49,47 @@ void IsOnBeat() {
         hasRun = false;
     }
 
-    //if (judge != prev_judge)
-    //{
-    //    is_changed = true;
-    //}
+    if (judge != prev_judge)
+    {
+        is_changed_j = true;
+    }
+    prev_judge = judge;
 
-    //prev_judge = judge;
+
 }
 
+int continuous_count = 1;
+
+void continuous_beat() {
+    std::cout << " fail" << continuous_fail << " cnt:" << continuous_count << "  order:" << return_order_counter() << std::endl;
+
+    Drag drag;
+    double time = double(GetMusicTimePlayed(music));
+    int beat_count = time / SecondTerm;
+
+    int prev_beat = 0;
+    int beat_count_now = 0;
+
+    if (continuous_start) {
+
+        //if beat_count increased
+        // continuous_count++;
+        if (is_changed_j == true && judge == true) {
+            continuous_count++;
+        }
+
+        if (continuous_count > return_order_counter() + 1) {
+            drag.fail_drag(); //TODO: maintatin the func
+            continuous_fail = true;
+        }
+
+    }
+    else {
+        continuous_count = 1;
+    }
+
+
+}
 
 bool prev_splited_beat = false;
 bool splited_beat = false;
@@ -73,7 +104,6 @@ void beat_spliting() {
     }
     else if (return_order_counter() >= 6) {
         splited_gap = long double(SecondTerm / 3);
-        std::cout << "here!" << std::endl;
     }
     else if (return_order_counter() >= 4) {
         splited_gap = long double(SecondTerm / 2);
@@ -99,7 +129,7 @@ void beat_spliting() {
     }
 
 
- 
+
 
     if (splited_beat != prev_splited_beat)
     {

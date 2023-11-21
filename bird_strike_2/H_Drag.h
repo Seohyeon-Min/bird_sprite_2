@@ -50,7 +50,7 @@ public:
 	void givedrag(Vector2 pos);
 	void makeNewDrag();
 	void makeConDrag();
-
+	void fail_drag();
 	void Fx();
 };
 

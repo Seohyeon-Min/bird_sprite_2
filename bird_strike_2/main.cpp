@@ -9,6 +9,7 @@
 #include "H_GameState.h"
 
 Music music;
+Music crow_blow;
 
 int main() {
     InitWindow(window_width, window_height, "Bird Strike!");
@@ -16,8 +17,10 @@ int main() {
     InitAudioDevice();
 
     music = LoadMusicStream("audio/test_sound.mp3");
+    crow_blow = LoadMusicStream("audio/crow_blow.mp3");
 
     PlayMusicStream(music);
+    PlayMusicStream(crow_blow);
 
     SetTargetFPS(target_frame_rate);
 

@@ -109,9 +109,14 @@ void Drag::makeConDrag() {
 	}
 }
 
-double currentTime = 0.0;
-double previousTime = 0.0;
-double elapsedTime = 0.0;
+void Drag::fail_drag() {
+	clines.clear();
+	nlines.clear();
+	mousepostion = { -1,-1 };
+	Fdrag_position = { -1,-1 };
+	Sdrag_position = { -1,-1 };
+	Firstpos = { -1,-1 };
+}
 
 
 void Drag::Fx() {

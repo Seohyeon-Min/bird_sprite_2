@@ -12,16 +12,18 @@ struct Crow;
 extern Vector2 drag_position;
 extern std::vector<Crow> crows;
 extern int erase_number;
+extern bool continuous_start;
 
 struct Crow {
 private:
-    int radius = 25;
+    int radius = 30;
     Vector2 position = { 0, 0 };
     Vector2 speed = { 2, 1 };
     Vector2 acc = { 0.05, 0.008 };
     int spawn_count = 60;
     double animation_timer;
     bool direction = true;
+
 
 public:
 
@@ -41,10 +43,10 @@ public:
     void move();
     void checkdirection();
     void animation_move();
+    void delete_crow();
 
 };
 
-void delete_crow();
 int return_order_counter();
 
 #endif
