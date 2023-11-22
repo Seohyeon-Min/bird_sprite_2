@@ -1,10 +1,16 @@
 #include <iostream>
 #include "raylib.h"
 #include "H_Drag.h"
-
+#include "H_Main.h"
+#include "H_Beat_system.h"
 
 constexpr int mouse_R{6};
+constexpr int beat_circle_scale{25};
 
+void beat_circle() {
+    DrawCircle(GetMouseX(), GetMouseY(), (SecondTerms() - GetMusicTimePlayed(music)) * beat_circle_scale + beat_circle_scale, { 255, 255, 255, 125 });
+    DrawCircleLines(GetMouseX(), GetMouseY(), (SecondTerms() - GetMusicTimePlayed(music)) * beat_circle_scale + beat_circle_scale, { 0,0,0,125 });
+}
 
 void mousedown() {
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {

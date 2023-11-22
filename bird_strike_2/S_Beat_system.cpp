@@ -8,8 +8,6 @@ constexpr int BPM = 100;
 constexpr double judge_offSet = 0.1;
 constexpr int trigger_bar = 1;
 
-
-int beat_count = 0;
 double SecondTerm = 60.0 / BPM;
 bool crow_delete_flag = false;
 bool prev_judge = false;
@@ -19,14 +17,20 @@ bool is_changed_j = false;
 bool is_changed = false;
 bool continuous_fail = false;
 
-void IsOnBeat() {
-    is_changed_j = false;
-    static bool hasRun = false;
+float SecondTerms() {
     double time = double(GetMusicTimePlayed(music));
     int beat_count = time / SecondTerm;
+
+    return float(beat_count * SecondTerm);
+}
+
+void IsOnBeat() {
+    double time = double(GetMusicTimePlayed(music));
+    is_changed_j = false;
+    static bool hasRun = false;
     //judge
-    if (time < double(beat_count * SecondTerm + judge_offSet) &&
-        time >  double(beat_count * SecondTerm - judge_offSet)) {
+    if (time < double(SecondTerms() + judge_offSet) &&
+        time >  double(SecondTerms() - judge_offSet)) {
 
         DrawCircle(40, 40, 30, RED);
         judge = true;
@@ -36,7 +40,7 @@ void IsOnBeat() {
         judge = false;
     }
 
-    if (beat_count % 5 == 0) {
+    if (int(SecondTerms() / SecondTerm) % 5 == 0) {
         if (!hasRun) {
             for (int c = 0; c < 3; c++) {
                 Crow* p_crow = new Crow;
@@ -54,7 +58,6 @@ void IsOnBeat() {
         is_changed_j = true;
     }
     prev_judge = judge;
-
 
 }
 

@@ -2,6 +2,8 @@
 #include <iostream>
 #include "H_Sun.h"
 #include "H_Main.h"
+#include "H_Beat_system.h"
+
 
 constexpr int initial_sun_y = 325;
 constexpr int sun_radius = 300;
@@ -29,6 +31,7 @@ float drop_v(float i) {
 
 
 void draw_sun(float sun_y) {
+	DrawCircleGradient(window_width / 2, sun_y, (SecondTerms() - GetMusicTimePlayed(music)) * (sun_radius * 2) + (sun_radius * 2), {0,0,0, 200}, {0,0,0,0});
 	DrawCircle(window_width / 2, sun_y, sun_radius, sun_color_4);
 	DrawCircle(window_width / 2, sun_y, sun_radius - 13, sun_color_3);
 	DrawCircle(window_width / 2, sun_y, sun_radius - 24, sun_color_2);

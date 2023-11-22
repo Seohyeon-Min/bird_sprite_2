@@ -129,6 +129,7 @@ void stage_1() {
         end_game();
     }
     DrawTexture(grass_texture, 0, 0, WHITE);
+    beat_circle();
     mouse_control();
 }
 

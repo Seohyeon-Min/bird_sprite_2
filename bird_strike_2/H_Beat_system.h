@@ -1,6 +1,7 @@
 #ifndef BEAT_SYSTEM_H
 #define BEAT_SYSTEM_H
 
+float SecondTerms();
 void IsOnBeat();
 void beat_spliting();
 void continuous_beat();
@@ -12,5 +13,7 @@ extern bool is_changed;
 extern bool prev_splited_beat;
 extern bool splited_beat;
 extern bool continuous_fail;
+extern double SecondTerm;
+
 
 #endif
