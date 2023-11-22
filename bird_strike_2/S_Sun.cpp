@@ -3,6 +3,7 @@
 #include "H_Sun.h"
 #include "H_Main.h"
 #include "H_Beat_system.h"
+#include "H_GameState.h"
 
 
 constexpr int initial_sun_y = 325;
@@ -36,6 +37,16 @@ void draw_sun(float sun_y) {
 	DrawCircle(window_width / 2, sun_y, sun_radius - 13, sun_color_3);
 	DrawCircle(window_width / 2, sun_y, sun_radius - 24, sun_color_2);
 	DrawCircle(window_width / 2, sun_y, sun_radius - 50, sun_color_1);
+	DrawTexturePro(
+		sun_back_texture,
+		{ 0,0,window_width,  window_height
+		},
+		{ 0,0,window_width, window_height
+		},
+		{ 0,0 },
+		0,
+		WHITE
+	);
 }
 
 bool _sun() {

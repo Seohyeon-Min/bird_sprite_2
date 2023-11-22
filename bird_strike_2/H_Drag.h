@@ -3,7 +3,7 @@
 #include <vector>
 
 constexpr Color drag_color{ BLACK };
-constexpr Color drag_outline{ WHITE };
+constexpr Color drag_outline = Color{ 255,255,255,178 };
 constexpr int drag_ex{ 4 };
 using namespace std;
 extern int Switch;

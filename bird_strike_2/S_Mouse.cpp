@@ -8,7 +8,7 @@ constexpr int mouse_R{6};
 constexpr int beat_circle_scale{25};
 
 void beat_circle() {
-    DrawCircle(GetMouseX(), GetMouseY(), (SecondTerms() - GetMusicTimePlayed(music)) * beat_circle_scale + beat_circle_scale, { 255, 255, 255, 125 });
+    DrawCircleLines(GetMouseX(), GetMouseY(), ((SecondTerms() - GetMusicTimePlayed(music)) * beat_circle_scale + beat_circle_scale)-1, { 255, 255, 255, 125 });
     DrawCircleLines(GetMouseX(), GetMouseY(), (SecondTerms() - GetMusicTimePlayed(music)) * beat_circle_scale + beat_circle_scale, { 0,0,0,125 });
 }
 

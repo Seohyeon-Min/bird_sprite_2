@@ -22,6 +22,12 @@ Image title_background_image;
 Texture2D title_background_texture;
 Image stage1_background_image;
 Texture2D stage1_background_texture;
+Image sun_back_image;
+Texture2D sun_back_texture;
+Image sun_front_image;
+Texture2D sun_front_texture;
+Image sun_gradation_image;
+Texture2D sun_gradation_texture;
 
 void loadimage() {
     capybara_image = LoadImage("textures/capybara.png");
@@ -67,6 +73,18 @@ void loadimage() {
     stage1_background_image = LoadImage("textures/background/background_sample.png");
     stage1_background_texture = LoadTextureFromImage(stage1_background_image);
     UnloadImage(stage1_background_image);
+
+    sun_back_image = LoadImage("textures/sun/sun_back.png");
+    sun_back_texture = LoadTextureFromImage(sun_back_image);
+    UnloadImage(sun_back_image);
+
+    sun_front_image = LoadImage("textures/sun/sun_front.png");
+    sun_front_texture = LoadTextureFromImage(sun_front_image);
+    UnloadImage(sun_front_image);
+
+    sun_gradation_image = LoadImage("textures/sun/sun_gradation.png");
+    sun_gradation_texture = LoadTextureFromImage(sun_gradation_image);
+    UnloadImage(sun_gradation_image);
 }
 
 

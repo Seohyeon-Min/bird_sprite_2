@@ -27,6 +27,13 @@ extern Image title_background_image;
 extern Texture2D title_background_texture;
 extern Image stage1_background_image;
 extern Texture2D stage1_background_texture;
+extern Image sun_back_image;
+extern Texture2D sun_back_texture;
+extern Image sun_front_image;
+extern Texture2D sun_front_texture;
+extern Image sun_gradation_image;
+extern Texture2D sun_gradation_texture;
+
 
 void loadimage();
 
