@@ -105,16 +105,6 @@ void lobbyscreen() {
 void stage_1() {
     Crow crow;
     Drag drag;
-    DrawTexturePro(
-        stage1_background_texture,
-        { 0, 0,1300, 2368
-        },
-        { 0,0,window_width, window_height
-        },
-        { 0,0 },
-        0,
-        WHITE
-    );
     extern bool is_gameover;
     if (_sun()) {
         start_stage_2();

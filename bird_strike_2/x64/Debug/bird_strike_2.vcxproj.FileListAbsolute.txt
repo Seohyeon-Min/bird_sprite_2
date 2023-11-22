@@ -1,3 +1,2 @@
 C:\Users\gtg06\Desktop\ㅤ\bird_strike_2\bird_strike_2\x64\Debug\bird_strike_2.vcxproj.CopyComplete
 C:\Users\admin\Desktop\유용해요\Bird_Strike\bird_sprite_2\bird_strike_2\x64\Debug\bird_strike_2.vcxproj.CopyComplete
-C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\x64\Debug\bird_strike_2.vcxproj.CopyComplete
