@@ -39,7 +39,7 @@ ConLine::ConLine(Vector2 prepos, Vector2 post, int ex, Color color)
 //new+mouse line struct
 void NewLine::newdraw() {
 	do {
-
+		DrawLineEx(prepostion, postion, Line_ex + 2, Outline_color);
 		DrawLineEx(prepostion, postion, Line_ex, Line_color);
 	} while (false);
 }
@@ -47,6 +47,7 @@ void NewLine::newdraw() {
 //connection line struct
 void ConLine::condraw() {
 	do {
+		DrawLineEx(prepostion, postion, Line_ex + 2, Outline_color);
 		DrawLineEx(prepostion, postion, Line_ex, Line_color);
 	} while (false);
 }

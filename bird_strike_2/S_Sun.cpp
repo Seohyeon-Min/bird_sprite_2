@@ -1,14 +1,11 @@
 #include <raylib.h>
 #include <iostream>
 #include "H_Sun.h"
-
-constexpr int window_width{ 768 };
-constexpr int window_height{ 432 };
-constexpr int target_frame_rate{ 60 };
+#include "H_Main.h"
 
 constexpr int initial_sun_y = 325;
 constexpr int sun_radius = 300;
-constexpr int max_time = 100;
+constexpr int max_time = 60;
 
 constexpr Color sun_color_1 = Color{ 247, 240, 234, 255 };
 constexpr Color sun_color_2 = Color{ 246, 236, 218, 255 };
@@ -39,7 +36,7 @@ void draw_sun(float sun_y) {
 }
 
 bool _sun() {
-	float y = drop_v(GetTime());
+	float y = drop_v(GetMusicTimePlayed(music));
 	draw_sun(y);
 	//std::cout << i - 325 << "    ,    " << GetTime() << std::endl;
 	if (y >= GetScreenHeight() + sun_radius) {

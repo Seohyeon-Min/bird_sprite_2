@@ -23,6 +23,10 @@ extern Image title_Sheet_image;
 extern Texture2D title_Sheet_texture;
 extern Image crow_die_Sheet_image;
 extern Texture2D crow_die_Sheet_texture;
+extern Image title_background_image;
+extern Texture2D title_background_texture;
+extern Image stage1_background_image;
+extern Texture2D stage1_background_texture;
 
 void loadimage();
 

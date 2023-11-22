@@ -58,20 +58,28 @@ void animation_move() {
     }
 }
 
-Color co = Color{ 227, 98, 66 ,255 };
 
 void lobbyscreen() {
     animation_move();
     int btnState = 0;
     bool btnAcion = false;
-    ClearBackground(co);
+    DrawTexturePro(
+        title_background_texture,
+        { 0,0,window_width / 2,  window_height / 2
+        },
+        { 0,0,window_width, window_height
+        },
+        { 0,0 },
+        0,
+        WHITE
+    );
     DrawTexturePro(
         title_Sheet_texture,
         { float(title_x),0,window_width / 2,  window_height / 2
         },
         { 0,0,window_width, window_height
         },
-        { 0,0 },
+         { 0,0 },
         0,
         WHITE
     );
@@ -97,6 +105,16 @@ void lobbyscreen() {
 void stage_1() {
     Crow crow;
     Drag drag;
+    DrawTexturePro(
+        stage1_background_texture,
+        { 0, 0,1300, 2368
+        },
+        { 0,0,window_width, window_height
+        },
+        { 0,0 },
+        0,
+        WHITE
+    );
     extern bool is_gameover;
     if (_sun()) {
         start_stage_2();
@@ -110,8 +128,8 @@ void stage_1() {
     if (is_gameover) {
         end_game();
     }
-    mouse_control();
     DrawTexture(grass_texture, 0, 0, WHITE);
+    mouse_control();
 }
 
 void stage_2() {

@@ -17,7 +17,7 @@ void mousedown() {
 void mouse() {
     if (!IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
         DrawCircleLines(GetMouseX(), GetMouseY(), mouse_R, BLACK);
-        DrawCircleLines(GetMouseX(), GetMouseY(), mouse_R - 1, BLACK);
+        DrawCircleLines(GetMouseX(), GetMouseY(), mouse_R - 1, WHITE);
     }
 }
 

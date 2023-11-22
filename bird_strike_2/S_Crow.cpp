@@ -180,6 +180,10 @@ Crow::Crow() {
 	}
 }
 
+Crow::~Crow() {
+
+}
+
 void Crow::add_crow() {
 	if (crows.size() < max_crow) {
 		crows.push_back(*this);
@@ -284,6 +288,7 @@ void Crow::_crow() {
 void Crow::delete_crow() {
 	for (int i = crows.size() - 1; i >= 0; i--) { //delete the crow
 		if (crows[i].marked == true && crows[i].order == erase_number) { //i need a counter to check the order of crow by it clicked
+			
 			UpdateMusicStream(crow_blow);
 			crows.erase(crows.begin() + i);
 			break;

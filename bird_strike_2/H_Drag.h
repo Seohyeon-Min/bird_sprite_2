@@ -2,8 +2,9 @@
 #define DRAG_H
 #include <vector>
 
-constexpr Color ball_color{ BLUE };
 constexpr Color drag_color{ BLACK };
+constexpr Color drag_outline{ WHITE };
+constexpr int drag_ex{ 4 };
 using namespace std;
 extern int Switch;
 
@@ -21,6 +22,7 @@ private:
 	Vector2 postion{ 0,0 };
 	int Line_ex{ 0 };
 	Color Line_color{ drag_color };
+	Color Outline_color{ drag_outline };
 public:
 	NewLine(Vector2 prepos, Vector2 post, int ex, Color color);
 	void newdraw();
@@ -33,6 +35,8 @@ private:
 	Vector2 postion{ 0,0 };
 	int Line_ex{ 0 };
 	Color Line_color{ drag_color };
+	Color Outline_color{ drag_outline };
+
 public:
 	ConLine(Vector2 prepos, Vector2 post, int ex, Color color);
 	void condraw();

@@ -39,8 +39,8 @@ void IsOnBeat() {
     if (beat_count % 5 == 0) {
         if (!hasRun) {
             for (int c = 0; c < 3; c++) {
-                Crow crow{};
-                crow.add_crow();
+                Crow* p_crow = new Crow;
+                p_crow->add_crow();
             }
             hasRun = true;
         }

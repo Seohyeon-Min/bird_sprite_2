@@ -3,7 +3,7 @@
 #include <raylib.h> 
 #include <vector>
 
-constexpr int drag_ex{ 5 };
+
 constexpr int max_crow = 30;
 constexpr int crow_per_sec = 3;
 
@@ -28,6 +28,7 @@ private:
 public:
 
     Crow();
+    ~Crow();
 
     int erase_index = 0;
     int order = 0;

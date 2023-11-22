@@ -59,9 +59,6 @@
     <ClInclude Include="H_Sun.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="H_Image.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="H_GameState.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -69,6 +66,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="H_Player.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Image.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

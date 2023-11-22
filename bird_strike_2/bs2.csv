@@ -1,0 +1,9 @@
+language,filename,blank,comment,code,"http://cloc.sourceforge.net v 1.64  T=0.02 s (470.0 files/s, 55931.1 lines/s)"
+C++,.\S_Crow.cpp,46,2,255
+C++,.\S_Drag.cpp,45,14,110
+C++,.\S_GameState.cpp,24,5,106
+C++,.\S_Beat_system.cpp,33,4,103
+C++,.\main.cpp,16,0,53
+C++,.\S_Image.cpp,14,0,48
+C++,.\S_Sun.cpp,11,2,34
+C++,.\S_Mouse.cpp,7,1,19
