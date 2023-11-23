@@ -127,7 +127,6 @@ void Drag::Fx() {
 
 	makeConDrag();
 	makeNewDrag();
-	std::cout << clines.size() << std::endl;
 
 	//draw line
 	for (size_t i = 0; i < nlines.size(); i++) {

@@ -15,6 +15,7 @@ void beat_circle() {
 void mousedown() {
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
         //DrawCircleGradient(GetMouseX(), GetMouseY(), mousecircleR, BLACK, dragmouse);
+        DrawCircleLines(GetMouseX(), GetMouseY(), mouse_R, WHITE);
         DrawCircleGradient(GetMouseX(), GetMouseY(), 5, BLACK, BLACK);
 
     }

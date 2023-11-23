@@ -64,7 +64,7 @@ void IsOnBeat() {
 int continuous_count = 1;
 
 void continuous_beat() {
-    std::cout << " fail" << continuous_fail << " cnt:" << continuous_count << "  order:" << return_order_counter() << std::endl;
+    //std::cout << " fail" << continuous_fail << " cnt:" << continuous_count << "  order:" << return_order_counter() << std::endl;
 
     Drag drag;
     double time = double(GetMusicTimePlayed(music));
@@ -73,7 +73,7 @@ void continuous_beat() {
     int prev_beat = 0;
     int beat_count_now = 0;
 
-    if (continuous_start) {
+    if (holding) {
 
         //if beat_count increased
         // continuous_count++;

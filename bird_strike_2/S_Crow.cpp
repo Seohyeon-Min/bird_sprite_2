@@ -14,6 +14,11 @@ const double animation_speed = 15;
 float sprite_scale{ 1.5 };
 int texture_sizes{ 50 };
 int erase_number = 1;
+int Switch = 1;
+int order_counter = 1;
+bool holding = false;
+bool erase_flag = false;
+int wait_for = target_frame_rate * 3;
 
 Vector2 Crow::get_position() {
 	return position;
@@ -192,22 +197,20 @@ void Crow::add_crow() {
 bool is_gameover;
 
 void Crow::check_game_over() {
-	if (crows.size() == max_crow) {
+	if (crows.size() == max_crow && !holding && !erase_flag) {
+		wait_for--;
 		is_gameover = true;
 		crows.clear();
 	}
 }
 
-int Switch = 1;
-int order_counter = 1;
-bool continuous_start = false;
-bool erase_flag = false;
+
 
 
 
 void Crow::_crow() {
 	static bool hasRun = false;
-
+	std::cout << crows.size() << std::endl;
 	mouse_click();
 	Drag drag;
 	Crow* hover = nullptr;
@@ -216,7 +219,7 @@ void Crow::_crow() {
 			hover = &crow;
 			if (mouse_click() && judge && !crow.marked && !continuous_fail) { //if mouse is down and on the crow... 
 				if (!hasRun) {
-					continuous_start = true;
+					holding = true;
 					crow.marked = true;
 					crow.speed = { 0,0 };
 					crow.acc = { 0,0 };
@@ -236,7 +239,7 @@ void Crow::_crow() {
 			}
 		}
 		if (continuous_fail) {
-			continuous_start = false;
+			holding = false;
 			for (Crow& crow : crows) {
 				if (crow.marked) {
 					crow.speed = { float(GetRandomValue(0,1) == 0 ? 2 : 1), 1 };
@@ -248,10 +251,10 @@ void Crow::_crow() {
 		}
 		continuous_fail = false;
 	}
-	if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && continuous_start) {
+	if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && holding) {
 		erase_flag = true;
 		isMouseInputAllowed = false;
-		continuous_start = false;
+		holding = false;
 	}
 
 	if (erase_flag == true && is_changed == true && splited_beat == true)
@@ -291,6 +294,7 @@ void Crow::delete_crow() {
 			
 			UpdateMusicStream(crow_blow);
 			crows.erase(crows.begin() + i);
+			std:cout << "erase!" << std::endl;
 			break;
 		}
 	}

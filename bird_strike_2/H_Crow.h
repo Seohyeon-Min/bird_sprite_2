@@ -12,7 +12,7 @@ struct Crow;
 extern Vector2 drag_position;
 extern std::vector<Crow> crows;
 extern int erase_number;
-extern bool continuous_start;
+extern bool holding;
 
 struct Crow {
 private:

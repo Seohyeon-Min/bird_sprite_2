@@ -34,6 +34,7 @@ void startloding() {
     if (IsKeyReleased(MOUSE_BUTTON_LEFT) || IsKeyReleased(KEY_SPACE) || int(GetTime()) > 7) {
         gamestate = GameState::LobbyScreen;
     }
+    mouse_control();
 }
 
 void start_game() {
@@ -88,7 +89,7 @@ void lobbyscreen() {
     if (IsKeyPressed(KEY_SPACE)) {
         start_game();
     }
-    if (CheckCollisionPointCircle(mousepostion, Vector2{ 20, window_height - 20 }, 10)) {
+    if (CheckCollisionPointCircle(mousepostion, Vector2{ 20, window_height - 20 }, 10)) { //it doesn't work
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) btnState = 2;
         else btnState = 1;
 
@@ -125,6 +126,7 @@ void stage_1() {
 
 void stage_2() {
     DrawText("state 2 !!", 270, window_height / 2 - 30, 40, BLACK);
+    mouse_control();
 }
 
 void gameover() {
