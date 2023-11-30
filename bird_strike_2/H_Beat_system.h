@@ -14,6 +14,7 @@ extern bool prev_splited_beat;
 extern bool splited_beat;
 extern bool continuous_fail;
 extern double SecondTerm;
+extern bool judge_great;
 
 
 #endif

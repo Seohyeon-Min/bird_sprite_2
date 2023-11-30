@@ -37,6 +37,7 @@ float drop_b(float i) {
 }
 
 
+
 void background(float sky_y) {
 	DrawTexture;
 	DrawTexturePro(
@@ -56,10 +57,11 @@ void draw_sun(float sun_y) {
 	//DrawCircle(window_width / 2, sun_y, sun_radius - 13, sun_color_3);
 	//DrawCircle(window_width / 2, sun_y, sun_radius - 24, sun_color_2);
 	//DrawCircle(window_width / 2, sun_y, sun_radius - 50, sun_color_1);
+
 	DrawTexturePro(
 		sun_gradation_texture,
 		{ 12,50,864, 486 },
-		{ 0, sun_y - 350,window_width, window_height },
+		{ 0, sun_y - 350,window_width , window_height  },
 		{ 0,0 },
 		0,
 		WHITE
@@ -67,7 +69,7 @@ void draw_sun(float sun_y) {
 	DrawTexturePro(
 		sun_back_texture,
 		{ 12,100,864, 486 },
-		{ 0, sun_y - 300,window_width, window_height },
+		{ 0, sun_y - 300,window_width, window_height  },
 		{ 0,0 },
 		0,
 		WHITE
@@ -75,7 +77,7 @@ void draw_sun(float sun_y) {
 	DrawTexturePro(
 		sun_front_texture,
 		{ 12,100,864, 486 },
-		{ 0, sun_y - 300,window_width, window_height },
+		{ 0, sun_y - 300,window_width , window_height },
 		{ 0,0 },
 		0,
 		WHITE

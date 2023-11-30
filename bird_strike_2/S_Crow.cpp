@@ -6,8 +6,10 @@
 #include "H_Image.h"
 #include "H_Beat_system.h"
 #include "H_Main.h"
+#include "H_Score.h"
 
 std::vector<Crow> crows{};
+std::vector<Vector2> marked_crow_positions;
 
 double animation_timer = 0;
 const double animation_speed = 15;
@@ -36,12 +38,12 @@ bool Crow::intersection(float x, float y) {
 }
 
 void Crow::draw(bool hover) {
-
+	if (hover)
+	{
+		DrawCircle(position.x, position.y, radius, Color{ 0,0,0 , 80 });
+	}
 	if (marked) {
-		if (hover)
-		{
-			DrawCircle(position.x, position.y, radius, Color{ 0,0,0 , 100 });
-		}
+
 
 		if (!((int)animation_timer % 15)) {
 			animation_timer = 15;
@@ -210,7 +212,7 @@ void Crow::check_game_over() {
 
 void Crow::_crow() {
 	static bool hasRun = false;
-	std::cout << crows.size() << std::endl;
+	std::cout << marked_crow_positions.size() << std::endl;
 	mouse_click();
 	Drag drag;
 	Crow* hover = nullptr;
@@ -219,18 +221,19 @@ void Crow::_crow() {
 			hover = &crow;
 			if (mouse_click() && judge && !crow.marked && !continuous_fail) { //if mouse is down and on the crow... 
 				if (!hasRun) {
+					get_score();
 					holding = true;
 					crow.marked = true;
 					crow.speed = { 0,0 };
 					crow.acc = { 0,0 };
 					crow.order = order_counter;
+					marked_crow_positions.push_back(crow.get_position());
 					if (Switch == 1)
 						drag.check_Fdrag(crow.get_position());
 					else if (Switch != 1)
 						drag.check_Sdrag(crow.get_position());
 
 					order_counter++;
-
 					hasRun = true;
 				}
 			}
@@ -239,7 +242,9 @@ void Crow::_crow() {
 			}
 		}
 		if (continuous_fail) {
+			lose_score();
 			holding = false;
+			marked_crow_positions.clear();
 			for (Crow& crow : crows) {
 				if (crow.marked) {
 					crow.speed = { float(GetRandomValue(0,1) == 0 ? 2 : 1), 1 };
@@ -255,6 +260,7 @@ void Crow::_crow() {
 		erase_flag = true;
 		isMouseInputAllowed = false;
 		holding = false;
+		marked_crow_positions.clear();
 	}
 
 	if (erase_flag == true && is_changed == true && splited_beat == true)
@@ -294,7 +300,6 @@ void Crow::delete_crow() {
 			
 			UpdateMusicStream(crow_blow);
 			crows.erase(crows.begin() + i);
-			std:cout << "erase!" << std::endl;
 			break;
 		}
 	}

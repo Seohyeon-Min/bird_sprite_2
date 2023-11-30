@@ -3,16 +3,18 @@
 #include "H_Crow.h"
 #include "H_Main.h"
 #include "H_Drag.h"
+#include "H_Score.h"
 
 constexpr int BPM = 100;
 constexpr double judge_offSet = 0.1;
+constexpr double judge_offSet_great = 0.05;
 constexpr int trigger_bar = 1;
 
 double SecondTerm = 60.0 / BPM;
 bool crow_delete_flag = false;
 bool prev_judge = false;
 bool judge = false;
-
+bool judge_great = false;
 bool is_changed_j = false;
 bool is_changed = false;
 bool continuous_fail = false;
@@ -31,9 +33,16 @@ void IsOnBeat() {
     //judge
     if (time < double(SecondTerms() + judge_offSet) &&
         time >  double(SecondTerms() - judge_offSet)) {
-
         DrawCircle(40, 40, 30, RED);
         judge = true;
+        if (time < double(SecondTerms() + judge_offSet_great) &&
+            time >  double(SecondTerms() - judge_offSet_great)) {
+            judge_great = true;
+        }
+        else
+        {   
+            judge_great = false;
+        }
     }
     else
     {
@@ -104,12 +113,15 @@ void beat_spliting() {
 
     if (return_order_counter() >= 8) {
         splited_gap = long double(SecondTerm / 4);
+        bonus_score();
     }
     else if (return_order_counter() >= 6) {
         splited_gap = long double(SecondTerm / 3);
+        bonus_score();
     }
     else if (return_order_counter() >= 4) {
         splited_gap = long double(SecondTerm / 2);
+        bonus_score();
     }
     else {
         splited_gap = SecondTerm;

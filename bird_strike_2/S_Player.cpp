@@ -32,7 +32,6 @@ void Player::draw(Vector2 pos) {
 void Player::x() {
     if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
         destination = GetMousePosition();
-        std::cout << get_distance_x(position.x, destination.x) << std::endl;
     }
     speed.x = get_distance_x(position.x, destination.x) / reaching_time;
     speed.y = get_distance_y(position.y, destination.y) / reaching_time;

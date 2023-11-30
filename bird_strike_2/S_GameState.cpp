@@ -104,6 +104,7 @@ void lobbyscreen() {
 }
 
 void stage_1() {
+
     Crow crow;
     Drag drag;
     extern bool is_gameover;
