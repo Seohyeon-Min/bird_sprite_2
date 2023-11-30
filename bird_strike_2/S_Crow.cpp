@@ -212,7 +212,6 @@ void Crow::check_game_over() {
 
 void Crow::_crow() {
 	static bool hasRun = false;
-	std::cout << marked_crow_positions.size() << std::endl;
 	mouse_click();
 	Drag drag;
 	Crow* hover = nullptr;
@@ -244,6 +243,7 @@ void Crow::_crow() {
 		if (continuous_fail) {
 			lose_score();
 			holding = false;
+			order_counter = 1;
 			marked_crow_positions.clear();
 			for (Crow& crow : crows) {
 				if (crow.marked) {
@@ -257,6 +257,7 @@ void Crow::_crow() {
 		continuous_fail = false;
 	}
 	if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && holding) {
+		bonus_score();
 		erase_flag = true;
 		isMouseInputAllowed = false;
 		holding = false;

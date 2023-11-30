@@ -7,7 +7,7 @@
 
 constexpr int BPM = 100;
 constexpr double judge_offSet = 0.1;
-constexpr double judge_offSet_great = 0.05;
+constexpr double judge_offSet_great = 0.02;
 constexpr int trigger_bar = 1;
 
 double SecondTerm = 60.0 / BPM;
@@ -33,7 +33,6 @@ void IsOnBeat() {
     //judge
     if (time < double(SecondTerms() + judge_offSet) &&
         time >  double(SecondTerms() - judge_offSet)) {
-        DrawCircle(40, 40, 30, RED);
         judge = true;
         if (time < double(SecondTerms() + judge_offSet_great) &&
             time >  double(SecondTerms() - judge_offSet_great)) {
@@ -49,7 +48,7 @@ void IsOnBeat() {
         judge = false;
     }
 
-    if (int(SecondTerms() / SecondTerm) % 5 == 0) {
+    if (int(SecondTerms() / SecondTerm) % 5 == 0 && int(SecondTerms() / SecondTerm) > 4) {
         if (!hasRun) {
             for (int c = 0; c < 3; c++) {
                 Crow* p_crow = new Crow;
@@ -109,19 +108,16 @@ long double splited_gap;
 
 void beat_spliting() {
     is_changed = false;
-
+    //std::cout << bonus[0] << bonus[1] << bonus[2] << std::endl;
 
     if (return_order_counter() >= 8) {
         splited_gap = long double(SecondTerm / 4);
-        bonus_score();
     }
     else if (return_order_counter() >= 6) {
         splited_gap = long double(SecondTerm / 3);
-        bonus_score();
     }
     else if (return_order_counter() >= 4) {
         splited_gap = long double(SecondTerm / 2);
-        bonus_score();
     }
     else {
         splited_gap = SecondTerm;
@@ -135,7 +131,6 @@ void beat_spliting() {
     if (time < long double(beat_count_splited * splited_gap + judge_offSet) &&
         time >  long double(beat_count_splited * splited_gap - judge_offSet)) {
 
-        DrawCircle(100, 40, 30, BLUE);
         splited_beat = true;
     }
     else

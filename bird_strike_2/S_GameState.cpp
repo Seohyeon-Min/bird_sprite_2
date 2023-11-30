@@ -1,6 +1,7 @@
 #include "H_GameState.h"
 #include "H_Beat_system.h"
 #include "H_Sun.h"
+#include "H_Score.h"
 
 extern Vector2 mousepostion;
 double animation_timer_title = 0;
@@ -102,31 +103,44 @@ void lobbyscreen() {
     }
     mouse_control();
 }
+Crow crow;
+Drag drag;
+extern bool is_gameover;
 
 void stage_1() {
 
-    Crow crow;
-    Drag drag;
-    extern bool is_gameover;
     if (_sun()) {
         start_stage_2();
     }
     IsOnBeat();
     beat_spliting();
     continuous_beat();
+    show_score();
     crow._crow();
     drag.Fx();
-    //std::cout << "gameover " << is_gameover() << std::endl;
     if (is_gameover) {
         end_game();
     }
     DrawTexture(grass_texture, 0, 0, WHITE);
     beat_circle();
+
     mouse_control();
 }
 
 void stage_2() {
     DrawText("state 2 !!", 270, window_height / 2 - 30, 40, BLACK);
+    IsOnBeat();
+    beat_spliting();
+    continuous_beat();
+    show_score();
+    crow._crow();
+    drag.Fx();
+    if (is_gameover) {
+        end_game();
+    }
+    DrawTexture(grass_texture, 0, 0, WHITE);
+    beat_circle();
+
     mouse_control();
 }
 
