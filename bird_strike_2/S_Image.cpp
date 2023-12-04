@@ -28,6 +28,8 @@ Image sun_front_image;
 Texture2D sun_front_texture;
 Image sun_gradation_image;
 Texture2D sun_gradation_texture;
+Image setting_icon_image;
+Texture2D setting_icon_texture;
 
 void loadimage() {
     capybara_image = LoadImage("textures/capybara.png");
@@ -85,6 +87,10 @@ void loadimage() {
     sun_gradation_image = LoadImage("textures/sun/sun_gradation.png");
     sun_gradation_texture = LoadTextureFromImage(sun_gradation_image);
     UnloadImage(sun_gradation_image);
+
+    setting_icon_image = LoadImage("textures/setting_icon.png");
+    setting_icon_texture = LoadTextureFromImage(setting_icon_image);
+    UnloadImage(setting_icon_image);
 }
 
 

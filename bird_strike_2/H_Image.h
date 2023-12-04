@@ -33,6 +33,8 @@ extern Image sun_front_image;
 extern Texture2D sun_front_texture;
 extern Image sun_gradation_image;
 extern Texture2D sun_gradation_texture;
+extern Image setting_icon_image;
+extern Texture2D setting_icon_texture;
 
 
 void loadimage();

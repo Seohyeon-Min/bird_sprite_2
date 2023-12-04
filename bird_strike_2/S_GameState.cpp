@@ -6,6 +6,9 @@ extern Vector2 mousepostion;
 double animation_timer_title = 0;
 int title_x = 0;
 GameState gamestate = GameState::Startloading;
+constexpr int setting_width = 25;
+constexpr int setting_position = 15;
+
 
 void startloding() {
     if (int(GetTime() < 3)) {
@@ -84,12 +87,19 @@ void lobbyscreen() {
         0,
         WHITE
     );
-    DrawCircle(20, window_height - 20, 10, BLACK);//setting butten
+    
+
+    DrawTexturePro(setting_icon_texture,
+        { 0,0,float(setting_icon_image.height), float(setting_icon_image.width) },
+        {setting_position,window_height-(setting_position+setting_width),setting_width,setting_width },
+        { 0,0 },
+        0,
+        WHITE);
 
     if (IsKeyPressed(KEY_SPACE)) {
         start_game();
     }
-    if (CheckCollisionPointCircle(mousepostion, Vector2{ 20, window_height - 20 }, 10)) { //it doesn't work
+    if (GetMouseX() >setting_position && GetMouseX() <setting_position + setting_width && GetMouseY() > window_height - (setting_position + setting_width) && GetMouseY() < window_height - setting_position) { //it doesn't work
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) btnState = 2;
         else btnState = 1;
 
@@ -140,7 +150,11 @@ void gameover() {
 
 void setting() {
     DrawText("Welcome! This is setting screen!", 110, window_height / 2 - 50, text_size, BLACK);
+    DrawText("Press Space to go back to the title.", 110, window_height / 2 - 20, text_size, BLACK);
     mouse_control();
+    if (IsKeyPressed(KEY_SPACE)) {
+        gamestate = GameState::LobbyScreen;
+    }
 }
 
 
