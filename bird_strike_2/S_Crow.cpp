@@ -7,6 +7,7 @@
 #include "H_Beat_system.h"
 #include "H_Main.h"
 #include "H_Score.h"
+#include "H_Particle.h"
 
 std::vector<Crow> crows{};
 std::vector<Vector2> marked_crow_positions;
@@ -45,8 +46,8 @@ void Crow::draw(bool hover) {
 	if (marked) {
 
 
-		if (!((int)animation_timer % 15)) {
-			animation_timer = 15;
+		if (int(animation_timer) % 7 == 6) {
+			animation_timer = 6;
 
 		}
 		DrawTexturePro(
@@ -212,7 +213,6 @@ void Crow::check_game_over() {
 
 void Crow::_crow() {
 	static bool hasRun = false;
-	std::cout << marked_crow_positions.size() << std::endl;
 	mouse_click();
 	Drag drag;
 	Crow* hover = nullptr;
@@ -224,10 +224,12 @@ void Crow::_crow() {
 					get_score();
 					holding = true;
 					crow.marked = true;
+					crow.animation_timer = 0;
 					crow.speed = { 0,0 };
 					crow.acc = { 0,0 };
 					crow.order = order_counter;
 					marked_crow_positions.push_back(crow.get_position());
+
 					if (Switch == 1)
 						drag.check_Fdrag(crow.get_position());
 					else if (Switch != 1)
@@ -244,6 +246,7 @@ void Crow::_crow() {
 		if (continuous_fail) {
 			lose_score();
 			holding = false;
+			order_counter = 1;
 			marked_crow_positions.clear();
 			for (Crow& crow : crows) {
 				if (crow.marked) {
@@ -257,6 +260,7 @@ void Crow::_crow() {
 		continuous_fail = false;
 	}
 	if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && holding) {
+		bonus_score();
 		erase_flag = true;
 		isMouseInputAllowed = false;
 		holding = false;
@@ -297,7 +301,7 @@ void Crow::_crow() {
 void Crow::delete_crow() {
 	for (int i = crows.size() - 1; i >= 0; i--) { //delete the crow
 		if (crows[i].marked == true && crows[i].order == erase_number) { //i need a counter to check the order of crow by it clicked
-			
+			Particle::make_particle(crows[i].get_position());
 			UpdateMusicStream(crow_blow);
 			crows.erase(crows.begin() + i);
 			break;
@@ -310,3 +314,11 @@ int return_order_counter() {
 	int cnt = order_counter - 1;
 	return cnt;
 }
+
+
+
+
+
+
+
+
