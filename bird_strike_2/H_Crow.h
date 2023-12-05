@@ -36,7 +36,6 @@ public:
     bool marked = false;  //mark the crow that will be deleted
     Vector2 get_position();
     void add_crow();
-    void check_game_over();
     bool intersection(float x, float y);
     void first_move();
     void _crow();
@@ -48,6 +47,8 @@ public:
 
 };
 
+std::string check_game_over();
 int return_order_counter();
+int return_crow_size();
 
 #endif

@@ -33,7 +33,6 @@ void IsOnBeat() {
     //judge
     if (time < double(SecondTerms() + judge_offSet) &&
         time >  double(SecondTerms() - judge_offSet)) {
-        DrawCircle(40, 40, 30, RED);
         judge = true;
         if (time < double(SecondTerms() + judge_offSet_great) &&
             time >  double(SecondTerms() - judge_offSet_great)) {
@@ -113,15 +112,12 @@ void beat_spliting() {
 
     if (return_order_counter() >= 8) {
         splited_gap = long double(SecondTerm / 4);
-        bonus_score();
     }
     else if (return_order_counter() >= 6) {
         splited_gap = long double(SecondTerm / 3);
-        bonus_score();
     }
     else if (return_order_counter() >= 4) {
         splited_gap = long double(SecondTerm / 2);
-        bonus_score();
     }
     else {
         splited_gap = SecondTerm;
@@ -135,7 +131,6 @@ void beat_spliting() {
     if (time < long double(beat_count_splited * splited_gap + judge_offSet) &&
         time >  long double(beat_count_splited * splited_gap - judge_offSet)) {
 
-        DrawCircle(100, 40, 30, BLUE);
         splited_beat = true;
     }
     else

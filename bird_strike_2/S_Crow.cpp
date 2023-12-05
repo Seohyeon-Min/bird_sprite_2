@@ -1,6 +1,7 @@
 #include <raylib.h>
 #include <iostream>
 #include <vector>
+#include <string>
 #include "H_Crow.h"
 #include "H_Drag.h"
 #include "H_Image.h"
@@ -21,7 +22,6 @@ int Switch = 1;
 int order_counter = 1;
 bool holding = false;
 bool erase_flag = false;
-int wait_for = target_frame_rate * 3;
 
 Vector2 Crow::get_position() {
 	return position;
@@ -197,15 +197,7 @@ void Crow::add_crow() {
 		crows.push_back(*this);
 	}
 }
-bool is_gameover;
 
-void Crow::check_game_over() {
-	if (crows.size() == max_crow && !holding && !erase_flag) {
-		wait_for--;
-		is_gameover = true;
-		crows.clear();
-	}
-}
 
 
 
@@ -298,6 +290,45 @@ void Crow::_crow() {
 
 }
 
+
+
+bool is_gameover;
+int wait_for = target_frame_rate * 3;
+
+std::string check_game_over() {
+
+	if (crows.size() >= max_crow && !erase_flag) {
+		wait_for--;
+		if (holding) {
+			is_gameover = false;
+			std::cout << (int)(wait_for / 60) << " holding:" << holding << std::endl;
+
+			if (wait_for < 0) {
+				return "bonus time";
+			}
+			else {
+				return to_string((int)(wait_for / 60) + 1);
+			}
+		}
+		else {
+			if (wait_for > 0) {
+				std::cout << (int)(wait_for / 60) << " holding:" << holding << std::endl;
+				return to_string((int)(wait_for / 60) + 1);
+			}
+			else {
+				is_gameover = true;
+				crows.clear();
+				return to_string((int)(wait_for / 60) + 1);
+			}
+		}
+	}
+	else {
+		wait_for = target_frame_rate * 3;
+		return " ";
+	}
+}
+
+
 void Crow::delete_crow() {
 	for (int i = crows.size() - 1; i >= 0; i--) { //delete the crow
 		if (crows[i].marked == true && crows[i].order == erase_number) { //i need a counter to check the order of crow by it clicked
@@ -316,7 +347,9 @@ int return_order_counter() {
 }
 
 
-
+int return_crow_size() {
+	return crows.size();
+}
 
 
 
