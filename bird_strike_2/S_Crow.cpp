@@ -15,7 +15,7 @@ std::vector<Vector2> marked_crow_positions;
 
 double animation_timer = 0;
 const double animation_speed = 15;
-float sprite_scale{ 1.5 };
+float sprite_scale{ (float)(window_width / 512.0f) };
 int texture_sizes{ 50 };
 int erase_number = 1;
 int Switch = 1;

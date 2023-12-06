@@ -15,6 +15,10 @@ constexpr int good_score = 20;
 constexpr int fail_score = -80;
 constexpr int extra_score = 20;
 
+int return_score() {
+	return score;
+}
+
 void judge_text_draw() {
 	if (alpha > 0) {
 		alpha -= 5;

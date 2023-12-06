@@ -34,7 +34,12 @@ Image star_icon_image;
 Texture2D star_icon_texture;
 Image challenge_icon_image;
 Texture2D challenge_icon_texture;
-
+Image grass_2_image;
+Texture2D grass_2_texture;
+Texture2D sun_stage_2_texture;
+Image sun_stage_2_image;
+Image vignetting_image;
+Texture2D vignetting_texture;
 
 void loadimage() {
     capybara_image = LoadImage("textures/capybara.png");
@@ -104,6 +109,18 @@ void loadimage() {
     challenge_icon_image = LoadImage("textures/challenge_icon.png");
     challenge_icon_texture = LoadTextureFromImage(challenge_icon_image);
     UnloadImage(challenge_icon_image);
+
+    grass_2_image = LoadImage("textures/grass_2.png");
+    grass_2_texture = LoadTextureFromImage(grass_2_image);
+    UnloadImage(grass_2_image);
+
+    sun_stage_2_image = LoadImage("textures/sun/sun_stage_2.png");
+    sun_stage_2_texture = LoadTextureFromImage(sun_stage_2_image);
+    UnloadImage(sun_stage_2_image);
+
+    vignetting_image = LoadImage("textures/vignetting.png");
+    vignetting_texture = LoadTextureFromImage(vignetting_image);
+    UnloadImage(vignetting_image);
 }
 
 

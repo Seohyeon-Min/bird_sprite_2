@@ -139,7 +139,6 @@ Drag drag;
 extern bool is_gameover;
 
 void stage_1() {
-
     if (_sun()) {
         start_stage_2();
     }
@@ -155,35 +154,41 @@ void stage_1() {
     DrawTexture(grass_texture, 0, 0, WHITE);
     beat_circle();
     show_score();
-
-
     mouse_control();
 }
 
 void stage_2() {
-    ClearBackground({ 0,0,0,125 });
-    DrawText("state 2 !!", 270, window_height / 2 - 30, 40, BLACK);
+    ClearBackground(Color{ 4, 18, 31,255 });
+    PlayMusicStream(music);
+    _sun_stage2();
     IsOnBeat();
     beat_spliting();
     continuous_beat();
-    show_score();
+    Particle::update_all();
     crow._crow();
     drag.Fx();
     if (is_gameover) {
         end_game();
     }
-    DrawTexture(grass_texture, 0, 0, WHITE);
+    DrawTexture(grass_2_texture, 0, 0, WHITE);
     beat_circle();
-
+    show_score();
     mouse_control();
+    //DrawTexturePro(vignetting_texture,
+    //    { 0,0,float(setting_icon_image.height), float(setting_icon_image.width) },
+    //    { setting_position,window_height - (setting_position + setting_width),setting_width,setting_width },
+    //    { 0,0 },
+    //    0,
+    //    { 125,125,125,255 });
+
 }
 
 void gameover() {
     DrawText("Game over!", 270, window_height / 2 - 30, 40, BLACK);
-    //DrawText("Press R to restart", 270, window_height / 2 + 10 , 20, BLACK);
-    //if (IsKeyPressed(KEY_R)) {
-    //    start_game();
-    //}
+    DrawText("Press R to restart", 270, window_height / 2 + 10, 20, BLACK);
+    if (IsKeyPressed(KEY_R)) {
+        gamestate = GameState::LobbyScreen;
+    }
 }
 
 void setting() {
@@ -194,5 +199,4 @@ void setting() {
         gamestate = GameState::LobbyScreen;
     }
 }
-
 

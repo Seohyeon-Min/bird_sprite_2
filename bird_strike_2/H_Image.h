@@ -11,6 +11,8 @@ extern Image DigiPenlogo_image;
 extern Texture2D DigiPenlogo_texture;
 extern Image grass_image;
 extern Texture2D grass_texture;
+extern Image grass_2_image;
+extern Texture2D grass_2_texture;
 extern Image Sprite_crow_image;
 extern Texture2D Sprite_crow_texture;
 extern Image Sprite_crow_outline_image;
@@ -31,6 +33,8 @@ extern Image sun_back_image;
 extern Texture2D sun_back_texture;
 extern Image sun_front_image;
 extern Texture2D sun_front_texture;
+extern Image sun_stage_2_image;
+extern Texture2D sun_stage_2_texture;
 extern Image sun_gradation_image;
 extern Texture2D sun_gradation_texture;
 extern Image setting_icon_image;
@@ -39,7 +43,8 @@ extern Image star_icon_image;
 extern Texture2D star_icon_texture;
 extern Image challenge_icon_image;
 extern Texture2D challenge_icon_texture;
-
+extern Image vignetting_image;
+extern Texture2D vignetting_texture;
 
 void loadimage();
 

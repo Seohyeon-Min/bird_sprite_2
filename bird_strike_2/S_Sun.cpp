@@ -8,7 +8,7 @@
 
 constexpr int initial_sun_y = 325;
 constexpr int sun_radius = 300;
-constexpr int max_time = 100;
+constexpr int max_time = 20;
 
 constexpr Color sun_color_1 = Color{ 247, 240, 234, 255 };
 constexpr Color sun_color_2 = Color{ 246, 236, 218, 255 };
@@ -51,8 +51,10 @@ void background(float sky_y) {
 		WHITE
 	);
 }
+
+
 void draw_sun(float sun_y) {
-	DrawCircleGradient(window_width / 2, sun_y, (SecondTerms() - GetMusicTimePlayed(music)) * (800) + (800), {0,0,0, 200}, {0,0,0,0});
+	DrawCircleGradient(window_width / 2, sun_y, (SecondTerms() - GetMusicTimePlayed(music)) * (800) + (800), { 0,0,0, 200 }, { 0,0,0,0 });
 	//DrawCircle(window_width / 2, sun_y, sun_radius, sun_color_4);
 	//DrawCircle(window_width / 2, sun_y, sun_radius - 13, sun_color_3);
 	//DrawCircle(window_width / 2, sun_y, sun_radius - 24, sun_color_2);
@@ -61,7 +63,7 @@ void draw_sun(float sun_y) {
 	DrawTexturePro(
 		sun_gradation_texture,
 		{ 12,50,864, 486 },
-		{ 0, sun_y - 350,window_width , window_height  },
+		{ 0, sun_y - 350,window_width , window_height },
 		{ 0,0 },
 		0,
 		WHITE
@@ -69,7 +71,7 @@ void draw_sun(float sun_y) {
 	DrawTexturePro(
 		sun_back_texture,
 		{ 12,100,864, 486 },
-		{ 0, sun_y - 300,window_width, window_height  },
+		{ 0, sun_y - 300,window_width, window_height },
 		{ 0,0 },
 		0,
 		WHITE
@@ -84,6 +86,25 @@ void draw_sun(float sun_y) {
 	);
 }
 
+
+void draw_sun_stage_2() {
+	//DrawCircleGradient(window_width / 2, sun_y, (SecondTerms() - GetMusicTimePlayed(music)) * (800) + (800), { 0,0,0, 200 }, { 0,0,0,0 });
+	//DrawCircle(window_width / 2, sun_y, sun_radius, sun_color_4);
+
+	DrawTexturePro(
+		sun_stage_2_texture,
+		{ 12,100,864, 486 },
+		{ 0, 50,window_width , window_height },
+		{ 0,0 },
+		0,
+		WHITE
+	);
+}
+
+void _sun_stage2() {
+	draw_sun_stage_2();
+}
+
 bool _sun() {
 	float y = drop_v(GetMusicTimePlayed(music));
 	float b = drop_b(GetMusicTimePlayed(music));
@@ -94,5 +115,7 @@ bool _sun() {
 		return true;
 	}
 	return false;
+	//if (is_gameover) {
+	//	double sun_y = initial_sun_y;
+	//}
 }
-
