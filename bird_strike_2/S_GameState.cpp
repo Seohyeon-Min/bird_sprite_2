@@ -8,8 +8,10 @@ extern Vector2 mousepostion;
 double animation_timer_title = 0;
 int title_x = 0;
 GameState gamestate = GameState::Startloading;
-constexpr int setting_width = 25;
+constexpr int icon_width = 25;
 constexpr int setting_position = 15;
+constexpr int star_position = 45;
+constexpr int challenge_position = 75;
 
 
 void startloding() {
@@ -93,7 +95,19 @@ void lobbyscreen() {
 
     DrawTexturePro(setting_icon_texture,
         { 0,0,float(setting_icon_image.height), float(setting_icon_image.width) },
-        { setting_position,window_height - (setting_position + setting_width),setting_width,setting_width },
+        { setting_position,window_height - (setting_position + icon_width),icon_width,icon_width },
+        { 0,0 },
+        0,
+        WHITE);
+    DrawTexturePro(star_icon_texture,
+        {0,0,float(star_icon_image.width),float(star_icon_image.height)},
+        {star_position,window_height-(setting_position+icon_width),icon_width,icon_width},
+        {0,0},
+        0,
+        WHITE);
+    DrawTexturePro(challenge_icon_texture,
+        { 0,0,float(challenge_icon_image.width),float(challenge_icon_image.height) },
+        { challenge_position,window_height - (setting_position + icon_width)+1,icon_width,icon_width },
         { 0,0 },
         0,
         WHITE);
@@ -101,12 +115,12 @@ void lobbyscreen() {
     if (IsKeyPressed(KEY_SPACE)) {
         start_game();
     }
-    if (GetMouseX() > setting_position && GetMouseX() < setting_position + setting_width && GetMouseY() > window_height - (setting_position + setting_width) && GetMouseY() < window_height - setting_position) { //it doesn't work
+    if (GetMouseX() > setting_position && GetMouseX() < setting_position + icon_width && GetMouseY() > window_height - (setting_position + icon_width) && GetMouseY() < window_height - setting_position) { 
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) btnState = 2;
         else btnState = 1;
         DrawTexturePro(setting_icon_texture,
             { 0,0,float(setting_icon_image.height), float(setting_icon_image.width) },
-            { setting_position,window_height - (setting_position + setting_width),setting_width,setting_width },
+            { setting_position,window_height - (setting_position + icon_width),icon_width,icon_width },
             { 0,0 },
             0,
             { 125,125,125,255 });

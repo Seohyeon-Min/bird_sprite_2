@@ -22,6 +22,7 @@ int Switch = 1;
 int order_counter = 1;
 bool holding = false;
 bool erase_flag = false;
+bool crow_just_erased = false;
 
 Vector2 Crow::get_position() {
 	return position;
@@ -261,6 +262,7 @@ void Crow::_crow() {
 
 	if (erase_flag == true && is_changed == true && splited_beat == true)
 	{
+		crow_just_erased = true;
 		delete_crow();
 		erase_number++;
 		if (order_counter == erase_number)
@@ -273,6 +275,7 @@ void Crow::_crow() {
 
 		}
 	}
+	else crow_just_erased = false;
 
 	for (int i = crows.size() - 1; i >= 0; i--) {
 		if (crows[i].spawn_count == 0) {

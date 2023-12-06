@@ -30,6 +30,11 @@ Image sun_gradation_image;
 Texture2D sun_gradation_texture;
 Image setting_icon_image;
 Texture2D setting_icon_texture;
+Image star_icon_image;
+Texture2D star_icon_texture;
+Image challenge_icon_image;
+Texture2D challenge_icon_texture;
+
 
 void loadimage() {
     capybara_image = LoadImage("textures/capybara.png");
@@ -91,6 +96,14 @@ void loadimage() {
     setting_icon_image = LoadImage("textures/setting_icon.png");
     setting_icon_texture = LoadTextureFromImage(setting_icon_image);
     UnloadImage(setting_icon_image);
+
+    star_icon_image = LoadImage("textures/star_icon.png");
+    star_icon_texture = LoadTextureFromImage(star_icon_image);
+    UnloadImage(star_icon_image);
+
+    challenge_icon_image = LoadImage("textures/challenge_icon.png");
+    challenge_icon_texture = LoadTextureFromImage(challenge_icon_image);
+    UnloadImage(challenge_icon_image);
 }
 
 

@@ -16,7 +16,8 @@ void mousedown() {
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
         //DrawCircleGradient(GetMouseX(), GetMouseY(), mousecircleR, BLACK, dragmouse);
         DrawCircleLines(GetMouseX(), GetMouseY(), mouse_R, WHITE);
-        DrawCircleGradient(GetMouseX(), GetMouseY(), 5, BLACK, BLACK);
+        //DrawCircleGradient(GetMouseX(), GetMouseY(), 5, BLACK, BLACK);
+        DrawCircle(GetMouseX(), GetMouseY(), mouse_R - 1, { 0,0,0,125 });
 
     }
 }

@@ -7,12 +7,24 @@
 #include "H_Mouse.h"
 #include "H_Image.h"
 #include "H_GameState.h"
+#include "H_Beat_system.h"
 
 Music music;
 Music crow_blow;
+bool clickEffectActive = false;
+Vector2 clickEffectPosition = { 0 };
+double clickEffectStartTime = 0;
+float camera_offset = 1.3;
 
 int main() {
     InitWindow(window_width, window_height, "Bird Strike!");
+
+    Camera2D camera{
+    { window_width / 2, window_height / 2. },
+    { window_width / 2, window_height / 2.},
+    0,
+    1.003,
+    };
 
     InitAudioDevice();
 
@@ -32,8 +44,30 @@ int main() {
 
 
         BeginDrawing();
-
+        BeginMode2D(camera);
         ClearBackground(WHITE);
+
+        if (clickEffectActive)
+        {
+            double currentTime = GetTime();
+            double elapsedTime = currentTime - clickEffectStartTime;
+
+            if (elapsedTime < 0.1)
+            {
+                float offsetX = (float)GetRandomValue(-camera_offset, camera_offset);
+                float offsetY = (float)GetRandomValue(-camera_offset, camera_offset);
+
+
+                camera.target = { window_width / 2 + offsetX, window_height / 2 + offsetY };
+            }
+            else
+            {
+                camera.target = { window_width / 2 , window_height / 2 };
+                clickEffectActive = false;
+            }
+        }
+
+        
 
         switch (gamestate) {
         case GameState::Startloading:
@@ -57,7 +91,15 @@ int main() {
             setting();
             break;
         }
+        EndMode2D();
         EndDrawing();
+
+        if (crow_just_erased)
+        {
+            clickEffectPosition = GetMousePosition();
+            clickEffectActive = true;
+            clickEffectStartTime = GetTime();
+        }
     }
 
     UnloadMusicStream(music);

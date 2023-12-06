@@ -13,6 +13,8 @@ extern Vector2 drag_position;
 extern std::vector<Crow> crows;
 extern int erase_number;
 extern bool holding;
+extern bool erase_flag;
+extern bool crow_just_erased;
 
 struct Crow {
 private:

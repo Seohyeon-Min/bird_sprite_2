@@ -35,6 +35,10 @@ extern Image sun_gradation_image;
 extern Texture2D sun_gradation_texture;
 extern Image setting_icon_image;
 extern Texture2D setting_icon_texture;
+extern Image star_icon_image;
+extern Texture2D star_icon_texture;
+extern Image challenge_icon_image;
+extern Texture2D challenge_icon_texture;
 
 
 void loadimage();
