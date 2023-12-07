@@ -5,6 +5,7 @@ float SecondTerms();
 void IsOnBeat();
 void beat_spliting();
 void continuous_beat();
+bool return_continuous_fail();
 
 extern bool crow_delete_flag;
 extern bool prev_judge;

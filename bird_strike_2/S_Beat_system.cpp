@@ -91,6 +91,7 @@ void continuous_beat() {
 
         if (continuous_count > return_order_counter() + 1) {
             drag.fail_drag(); //TODO: maintatin the func
+            std::cout << continuous_fail << std::endl;
             continuous_fail = true;
         }
 
@@ -147,4 +148,11 @@ void beat_spliting() {
     }
     //std::cout << double(beat_count_splited * SecondTerm - judge_offSet) << "    <    " << time << "   <     " << double(beat_count_splited * SecondTerm + judge_offSet) << std::endl;
     prev_splited_beat = splited_beat;
+}
+
+
+bool return_continuous_fail() {
+    
+
+    return continuous_fail;
 }

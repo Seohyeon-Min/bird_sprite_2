@@ -8,22 +8,27 @@
 #include "H_Image.h"
 #include "H_GameState.h"
 #include "H_Beat_system.h"
+#include "H_Particle.h"
 
 Music music;
 Music crow_blow;
+Vector2 camerapos = { window_width / 2, window_height / 2 };
+
 bool clickEffectActive = false;
-Vector2 clickEffectPosition = { 0 };
+bool zoomEffectActive = false;
 double clickEffectStartTime = 0;
-float camera_offset = 1.3;
+double fail_StarTime = 0;
+float camera_offset = 2;
 
 int main() {
     InitWindow(window_width, window_height, "Bird Strike!");
+
 
     Camera2D camera{
     { window_width / 2, window_height / 2. },
     { window_width / 2, window_height / 2.},
     0,
-    1.003,
+    1.007,
     };
 
     InitAudioDevice();
@@ -46,23 +51,54 @@ int main() {
         BeginDrawing();
         BeginMode2D(camera);
         ClearBackground(WHITE);
+        
+        
+        
 
-        if (clickEffectActive)
-        {
+        if (clickEffectActive){
             double currentTime = GetTime();
             double elapsedTime = currentTime - clickEffectStartTime;
 
-            if (elapsedTime < 0.1)
-            {
+            if (elapsedTime < 0.06){
                 float offsetX = (float)GetRandomValue(-camera_offset, camera_offset);
                 float offsetY = (float)GetRandomValue(-camera_offset, camera_offset);
+                camerapos.x = window_width / 2 + offsetX;
+                camerapos.y = window_height / 2 + offsetY;
 
-
-                camera.target = { window_width / 2 + offsetX, window_height / 2 + offsetY };
+                camera.target = {camerapos.x,camerapos.y};
             }
-            else
-            {
-                camera.target = { window_width / 2 , window_height / 2 };
+            
+            else{
+                //camera.target = { window_width / 2 , window_height / 2 };
+                zoomEffectActive = false;
+            }
+        }
+        
+        
+        if (camera.target.x > window_width / 2) {
+            camera.target.x -= 0.05;
+        }
+        if (camera.target.x < window_width / 2) {
+            camera.target.x += 0.05;
+        }
+        if (camera.target.y < window_height / 2) {
+            camera.target.y += 0.05;
+        }
+        if (camera.target.y > window_height / 2) {
+            camera.target.y -= 0.05;
+        }
+            
+        
+
+        if (false) {
+            double currentTime = GetTime();
+            double elapsedTime = currentTime - clickEffectStartTime;
+
+            if (elapsedTime < 0.1) {
+                camera.zoom = 1.01;
+            }
+            else {
+                camera.zoom = 1.003;
                 clickEffectActive = false;
             }
         }
@@ -91,15 +127,25 @@ int main() {
             setting();
             break;
         }
+        
         EndMode2D();
         EndDrawing();
 
-        if (crow_just_erased)
-        {
-            clickEffectPosition = GetMousePosition();
+
+        if (return_continuous_fail()) {
+
+            std::cout << "Boom!" << std::endl;
+            zoomEffectActive = true;
+            fail_StarTime = GetTime();
+        }
+
+
+        if (crow_just_erased){
             clickEffectActive = true;
             clickEffectStartTime = GetTime();
         }
+
+       
     }
 
     UnloadMusicStream(music);
