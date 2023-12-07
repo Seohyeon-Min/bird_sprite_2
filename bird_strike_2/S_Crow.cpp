@@ -9,6 +9,7 @@
 #include "H_Main.h"
 #include "H_Score.h"
 #include "H_Particle.h"
+#include "H_Player.h"
 
 std::vector<Crow> crows{};
 std::vector<Vector2> marked_crow_positions;
@@ -23,6 +24,7 @@ int order_counter = 1;
 bool holding = false;
 bool erase_flag = false;
 bool crow_just_erased = false;
+Vector2 deleted_position;
 
 Vector2 Crow::get_position() {
 	return position;
@@ -337,11 +339,17 @@ void Crow::delete_crow() {
 		if (crows[i].marked == true && crows[i].order == erase_number) { //i need a counter to check the order of crow by it clicked
 			Particle::make_particle(crows[i].get_position());
 			UpdateMusicStream(crow_blow);
+			deleted_position = crows[i].get_position();
 			crows.erase(crows.begin() + i);
+
 			break;
 		}
 	}
 
+}
+
+Vector2 return_delete_crow_position() {
+	return deleted_position;
 }
 
 int return_order_counter() {
@@ -353,8 +361,3 @@ int return_order_counter() {
 int return_crow_size() {
 	return crows.size();
 }
-
-
-
-
-

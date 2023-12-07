@@ -4,7 +4,7 @@
 #include <vector>
 
 
-constexpr int max_crow = 30;
+constexpr int max_crow = 50;
 constexpr int crow_per_sec = 3;
 
 struct Crow;
@@ -48,7 +48,7 @@ public:
     void delete_crow();
 
 };
-
+Vector2 return_delete_crow_position();
 std::string check_game_over();
 int return_order_counter();
 int return_crow_size();

@@ -3,6 +3,7 @@
 #include "H_Sun.h"
 #include "H_Score.h"
 #include "H_Particle.h"
+#include "H_Player.h"
 
 extern Vector2 mousepostion;
 double animation_timer_title = 0;
@@ -136,6 +137,7 @@ void lobbyscreen() {
 }
 Crow crow;
 Drag drag;
+Player player;
 extern bool is_gameover;
 
 void stage_1() {
@@ -149,7 +151,7 @@ void stage_1() {
     Particle::update_particle();
     Effect::make_effect();
     Effect::update_effect();
-    crow._crow();
+    crow._crow();   
     drag.Fx();
     if (is_gameover) {
         end_game();
@@ -158,26 +160,33 @@ void stage_1() {
     beat_circle();
     show_score();
 
-
+    player._player();
     mouse_control();
 }
 
 void stage_2() {
-    ClearBackground({ 0,0,0,125 });
-    DrawText("state 2 !!", 270, window_height / 2 - 30, 40, BLACK);
+    ClearBackground(Color{ 4, 18, 31,255 });
+    PlayMusicStream(music);
+    _sun_stage2();
     IsOnBeat();
     beat_spliting();
     continuous_beat();
-    show_score();
     crow._crow();
     drag.Fx();
     if (is_gameover) {
         end_game();
     }
-    DrawTexture(grass_texture, 0, 0, WHITE);
+    DrawTexture(grass_2_texture, 0, 0, WHITE);
     beat_circle();
-
+    show_score();
     mouse_control();
+    //DrawTexturePro(vignetting_texture,
+    //    { 0,0,float(setting_icon_image.height), float(setting_icon_image.width) },
+    //    { setting_position,window_height - (setting_position + setting_width),setting_width,setting_width },
+    //    { 0,0 },
+    //    0,
+    //    { 125,125,125,255 });
+
 }
 
 void gameover() {

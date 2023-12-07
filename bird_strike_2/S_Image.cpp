@@ -36,8 +36,8 @@ Image challenge_icon_image;
 Texture2D challenge_icon_texture;
 Image grass_2_image;
 Texture2D grass_2_texture;
-Texture2D sun_stage_2_texture;
 Image sun_stage_2_image;
+Texture2D sun_stage_2_texture;
 Image vignetting_image;
 Texture2D vignetting_texture;
 
@@ -122,7 +122,4 @@ void loadimage() {
     vignetting_texture = LoadTextureFromImage(vignetting_image);
     UnloadImage(vignetting_image);
 }
-
-
-
 
