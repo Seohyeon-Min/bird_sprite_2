@@ -4,16 +4,23 @@
 #include "H_Beat_system.h"
 #include "H_Score.h"
 #include "H_Crow.h"
+#include "H_Image.h"
+#include "H_Main.h"
 
 int score = 0;
-int connected_crow_text_size = 30;
-int judge_text_size = 20;
+int connected_crow_text_size = (float)(GetScreenWidth() / 15.36);
+int judge_text_size = window_width / 32;
 int alpha = 255;
+int spacing = (float)(GetScreenWidth() / 384);
+float alpha_2 = 178;
 std::string judge_text = "";
 constexpr int great_score = 30;
 constexpr int good_score = 20;
 constexpr int fail_score = -80;
 constexpr int extra_score = 20;
+std::string text_score = "score";
+Color alpha_white = Color{ 255,255,255,178 };
+
 
 int return_score() {
 	return score;
@@ -22,69 +29,189 @@ int return_score() {
 void judge_text_draw() {
 	if (alpha > 0) {
 		alpha -= 5;
+		alpha_2 -= 3.4;
 		Color text_color = { 0,0,0,alpha };
-		DrawText(judge_text.c_str(), 700, 180, judge_text_size, text_color);
+		Color text_color_white = { 255,255,255,alpha_2 };
+		DrawTextPro(
+			font,
+			judge_text.c_str(),
+			{ (float)(GetScreenWidth() / 1.075), (float)(GetScreenHeight() / 2.14) },
+			{ MeasureTextEx(font,judge_text.c_str(), judge_text_size, spacing).x / 2, 0 },
+			0,
+			judge_text_size,
+			spacing,
+			text_color_white);
+
+		DrawTextPro(
+			font,
+			judge_text.c_str(), 
+			{ (float)(GetScreenWidth() / 1.075), (float)(GetScreenHeight()/2.16)},
+			{ MeasureTextEx(font,judge_text.c_str(), judge_text_size, spacing).x / 2, 0},
+			0,
+			judge_text_size, 
+			spacing,
+			text_color);
 	}
 }
 
 void crow_size_text_draw() {
-	DrawText(std::to_string(return_crow_size()).c_str(), 320, 50, connected_crow_text_size, BLACK);
+	DrawTextPro(
+		font,
+		std::to_string(return_crow_size()).c_str(),
+		{ (float)GetScreenWidth() / 2, (float)(GetScreenHeight()/10.6)},
+		{ 0,0 },
+		0,
+		40,
+		0,
+		alpha_white);
+	DrawTextPro(
+		font,
+		std::to_string(return_crow_size()).c_str(),
+		{(float)GetScreenWidth()/2, (float)(GetScreenHeight() / 10.8)},
+		{0,0},
+		0,
+		40,
+		0,
+		BLACK);
 }
+
 
 void show_score() {
 	if (score < 0) {
 		score = 0;
 	}
+	if (!is_gameover) {
+		DrawTextPro(
+			font,
+			text_score.c_str(),
+			{ (float)(GetScreenWidth() / 25.6) , (float)(GetScreenHeight() / 21.3) },
+			{ 0,0 },
+			0,
+			(float)(GetScreenWidth() / 25.6),
+			3,
+			alpha_white);
 
-	DrawText(std::to_string(score).c_str(), 50, 50, 50, BLACK);
-	DrawText(check_game_over().c_str(), 300, 180, 100, BLACK);
-	if (return_order_counter() > 0) {
-		DrawText(std::to_string(return_order_counter()).c_str(), 720, 150, connected_crow_text_size, BLACK);
-		if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && holding) {
-			connected_crow_text_size = 40;
+		DrawTextPro(
+			font,
+			std::to_string(score).c_str(),
+			{ (float)(GetScreenWidth() / 25.6) ,(float)(GetScreenHeight() / 10.6) },
+			{ 0,0 },
+			0,
+			(float)(GetScreenWidth() / 19.2),
+			3,
+			alpha_white);
+
+		DrawTextPro(
+			font,
+			text_score.c_str(),
+			{ (float)(GetScreenWidth() / 25.6) , (float)(GetScreenHeight() / 21.6) },
+			{ 0,0 },
+			0,
+			(float)(GetScreenWidth() / 25.6),
+			3,
+			BLACK);
+
+		DrawTextPro(
+			font,
+			std::to_string(score).c_str(),
+			{ (float)(GetScreenWidth() / 25.6) ,(float)(GetScreenHeight() / 10.8) },
+			{ 0,0 },
+			0,
+			(float)(GetScreenWidth() / 19.2),
+			3,
+			BLACK);
+
+		DrawText(check_game_over().c_str(), 300, 180, 100, BLACK);
+
+		if (return_order_counter() > 0) {
+			DrawTextPro(
+				font,
+				std::to_string(return_order_counter()).c_str(),
+				{ (float)(GetScreenWidth() / 1.075),(float)(GetScreenHeight() / 2.45) },
+				{ MeasureTextEx(font, std::to_string(return_order_counter()).c_str(), connected_crow_text_size, 0).x / 2 ,
+				MeasureTextEx(font, std::to_string(return_order_counter()).c_str(), connected_crow_text_size, 0).y / 2 },
+				0,
+				connected_crow_text_size,
+				0,
+				alpha_white);
+
+			DrawTextPro(
+				font,
+				std::to_string(return_order_counter()).c_str(),
+				{ (float)(GetScreenWidth() / 1.075),(float)(GetScreenHeight() / 2.47) },
+				{ MeasureTextEx(font, std::to_string(return_order_counter()).c_str(), connected_crow_text_size, 0).x / 2 ,
+				MeasureTextEx(font, std::to_string(return_order_counter()).c_str(), connected_crow_text_size, 0).y / 2 },
+				0,
+				connected_crow_text_size,
+				0,
+				BLACK);
+			if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !holding) {
+				connected_crow_text_size = (float)(GetScreenWidth() / 12); // WHY doesn't it work?
+			}
 		}
+		else {
+			connected_crow_text_size = (float)(GetScreenWidth() / 15.36);
+		}
+		judge_text_draw();
+		crow_size_text_draw();
 	}
 	else {
-		connected_crow_text_size = 30;
+		//DrawTextPro(
+		//	font,
+		//	text_score.c_str(),
+		//	{ (float)(GetScreenWidth() / 2) , (float)(GetScreenHeight() / 2) },
+		//	{ MeasureTextEx(font, text_score.c_str(), (float)(GetScreenWidth() / 25.6),(float)(GetScreenWidth() / 256)).x / 2
+		//	, MeasureTextEx(font, text_score.c_str(), (float)(GetScreenWidth() / 25.6),(float)(GetScreenWidth() / 256)).y / 2 },
+		//	0,
+		//	(float)(GetScreenWidth() / 25.6),
+		//	(float)(GetScreenWidth() / 256),
+		//	BLACK);
+
+		DrawTextPro(
+			font,
+			std::to_string(score).c_str(),
+			{ (float)(GetScreenWidth() / 2) ,(float)(GetScreenHeight() / 2) },
+			{ MeasureTextEx(font, std::to_string(score).c_str(), (float)(GetScreenWidth() / 25.6),(float)(GetScreenWidth() / 256)).x / 2
+			, MeasureTextEx(font, std::to_string(score).c_str(), (float)(GetScreenWidth() / 25.6),(float)(GetScreenWidth() / 256)).y / 2 + MeasureTextEx(font, std::to_string(score).c_str(), (float)(GetScreenWidth() / 25.6),(float)(GetScreenWidth() / 256)).y / 2 },
+			0,
+			(float)(GetScreenWidth() / 19.2),
+			3,
+			BLACK);
 	}
-	judge_text_draw();
-	crow_size_text_draw();
+	
 }
 
 
 void get_score() {
 	if (judge_great) {
 		alpha = 255;
+		alpha_2 = 178;
 		score += great_score;
 		judge_text = "great";
-		judge_text_size = 25;
 	}
 	else {
 		alpha = 255;
+		alpha_2 = 178;
 		score += good_score;
 		judge_text = "good";
-		judge_text_size = 20;
 	}
 }
 
 void lose_score() {
 	alpha = 255;
+	alpha_2 = 178;
 	score += fail_score;
 	judge_text = "bad";
-	judge_text_size = 20;
 }
 
 void bonus_score() {
 	if (return_order_counter() >= 8) {
-		std::cout << "8!" << std::endl;
 		score += extra_score * 3;
 	}
 	else if (return_order_counter() >= 6) {
-		std::cout << "6!" << std::endl;
 		score += extra_score * 2;
 	}
 	else if (return_order_counter() >= 4) {
-		std::cout << "4!" << std::endl;
 		score += extra_score;
 	}
 }

@@ -40,6 +40,7 @@ Image sun_stage_2_image;
 Texture2D sun_stage_2_texture;
 Image vignetting_image;
 Texture2D vignetting_texture;
+Font font;
 
 void loadimage() {
     capybara_image = LoadImage("textures/capybara.png");
@@ -121,5 +122,9 @@ void loadimage() {
     vignetting_image = LoadImage("textures/vignetting.png");
     vignetting_texture = LoadTextureFromImage(vignetting_image);
     UnloadImage(vignetting_image);
+
+    font = LoadFont("resources/romulus.png");
+    
+
 }
 

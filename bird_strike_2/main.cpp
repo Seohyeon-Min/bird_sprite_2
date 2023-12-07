@@ -48,6 +48,29 @@ int main() {
     while (WindowShouldClose() == false) {
 
 
+        // check for alt + enter
+        if (IsKeyPressed(KEY_ENTER) && (IsKeyDown(KEY_LEFT_ALT) || IsKeyDown(KEY_RIGHT_ALT)))
+        {
+            // see what display we are on right now
+            int display = GetCurrentMonitor();
+
+
+            if (IsWindowFullscreen())
+            {
+                // if we are full screen, then go back to the windowed size
+                SetWindowSize(window_width, window_height);
+            }
+            else
+            {
+                // if we are not full screen, set the window size to match the monitor we are on
+                SetWindowSize(GetMonitorWidth(display), GetMonitorHeight(display));
+            }
+
+            // toggle the state
+            ToggleFullscreen();
+        }
+        //------------------------------------------------------------------------------------
+
         BeginDrawing();
         BeginMode2D(camera);
         ClearBackground(WHITE);
@@ -144,12 +167,15 @@ int main() {
             clickEffectActive = true;
             clickEffectStartTime = GetTime();
         }
-
+        if (window_close) {
+            break;
+        }
        
     }
 
-    UnloadMusicStream(music);
 
+    UnloadMusicStream(music);
+    UnloadFont(font);
     CloseAudioDevice();
 
     CloseWindow();

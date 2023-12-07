@@ -19,6 +19,7 @@ enum GameState {
 };
 
 extern GameState gamestate;
+extern bool window_close;
 
 void startloding();
 void start_game();
@@ -28,5 +29,6 @@ void stage_1();
 void stage_2();
 void gameover();
 void setting();
+
 
 #endif

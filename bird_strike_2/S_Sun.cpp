@@ -17,7 +17,7 @@ constexpr Color sun_color_4 = Color{ 242, 178, 106, 255 };
 
 
 double sun_y = initial_sun_y;
-double sun_drop_speed = (double)((window_height + sun_radius - initial_sun_y) / max_time) / target_frame_rate; //프레임당 스피드
+double sun_drop_speed = (double)(((float)GetScreenHeight() + sun_radius - initial_sun_y) / max_time) / target_frame_rate; //프레임당 스피드
 
 
 float fullFrame = (target_frame_rate * max_time);
@@ -26,13 +26,13 @@ float fullFrame = (target_frame_rate * max_time);
 float drop_v(float i) {
 	float x = i * target_frame_rate;
 	float y;
-	y = ((window_height + sun_radius - initial_sun_y) / (fullFrame * fullFrame)) * (x * x) + initial_sun_y;
+	y = (((float)GetScreenHeight() + sun_radius - initial_sun_y) / (fullFrame * fullFrame)) * (x * x) + initial_sun_y;
 	return y;
 }
 float drop_b(float i) {
 	float x = i * target_frame_rate;
 	float y;
-	y = ((window_height + sun_radius - initial_sun_y) / (fullFrame * fullFrame)) * (x * x) + initial_sun_y;
+	y = (((float)GetScreenHeight() + sun_radius - initial_sun_y) / (fullFrame * fullFrame)) * (x * x) + initial_sun_y;
 	return y;
 }
 
@@ -44,7 +44,7 @@ void background(float sky_y) {
 		stage1_background_texture,
 		{ 0, 2368 - sky_y * 3.2f ,1300, 1000
 		},
-		{ 0,0,window_width, window_height
+		{ 0,0,(float)GetScreenWidth() , (float)GetScreenHeight()
 		},
 		{ 0, 0 },
 		0,
@@ -54,7 +54,7 @@ void background(float sky_y) {
 
 
 void draw_sun(float sun_y) {
-	DrawCircleGradient(window_width / 2, sun_y, (SecondTerms() - GetMusicTimePlayed(music)) * (800) + (800), { 0,0,0, 200 }, { 0,0,0,0 });
+	DrawCircleGradient(GetScreenWidth() / 2, sun_y, (SecondTerms() - GetMusicTimePlayed(music)) * (800) + (800), { 0,0,0, 200 }, { 0,0,0,0 });
 	//DrawCircle(window_width / 2, sun_y, sun_radius, sun_color_4);
 	//DrawCircle(window_width / 2, sun_y, sun_radius - 13, sun_color_3);
 	//DrawCircle(window_width / 2, sun_y, sun_radius - 24, sun_color_2);
@@ -63,7 +63,7 @@ void draw_sun(float sun_y) {
 	DrawTexturePro(
 		sun_gradation_texture,
 		{ 12,50,864, 486 },
-		{ 0, sun_y - 350,window_width , window_height },
+		{ 0, sun_y - 350,(float)GetScreenWidth() , (float)GetScreenHeight() },
 		{ 0,0 },
 		0,
 		WHITE
@@ -71,7 +71,7 @@ void draw_sun(float sun_y) {
 	DrawTexturePro(
 		sun_back_texture,
 		{ 12,100,864, 486 },
-		{ 0, sun_y - 300,window_width, window_height },
+		{ 0, sun_y - 300,(float)GetScreenWidth() , (float)GetScreenHeight() },
 		{ 0,0 },
 		0,
 		WHITE
@@ -79,7 +79,7 @@ void draw_sun(float sun_y) {
 	DrawTexturePro(
 		sun_front_texture,
 		{ 12,100,864, 486 },
-		{ 0, sun_y - 300,window_width , window_height },
+		{ 0, sun_y - 300,(float)GetScreenWidth() , (float)GetScreenHeight() },
 		{ 0,0 },
 		0,
 		WHITE
@@ -94,7 +94,7 @@ void draw_sun_stage_2() {
 	DrawTexturePro(
 		sun_stage_2_texture,
 		{ 12,100,864, 486 },
-		{ 0, 50,window_width , window_height },
+		{ 0, 50,(float)GetScreenWidth() , (float)GetScreenHeight() },
 		{ 0,0 },
 		0,
 		WHITE
@@ -103,6 +103,14 @@ void draw_sun_stage_2() {
 
 void _sun_stage2() {
 	draw_sun_stage_2();
+	DrawTexturePro(
+		grass_2_texture,
+		{ 0, 0 ,(float)grass_2_image.width,(float)grass_2_image.height },
+		{ 0,0,(float)GetScreenWidth() , (float)GetScreenHeight() },
+		{ 0, 0 },
+		0,
+		WHITE
+	);
 }
 
 bool _sun() {
@@ -110,6 +118,14 @@ bool _sun() {
 	float b = drop_b(GetMusicTimePlayed(music));
 	background(b);
 	draw_sun(y);
+	DrawTexturePro(
+		grass_texture,
+		{ 0, 0 ,(float)grass_image.width,(float)grass_image.height},
+		{ 0,0,(float)GetScreenWidth() , (float)GetScreenHeight() },
+		{ 0, 0 },
+		0,
+		WHITE
+	);
 	//std::cout << i - 325 << "    ,    " << GetTime() << std::endl;
 	if (y >= GetScreenHeight() + sun_radius) {
 		return true;

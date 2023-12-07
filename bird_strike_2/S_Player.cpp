@@ -54,7 +54,7 @@ void Player::move() {
     if (speed.x == 0) {
         speed.y = 0;
     }
-    std::cout <<"position:" << position << "   destination:" << return_delete_crow_position() << "  speed:"<<speed<< " floating: " <<floating<< std::endl;
+    //std::cout <<"position:" << position << "   destination:" << return_delete_crow_position() << "  speed:"<<speed<< " floating: " <<floating<< std::endl;
     get_destination();
     position.x -= speed.x;
     position.y -= speed.y;

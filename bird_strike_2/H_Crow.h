@@ -4,11 +4,12 @@
 #include <vector>
 
 
-constexpr int max_crow = 50;
+constexpr int max_crow =30;
 constexpr int crow_per_sec = 3;
 
 struct Crow;
 
+extern bool is_gameover;
 extern Vector2 drag_position;
 extern std::vector<Crow> crows;
 extern int erase_number;
@@ -18,7 +19,7 @@ extern bool crow_just_erased;
 
 struct Crow {
 private:
-    int radius = 30;
+    int radius = GetScreenWidth() / 25.6;//30
     Vector2 position = { 0, 0 };
     Vector2 speed = { 2, 1 };
     Vector2 acc = { 0.05, 0.008 };
