@@ -6,16 +6,18 @@
 
 struct Player {
 private:
-	Vector2 position = { 300,300 };
+	Vector2 position;
 	float reaching_time = 2;
-	Vector2 speed = { 0,0 };
+	Vector2 speed = { -1,-1 };
 	int radius = 30;
+	
 
 public:
 	void _player();
 	void draw(Vector2);
 	void move();
 	void get_destination();
+	float floating_value = 5.0f;
 };
 
 #endif

@@ -28,7 +28,6 @@ float get_distance_y(float posy, float desy) {
 }
 
 void Player::draw(Vector2 pos) {
-    DrawCircle(pos.x, pos.y, radius, BLUE);
     DrawTexturePro(player_go_texture,
         { 0,0,(float)player_go_image.width,(float)player_go_image.height },
         { pos.x,pos.y, 100,100 },
@@ -42,13 +41,27 @@ void Player::get_destination() {
     destination = return_delete_crow_position();
     speed.x = get_distance_x(position.x, destination.x) / reaching_time;
     speed.y = get_distance_y(position.y, destination.y) / reaching_time;
+
+    if (return_delete_crow_position().x == 0 && return_delete_crow_position().y == 0) {
+        speed = { 0,0 };
+        position = { (float)(GetScreenWidth() / 2) ,(float)(GetScreenHeight() - 60) };
+    }
 }
 
+float floating = 5.0f;
+
 void Player::move() {
-    std::cout << position.x << std::endl;
+    if (speed.x == 0) {
+        speed.y = 0;
+    }
+    std::cout <<"position:" << position << "   destination:" << return_delete_crow_position() << "  speed:"<<speed<< " floating: " <<floating<< std::endl;
     get_destination();
     position.x -= speed.x;
     position.y -= speed.y;
+    //if (position.y > GetScreenHeight() - GetScreenHeight() / 3) {
+    //    position.y += floating;
+    //}
+
 }
 
 void Player::_player() {
