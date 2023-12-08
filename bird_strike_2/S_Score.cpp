@@ -18,8 +18,10 @@ constexpr int great_score = 30;
 constexpr int good_score = 20;
 constexpr int fail_score = -80;
 constexpr int extra_score = 20;
-std::string text_score = "score";
 Color alpha_white = Color{ 255,255,255,178 };
+Color crow_size_text_color = BLACK;
+
+
 
 
 int return_score() {
@@ -59,20 +61,27 @@ void crow_size_text_draw() {
 		font,
 		std::to_string(return_crow_size()).c_str(),
 		{ (float)GetScreenWidth() / 2, (float)(GetScreenHeight()/10.6)},
-		{ 0,0 },
+		{ MeasureTextEx(font,std::to_string(return_crow_size()).c_str(), (float)(GetScreenWidth() / 20), 0).x / 2,0 },
 		0,
-		40,
+		(float)(GetScreenWidth() / 20),
 		0,
 		alpha_white);
 	DrawTextPro(
 		font,
 		std::to_string(return_crow_size()).c_str(),
 		{(float)GetScreenWidth()/2, (float)(GetScreenHeight() / 10.8)},
-		{0,0},
+		{ MeasureTextEx(font,std::to_string(return_crow_size()).c_str(),(float)(GetScreenWidth() / 20), 0).x / 2,0},
 		0,
-		40,
+		(float)(GetScreenWidth() / 20),
 		0,
-		BLACK);
+		crow_size_text_color);
+
+	if (return_crow_size() == max_crow ) {
+		crow_size_text_color = RED;
+	}
+	else {
+		crow_size_text_color = BLACK;
+	}
 }
 
 
@@ -83,7 +92,7 @@ void show_score() {
 	if (!is_gameover) {
 		DrawTextPro(
 			font,
-			text_score.c_str(),
+			"score",
 			{ (float)(GetScreenWidth() / 25.6) , (float)(GetScreenHeight() / 21.3) },
 			{ 0,0 },
 			0,
@@ -103,7 +112,7 @@ void show_score() {
 
 		DrawTextPro(
 			font,
-			text_score.c_str(),
+			"score",
 			{ (float)(GetScreenWidth() / 25.6) , (float)(GetScreenHeight() / 21.6) },
 			{ 0,0 },
 			0,
@@ -121,6 +130,16 @@ void show_score() {
 			3,
 			BLACK);
 
+
+		//DrawTextPro(
+		//	font,
+		//	check_game_over().x.c_str(),
+		//	{ (float)(GetScreenWidth() / 2) ,(float)(GetScreenHeight() / 2) },
+		//	{ MeasureTextEx(font, check_game_over().x.c_str(), connected_crow_text_size, 0).x / 2,0 },
+		//	0,
+		//	(float)(GetScreenWidth() / 19.2),
+		//	3,
+		//	BLACK);
 		DrawText(check_game_over().c_str(), 300, 180, 100, BLACK);
 
 		if (return_order_counter() > 0) {

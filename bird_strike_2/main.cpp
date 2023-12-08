@@ -21,8 +21,10 @@ double clickEffectStartTime = 0;
 double fail_StarTime = 0;
 float camera_offset = 2;
 
+
 int main() {
     InitWindow(window_width, window_height, "Bird Strike!");
+    
 
     Camera2D camera{
     { window_width / 2, window_height / 2. },
@@ -39,34 +41,18 @@ int main() {
 
     loadimage();
     loadaudio();
-    SetSoundVolume(crow_blow, 0.2f);
+    SetSoundVolume(crow_blow, 0.3f);
 
     while (WindowShouldClose() == false) {
 
 
-        // check for alt + enter
         if (IsKeyPressed(KEY_ENTER) && (IsKeyDown(KEY_LEFT_ALT) || IsKeyDown(KEY_RIGHT_ALT)))
         {
-            // see what display we are on right now
-            int display = GetCurrentMonitor();
-
-
-            if (IsWindowFullscreen())
-            {
-                // if we are full screen, then go back to the windowed size
-                SetWindowSize(window_width, window_height);
-            }
-            else
-            {
-                // if we are not full screen, set the window size to match the monitor we are on
-                SetWindowSize(GetMonitorWidth(display), GetMonitorHeight(display));
-            }
-
-            // toggle the state
             ToggleFullscreen();
         }
-        //------------------------------------------------------------------------------------
 
+        // Draw
+        //----------------------------------------------------------------------------------
         BeginDrawing();
         BeginMode2D(camera);
         ClearBackground(WHITE);

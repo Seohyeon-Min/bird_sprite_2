@@ -6,6 +6,7 @@
 extern Music music;
 extern Music option_music;
 extern Sound crow_blow;
+extern Sound to_two_phase;
 
 void loadaudio();
 

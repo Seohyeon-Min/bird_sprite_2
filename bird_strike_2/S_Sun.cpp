@@ -8,16 +8,13 @@
 
 constexpr int initial_sun_y = 325;
 constexpr int sun_radius = 300;
-constexpr int max_time = 100;
+constexpr int max_time = 60;
 
 constexpr Color sun_color_1 = Color{ 247, 240, 234, 255 };
 constexpr Color sun_color_2 = Color{ 246, 236, 218, 255 };
 constexpr Color sun_color_3 = Color{ 253, 236, 196, 255 };
 constexpr Color sun_color_4 = Color{ 242, 178, 106, 255 };
-
-
-double sun_y = initial_sun_y;
-double sun_drop_speed = (double)(((float)GetScreenHeight() + sun_radius - initial_sun_y) / max_time) / target_frame_rate; //프레임당 스피드
+//double sun_drop_speed = (double)(((float)GetScreenHeight() + sun_radius - initial_sun_y) / max_time) / target_frame_rate; //프레임당 스피드
 
 
 float fullFrame = (target_frame_rate * max_time);
@@ -26,25 +23,26 @@ float fullFrame = (target_frame_rate * max_time);
 float drop_v(float i) {
 	float x = i * target_frame_rate;
 	float y;
-	y = (((float)GetScreenHeight() + sun_radius - initial_sun_y) / (fullFrame * fullFrame)) * (x * x) + initial_sun_y;
+	y = (((float)GetScreenHeight() + sun_radius - initial_sun_y) / (fullFrame * fullFrame)) * (x * x);
 	return y;
 }
 float drop_b(float i) {
 	float x = i * target_frame_rate;
 	float y;
-	y = (((float)GetScreenHeight() + sun_radius - initial_sun_y) / (fullFrame * fullFrame)) * (x * x) + initial_sun_y;
+	y = (( float(stage1_background_image.height)  - (float)GetScreenHeight() ) / (fullFrame * fullFrame)) * (x * x);
 	return y;
 }
 
 
 
 void background(float sky_y) {
+	std::cout << GetFPS()<< std::endl;
 	DrawTexture;
 	DrawTexturePro(
 		stage1_background_texture,
-		{ 0, 2368 - sky_y * 3.2f ,1300, 1000
+		{ 0,float(stage1_background_image.height) - (float)GetScreenHeight() - sky_y,float(stage1_background_image.width),(float)GetScreenHeight()
 		},
-		{ 0,0,(float)GetScreenWidth() , (float)GetScreenHeight()
+		{ 0,0,(float)GetScreenWidth() , (float)GetScreenHeight(  )
 		},
 		{ 0, 0 },
 		0,
@@ -52,9 +50,10 @@ void background(float sky_y) {
 	);
 }
 
+float fall;
 
 void draw_sun(float sun_y) {
-	DrawCircleGradient(GetScreenWidth() / 2, sun_y, (SecondTerms() - GetMusicTimePlayed(music)) * (800) + (800), { 0,0,0, 200 }, { 0,0,0,0 });
+	DrawCircleGradient(GetScreenWidth() / 2, initial_sun_y + sun_y, (SecondTerms() - GetMusicTimePlayed(music)) * (800) + (800), { 0,0,0, 200 }, { 0,0,0,0 });
 	//DrawCircle(window_width / 2, sun_y, sun_radius, sun_color_4);
 	//DrawCircle(window_width / 2, sun_y, sun_radius - 13, sun_color_3);
 	//DrawCircle(window_width / 2, sun_y, sun_radius - 24, sun_color_2);
@@ -63,7 +62,7 @@ void draw_sun(float sun_y) {
 	DrawTexturePro(
 		sun_gradation_texture,
 		{ 12,50,864, 486 },
-		{ 0, sun_y - 350,(float)GetScreenWidth() , (float)GetScreenHeight() },
+		{ 0,  initial_sun_y + sun_y - 350,(float)GetScreenWidth() , (float)GetScreenHeight() },
 		{ 0,0 },
 		0,
 		WHITE
@@ -71,7 +70,7 @@ void draw_sun(float sun_y) {
 	DrawTexturePro(
 		sun_back_texture,
 		{ 12,100,864, 486 },
-		{ 0, sun_y - 300,(float)GetScreenWidth() , (float)GetScreenHeight() },
+		{ 0, initial_sun_y + sun_y - 300,(float)GetScreenWidth() , (float)GetScreenHeight() },
 		{ 0,0 },
 		0,
 		WHITE
@@ -79,11 +78,14 @@ void draw_sun(float sun_y) {
 	DrawTexturePro(
 		sun_front_texture,
 		{ 12,100,864, 486 },
-		{ 0, sun_y - 300,(float)GetScreenWidth() , (float)GetScreenHeight() },
+		{ 0, initial_sun_y + sun_y - 300,(float)GetScreenWidth() , (float)GetScreenHeight() },
 		{ 0,0 },
 		0,
 		WHITE
 	);
+
+	fall = initial_sun_y + sun_y + GetScreenHeight() / 25;
+	
 }
 
 
@@ -113,7 +115,8 @@ void _sun_stage2() {
 	);
 }
 
-bool _sun() {
+
+void _sun() {
 	float y = drop_v(GetMusicTimePlayed(music));
 	float b = drop_b(GetMusicTimePlayed(music));
 	background(b);
@@ -126,12 +129,21 @@ bool _sun() {
 		0,
 		WHITE
 	);
+
 	//std::cout << i - 325 << "    ,    " << GetTime() << std::endl;
-	if (y >= GetScreenHeight() + sun_radius) {
-		return true;
-	}
-	return false;
 	//if (is_gameover) {
 	//	double sun_y = initial_sun_y;
 	//}
+}
+
+bool is_sun_fall() {
+	if (fall >= GetScreenHeight() + sun_radius) {
+		//int wait = GetFPS() * 2;
+		SetSoundVolume(to_two_phase, 2.0f);
+		PlaySound(to_two_phase);
+		WaitTime(2);
+		return true;
+
+	}
+	return 0;
 }

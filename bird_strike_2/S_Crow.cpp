@@ -301,6 +301,7 @@ void Crow::_crow() {
 bool is_gameover;
 int wait_for = target_frame_rate * 3;
 
+//나이거 튜플로 하고싶음
 std::string check_game_over() {
 
 	if (crows.size() >= max_crow && !erase_flag) {

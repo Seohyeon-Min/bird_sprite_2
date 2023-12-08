@@ -6,64 +6,20 @@
 #include "H_Player.h"
 #include "H_Audio.h"
 
+GameState gamestate = GameState::Startloading;
+Crow crow;
+Drag drag;
+Player player;
+constexpr int icon_width = 40;
+constexpr int setting_position = 30;
+constexpr int star_position = 90;
+constexpr int challenge_position = 150;
+extern bool is_gameover;
 extern Vector2 mousepostion;
 double animation_timer_title = 0;
+bool window_close = false;
 int title_x = 0;
-GameState gamestate = GameState::Startloading;
-constexpr int icon_width = 25;
-constexpr int setting_position = 15;
-constexpr int star_position = 45;
-constexpr int challenge_position = 75;
 
-
-void startloding() {
-    if (int(GetTime() < 3)) {
-        ClearBackground(WHITE);
-
-        DrawTexturePro(
-            Capybara_texture,
-            Rectangle{ 0,0,float(Capybara_texture.width),float(Capybara_texture.height) },
-            Rectangle{ (float)GetScreenWidth()/2 , (float)GetScreenHeight() / 2,capybara_size,capybara_size },
-            Vector2{ capybara_size / 2,capybara_size / 2 },
-            0,
-            Color{ 255,255,255,255 });
-
-    }
-
-    else if (int(GetTime()) > 3 && int(GetTime()) < 7) {
-        ClearBackground(WHITE);
-        DrawTexturePro(
-            DigiPenlogo_texture,
-            Rectangle{ 0, 0, float(DigiPenlogo_texture.width), float(DigiPenlogo_texture.height) },
-            Rectangle{ (float)GetScreenWidth() / 2 , (float)GetScreenHeight() / 2,float(DigiPenlogo_texture.width) / 2 ,float(DigiPenlogo_texture.height) / 2 },
-            Vector2{ float(DigiPenlogo_texture.width) / 4,float(DigiPenlogo_texture.height) / 4 },
-            0,
-            Color{ 255,255,255,255 });
-    }
-    if (IsKeyReleased(MOUSE_BUTTON_LEFT) || IsKeyReleased(KEY_SPACE) || int(GetTime()) > 7) {
-        gamestate = GameState::LobbyScreen;
-    }
-    mouse_control();
-}
-
-void start_game() {
-    PlayMusicStream(music);
-    is_gameover = false;
-    gamestate = GameState::Stage_1;
-
-}
-
-void start_stage_2() {
-    PlayMusicStream(music);
-    gamestate = GameState::Stage_2;
-
-}
-
-void end_game() {
-    StopMusicStream(music);
-    crows.clear();
-    gamestate = GameState::Gameover;
-}
 
 void animation_move() {
     if (animation_timer_title < 40) {
@@ -72,17 +28,35 @@ void animation_move() {
     }
 }
 
-bool window_close = false;
+void draw_loading() {
+    if (int(GetTime() < 3)) {
+        ClearBackground(WHITE);
 
+        DrawTexturePro(
+            Capybara_texture,
+            { 0,0,float(Capybara_texture.width),float(Capybara_texture.height) },
+            { (float)GetScreenWidth() / 2 , (float)GetScreenHeight() / 2,capybara_size,capybara_size },
+            { capybara_size / 2,capybara_size / 2 },
+            0,
+            { 255,255,255,255 });
 
-void lobbyscreen() {
-    
-    animation_move();
-    int btnState = 0;
-    bool btnAcion = false;
+    }
+
+    else if (int(GetTime()) > 3 && int(GetTime()) < 7) {
+        ClearBackground(WHITE);
+        DrawTexturePro(
+            DigiPenlogo_texture,
+            { 0, 0, float(DigiPenlogo_texture.width), float(DigiPenlogo_texture.height) },
+            { (float)GetScreenWidth() / 2 , (float)GetScreenHeight() / 2,float(DigiPenlogo_texture.width) / 2 ,float(DigiPenlogo_texture.height) / 2 },
+            { float(DigiPenlogo_texture.width) / 4,float(DigiPenlogo_texture.height) / 4 },
+            0,
+            { 255,255,255,255 });
+    }
+}
+void draw_lobby_animation() {
     DrawTexturePro(
         title_background_texture,
-        { 0,0,window_width / 2,  window_height / 2
+        { 0,0,float(title_background_image.width),  float(title_background_image.width)
         },
         { 0,0,(float)GetScreenWidth() , (float)GetScreenHeight()
         },
@@ -92,7 +66,7 @@ void lobbyscreen() {
     );
     DrawTexturePro(
         title_Sheet_texture,
-        { float(title_x),0,window_width / 2,  window_height / 2
+        { float(title_x),0,384, 216
         },
         { 0,0,(float)GetScreenWidth() , (float)GetScreenHeight()
         },
@@ -100,27 +74,49 @@ void lobbyscreen() {
         0,
         WHITE
     );
-
-
+}
+void draw_lobby_icon() {
     DrawTexturePro(setting_icon_texture,
         { 0,0,float(setting_icon_image.height), float(setting_icon_image.width) },
-        { setting_position,(float)GetScreenHeight() - (setting_position + icon_width),icon_width,icon_width },
+        { setting_position,(float)GetScreenHeight() - (setting_position + icon_width),icon_width ,icon_width },
         { 0,0 },
         0,
         WHITE);
     DrawTexturePro(star_icon_texture,
-        {0,0,float(star_icon_image.width),float(star_icon_image.height)},
-        {star_position,(float)GetScreenHeight() -(setting_position+icon_width),icon_width,icon_width},
-        {0,0},
+        { 0,0,float(star_icon_image.width),float(star_icon_image.height) },
+        { star_position,(float)GetScreenHeight() - (setting_position + icon_width),icon_width,icon_width },
+        { 0,0 },
         0,
         WHITE);
     DrawTexturePro(challenge_icon_texture,
         { 0,0,float(challenge_icon_image.width),float(challenge_icon_image.height) },
-        { challenge_position,(float)GetScreenHeight() - (setting_position + icon_width)+1,icon_width,icon_width },
+        { challenge_position,(float)GetScreenHeight() - (setting_position + icon_width) + 1,icon_width ,icon_width },
         { 0,0 },
         0,
         WHITE);
+}
+void click_lobby_icon() {
+    int btnState = 0;
+    bool btnAcion = false;
+    if (GetMouseX() > setting_position && GetMouseX() < setting_position + icon_width && GetMouseY() > window_height - (setting_position + icon_width) && GetMouseY() < window_height - setting_position) {
+        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) btnState = 2;
+        else btnState = 1;
+        DrawTexturePro(setting_icon_texture,
+            { 0,0,float(setting_icon_image.height), float(setting_icon_image.width) },
+            { setting_position,(float)GetScreenHeight() - (setting_position + icon_width),icon_width,icon_width },
+            { 0,0 },
+            0,
+            { 125,125,125,255 });
 
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) btnAcion = true;
+    }
+    else btnState = 0;
+
+    if (btnAcion) {
+        gamestate = GameState::Setting;
+    }
+}
+void draw_lobby_button() {
     float box_witdh = (float)(GetScreenWidth() / 3);
     float box_height = (float)(GetScreenWidth() / 27.4);
     float x = GetScreenWidth() / 2 - box_witdh / 2;
@@ -132,7 +128,7 @@ void lobbyscreen() {
     Color text_color = { 255, 159, 68, 255 };
     Color box_color = { 255,255,255,178 };
 
-    Rectangle rec = { GetScreenWidth() / 2 - box_witdh / 2, (GetScreenHeight() / 44) * 30, box_witdh, box_height};
+    Rectangle rec = { GetScreenWidth() / 2 - box_witdh / 2, (GetScreenHeight() / 44) * 30, box_witdh, box_height };
     Rectangle rec2 = { GetScreenWidth() / 2 - box_witdh / 2, (GetScreenHeight() / 44) * 34, box_witdh, box_height };
     Rectangle rec3 = { GetScreenWidth() / 2 - box_witdh / 2, (GetScreenHeight() / 44) * 38, box_witdh, box_height };
     if (CheckCollisionPointRec(GetMousePosition(), rec)) {
@@ -181,96 +177,8 @@ void lobbyscreen() {
         font_size,
         spacing_2,
         text_color);
-
-
-    if (IsKeyPressed(KEY_SPACE)) {
-        start_game();
-    }
-    if (GetMouseX() > setting_position && GetMouseX() < setting_position + icon_width && GetMouseY() > window_height - (setting_position + icon_width) && GetMouseY() < window_height - setting_position) { 
-        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) btnState = 2;
-        else btnState = 1;
-        DrawTexturePro(setting_icon_texture,
-            { 0,0,float(setting_icon_image.height), float(setting_icon_image.width) },
-            { setting_position,(float)GetScreenHeight() - (setting_position + icon_width),icon_width,icon_width },
-            { 0,0 },
-            0,
-            { 125,125,125,255 });
-
-        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) btnAcion = true;
-    }
-    else btnState = 0;
-
-    if (btnAcion) {
-        gamestate = GameState::Setting;
-    }
-    mouse_control();
 }
-Crow crow;
-Drag drag;
-Player player;
-extern bool is_gameover;
-
-void stage_1() {
-
-    if (_sun()) {
-        StopMusicStream(music);
-        start_stage_2();
-    }
-    IsOnBeat();
-    beat_spliting();
-    continuous_beat();
-    Particle::update_particle();
-    Effect::make_effect();
-    Effect::update_effect();
-    crow._crow();   
-    drag.Fx();
-    if (is_gameover) {
-        end_game();
-    }
-   /* DrawTexture(grass_texture, 0, 0, WHITE);*/
-    beat_circle();
-    show_score();
-
-    player._player();
-    mouse_control();
-}
-
-void stage_2() {
-    ClearBackground(Color{ 4, 18, 31,255 });
-    _sun_stage2();
-    IsOnBeat();
-    beat_spliting();
-    continuous_beat();
-    crow._crow();
-    drag.Fx();
-    if (is_gameover) {
-        end_game();
-    }
-    beat_circle();
-    show_score();
-    player._player();
-    mouse_control();
-    //DrawTexturePro(vignetting_texture,
-    //    { 0,0,float(setting_icon_image.height), float(setting_icon_image.width) },
-    //    { setting_position,window_height - (setting_position + setting_width),setting_width,setting_width },
-    //    { 0,0 },
-    //    0,
-    //    { 125,125,125,255 });
-
-}
-
-void gameover() {
-
-    if (_sun()) {
-        start_stage_2();
-    }
-    Effect::make_effect();
-    Effect::update_effect();
-    if (is_gameover) {
-        end_game();
-    }
-    mouse_control();
-    show_score();
+void draw_game_over() {
 
     int font_size = GetScreenWidth() / 15;
     int font_size_2 = GetScreenWidth() / 30;
@@ -296,9 +204,121 @@ void gameover() {
         font_size_2,
         spacing,
         BLACK);
-        if (IsKeyPressed(KEY_R)) {
-            gamestate = GameState::LobbyScreen;
-         }
+    if (IsKeyPressed(KEY_R)) {
+        gamestate = GameState::LobbyScreen;
+    }
+}
+
+
+
+void startloding() {
+    draw_loading();
+    if (IsKeyReleased(MOUSE_BUTTON_LEFT) || IsKeyReleased(KEY_SPACE) || int(GetTime()) > 7) {
+        gamestate = GameState::LobbyScreen;
+    }
+    mouse_control();
+}
+
+void start_game() {
+    PlayMusicStream(music);
+    is_gameover = false;
+    gamestate = GameState::Stage_1;
+
+}
+
+void start_stage_2() {
+    PlayMusicStream(music);
+    gamestate = GameState::Stage_2;
+
+}
+
+void end_game() {
+    StopMusicStream(music);
+    crows.clear();
+    gamestate = GameState::Gameover;
+}
+
+
+
+void lobbyscreen() {
+
+    animation_move();
+    draw_lobby_animation();
+    draw_lobby_icon();
+    click_lobby_icon();
+    draw_lobby_button();
+
+    if (IsKeyPressed(KEY_SPACE)) {
+        start_game();
+    }
+    
+    mouse_control();
+}
+
+
+void stage_1() {
+
+    if (is_sun_fall()) {
+        StopMusicStream(music);
+        start_stage_2();
+    }
+    _sun();
+    if (is_gameover) {
+        end_game();
+    }
+    IsOnBeat();
+    beat_spliting();
+    continuous_beat();
+    Particle::update_particle();
+    Effect::make_effect();
+    Effect::update_effect();
+    crow._crow();   
+    drag.Fx();
+    beat_circle();
+    show_score();
+    player._player();
+    mouse_control();
+
+}
+
+int a = 255;
+
+void stage_2() {
+
+    
+
+    if (is_gameover) {
+        end_game();
+    }
+    ClearBackground(Color{ 4, 18, 31,255 });
+    _sun_stage2();
+    IsOnBeat();
+    beat_spliting();
+    continuous_beat();
+    crow._crow();
+    drag.Fx();
+    beat_circle();
+    show_score();
+    player._player();
+
+    if(a > 0){
+        std::cout << a << std::endl;
+        DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), { 255,255,255,(unsigned char)a });
+        a-=5;
+    }
+    mouse_control();
+
+}
+
+void gameover() {
+
+    _sun(); // todo: when you die in stage2, it should change into sun_stage2
+    Effect::make_effect();
+    Effect::update_effect();
+    mouse_control();
+    show_score();
+    draw_game_over();
+
 }
 
 void setting() {
