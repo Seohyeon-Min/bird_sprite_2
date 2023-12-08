@@ -4,7 +4,7 @@
 #include "H_Main.h"
 #include "H_Beat_system.h"
 #include "H_GameState.h"
-
+#include "H_Audio.h"
 
 constexpr int initial_sun_y = 325;
 constexpr int sun_radius = 300;

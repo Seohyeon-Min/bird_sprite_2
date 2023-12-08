@@ -4,6 +4,7 @@
 #include "H_Score.h"
 #include "H_Particle.h"
 #include "H_Player.h"
+#include "H_Audio.h"
 
 extern Vector2 mousepostion;
 double animation_timer_title = 0;
@@ -53,6 +54,7 @@ void start_game() {
 }
 
 void start_stage_2() {
+    PlayMusicStream(music);
     gamestate = GameState::Stage_2;
 
 }
@@ -74,6 +76,7 @@ bool window_close = false;
 
 
 void lobbyscreen() {
+    
     animation_move();
     int btnState = 0;
     bool btnAcion = false;
@@ -210,6 +213,7 @@ extern bool is_gameover;
 void stage_1() {
 
     if (_sun()) {
+        StopMusicStream(music);
         start_stage_2();
     }
     IsOnBeat();
@@ -233,7 +237,6 @@ void stage_1() {
 
 void stage_2() {
     ClearBackground(Color{ 4, 18, 31,255 });
-    PlayMusicStream(music);
     _sun_stage2();
     IsOnBeat();
     beat_spliting();
@@ -245,6 +248,7 @@ void stage_2() {
     }
     beat_circle();
     show_score();
+    player._player();
     mouse_control();
     //DrawTexturePro(vignetting_texture,
     //    { 0,0,float(setting_icon_image.height), float(setting_icon_image.width) },
@@ -298,10 +302,12 @@ void gameover() {
 }
 
 void setting() {
+    PlayMusicStream(option_music);
     DrawText("Welcome! This is setting screen!", 110, (float)GetScreenHeight() / 2 - 50, text_size, BLACK);
     DrawText("Press Space to go back to the title.", 110, (float)GetScreenHeight() / 2 - 20, text_size, BLACK);
     mouse_control();
     if (IsKeyPressed(KEY_SPACE)) {
+        StopMusicStream(option_music);
         gamestate = GameState::LobbyScreen;
     }
 }

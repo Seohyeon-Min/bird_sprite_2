@@ -10,6 +10,7 @@
 #include "H_Score.h"
 #include "H_Particle.h"
 #include "H_Player.h"
+#include "H_Audio.h"
 
 std::vector<Crow> crows{};
 std::vector<Vector2> marked_crow_positions;
@@ -338,7 +339,7 @@ void Crow::delete_crow() {
 	for (int i = crows.size() - 1; i >= 0; i--) { //delete the crow
 		if (crows[i].marked == true && crows[i].order == erase_number) { //i need a counter to check the order of crow by it clicked
 			Particle::make_particle(crows[i].get_position());
-			UpdateMusicStream(crow_blow);
+			PlaySound(crow_blow);
 			deleted_position = crows[i].get_position();
 			crows.erase(crows.begin() + i);
 

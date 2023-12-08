@@ -3,6 +3,7 @@
 #include "H_Drag.h"
 #include "H_Main.h"
 #include "H_Beat_system.h"
+#include "H_Audio.h"
 
 constexpr int mouse_R{6};
 constexpr int beat_circle_scale{25};

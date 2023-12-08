@@ -4,6 +4,7 @@
 #include "H_Main.h"
 #include "H_Drag.h"
 #include "H_Score.h"
+#include "H_Audio.h"
 
 constexpr int BPM = 100;
 constexpr double judge_offSet = 0.1;

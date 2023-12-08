@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="S_Audio.cpp" />
     <ClCompile Include="S_Beat_system.cpp" />
     <ClCompile Include="S_Crow.cpp" />
     <ClCompile Include="S_Drag.cpp" />
@@ -140,6 +141,7 @@
     <ClCompile Include="S_Sun.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="H_Audio.h" />
     <ClInclude Include="H_Beat_system.h" />
     <ClInclude Include="H_Crow.h" />
     <ClInclude Include="H_Drag.h" />

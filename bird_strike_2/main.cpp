@@ -9,9 +9,10 @@
 #include "H_GameState.h"
 #include "H_Beat_system.h"
 #include "H_Particle.h"
+#include "H_Audio.h"
 
-Music music;
-Music crow_blow;
+//Music music;
+//Sound crow_blow;
 Vector2 camerapos = { window_width / 2, window_height / 2 };
 
 bool clickEffectActive = false;
@@ -23,7 +24,6 @@ float camera_offset = 2;
 int main() {
     InitWindow(window_width, window_height, "Bird Strike!");
 
-
     Camera2D camera{
     { window_width / 2, window_height / 2. },
     { window_width / 2, window_height / 2.},
@@ -33,17 +33,13 @@ int main() {
 
     InitAudioDevice();
 
-    music = LoadMusicStream("audio/test_sound.mp3");
-    crow_blow = LoadMusicStream("audio/crow_blow.mp3");
-
-    PlayMusicStream(music);
-    PlayMusicStream(crow_blow);
-
     SetTargetFPS(target_frame_rate);
 
     HideCursor();
 
     loadimage();
+    loadaudio();
+    SetSoundVolume(crow_blow, 0.2f);
 
     while (WindowShouldClose() == false) {
 
@@ -140,6 +136,7 @@ int main() {
             stage_1();
             break;
         case GameState::Stage_2:
+            UpdateMusicStream(music);
             stage_2();
             break;
         case GameState::Gameover:
@@ -147,6 +144,7 @@ int main() {
             gameover();
             break;
         case GameState::Setting:
+            UpdateMusicStream(option_music);
             setting();
             break;
         }
@@ -175,6 +173,8 @@ int main() {
 
 
     UnloadMusicStream(music);
+    UnloadMusicStream(option_music);
+    UnloadSound(crow_blow);
     UnloadFont(font);
     CloseAudioDevice();
 

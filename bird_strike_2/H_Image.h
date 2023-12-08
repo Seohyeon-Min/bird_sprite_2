@@ -46,6 +46,7 @@ extern Texture2D challenge_icon_texture;
 extern Image vignetting_image;
 extern Texture2D vignetting_texture;
 extern Font font;
+extern Font font2;
 
 
 void loadimage();
