@@ -11,6 +11,12 @@ private:
 	Vector2 speed = { -1,-1 };
 	int radius = 30;
 	float sprite_scale;
+	float playeranimation = 0;
+	bool direction = 0;
+	float directiontheta;
+	float playersize = 80;
+	int player_animation_speed = 15;
+	float playerdirection = 1;
 	
 
 public:

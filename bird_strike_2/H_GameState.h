@@ -15,7 +15,9 @@ enum GameState {
     Stage_1,
     Stage_2,
     Gameover,
-    Setting
+    Setting,
+    Star,
+    Challenge
 };
 
 extern GameState gamestate;
@@ -29,6 +31,7 @@ void stage_1();
 void stage_2();
 void gameover();
 void setting();
-
+void leaderborad();
+void challenge();
 
 #endif

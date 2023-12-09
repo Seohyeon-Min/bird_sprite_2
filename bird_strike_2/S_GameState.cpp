@@ -1,3 +1,5 @@
+#include <iostream>
+#include <fstream>
 #include "H_GameState.h"
 #include "H_Beat_system.h"
 #include "H_Sun.h"
@@ -19,6 +21,8 @@ extern Vector2 mousepostion;
 double animation_timer_title = 0;
 bool window_close = false;
 int title_x = 0;
+float ChallengePositionY = 0;
+
 
 
 void animation_move() {
@@ -125,7 +129,14 @@ void draw_lobby_button() {
     int spacing_1 = (float)(GetScreenWidth() / 384);
     int spacing_2 = (float)(GetScreenWidth() / 192);
     unsigned char alpha = 0;
+    int setting_btnState = 0;
+    bool setting_btnAcion = false;
+    int star_btnState = 0;
+    bool star_btnAcion = false;
+    int challenge_btnState = 0;
+    bool challenge_btnAcion = false;
 
+    Color setbtncolor = { 125,125,125,255 };
     Color text_color = { 255, 159, 68, 255 };
     Color box_color = { 255,255,255,178 };
 
@@ -150,6 +161,55 @@ void draw_lobby_button() {
             window_close = true;
         }
     }
+        if (GetMouseX() > setting_position && GetMouseX() < setting_position + icon_width && GetMouseY() > window_height - (setting_position + icon_width) && GetMouseY() < window_height - setting_position) {
+        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) setting_btnState = 2;
+        else setting_btnState = 1;
+        DrawTexturePro(setting_icon_texture,
+            { 0,0,float(setting_icon_image.height), float(setting_icon_image.width) },
+            { setting_position,window_height - (setting_position + icon_width),icon_width,icon_width },
+            { 0,0 },
+            0,
+            setbtncolor);
+
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) setting_btnAcion = true;
+    }
+    else setting_btnState = 0;
+    if (setting_btnAcion) {
+        gamestate = GameState::Setting;
+    }
+
+    if (GetMouseX() > star_position && GetMouseX() < star_position + icon_width && GetMouseY() > window_height - (setting_position + icon_width) && GetMouseY() < window_height - setting_position) {
+        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) star_btnState = 2;
+        else star_btnState = 1;
+        DrawTexturePro(star_icon_texture,
+            { 0,0,float(star_icon_image.width),float(star_icon_image.height) },
+            { star_position,window_height - (setting_position + icon_width),icon_width,icon_width },
+            { 0,0 },
+            0,
+            setbtncolor);
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) star_btnAcion = true;
+    }
+    else star_btnState = 0;
+    if (star_btnAcion) {
+        gamestate = GameState::Star;
+    }
+
+    if (GetMouseX() > challenge_position && GetMouseX() < challenge_position + icon_width && GetMouseY() > window_height - (setting_position + icon_width) && GetMouseY() < window_height - setting_position) {
+        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) challenge_btnState = 2;
+        else challenge_btnState = 1;
+        DrawTexturePro(challenge_icon_texture,
+            { 0,0,float(challenge_icon_image.width),float(challenge_icon_image.height) },
+            { challenge_position,window_height - (setting_position + icon_width) + 1,icon_width,icon_width },
+            { 0,0 },
+            0,
+            setbtncolor);
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) challenge_btnAcion = true;
+    }
+    else challenge_btnState = 0;
+    if (challenge_btnAcion) {
+        gamestate = GameState::Challenge;
+    }
+
 
 
     DrawTextPro(
@@ -334,4 +394,52 @@ void setting() {
     }
 }
 
+void leaderborad() {
+    string line;
+    DrawText("Welcome! This is Leaderbord screen!", 110, window_height / 2 - 50, text_size, BLACK);
+    DrawText("Press Space to go back to the title.", 110, window_height / 2 - 20, text_size, BLACK);
+    string name = "jone!";
+    int X_score = 3000;
+    ifstream file("Leaderborad.txt");
+    if (file.is_open()) {
+        if (IsKeyPressed(KEY_H)) {
+            ofstream file("Leaderborad.txt");
+            file << name;
+            file << X_score;
+            cout << "it's worked!" << endl;
+        }
+        if (IsKeyPressed(KEY_J)) {
+            while (true) {
+                cout << line << endl;
+            }
+            cout << "it's worked! too!" << endl;
+        }
+        file.close();
+    }
+    else {
+        cout << "error" << endl;
+    }
+
+
+    if (IsKeyPressed(KEY_SPACE)) {
+        gamestate = GameState::LobbyScreen;
+    }
+}
+void challenge() {
+    int scrollSpeed = 15;
+    float recoffest = 20;
+    ChallengePositionY += (GetMouseWheelMove() * scrollSpeed);
+    DrawTexturePro(Nice_to_meet_you_2_texture, { 0,0,(float)Nice_to_meet_you_2_image.width,(float)Nice_to_meet_you_2_image.height }, { 0 + recoffest,0 + ChallengePositionY,GetScreenWidth() - recoffest,(float)(GetScreenHeight() / 2) + recoffest * 2 }, { 0,0 }, 0, WHITE);
+    DrawTexturePro(Its_my_first_day_2_texture, { 0,0,(float)Nice_to_meet_you_2_image.width,(float)Nice_to_meet_you_2_image.height }, { 0 + recoffest,Nice_to_meet_you_2_image.height * 2 + ChallengePositionY,GetScreenWidth() - recoffest,(float)(GetScreenHeight() / 2) + recoffest * 2 }, { 0,0 }, 0, WHITE);
+    DrawTexturePro(best_aimer_2_texture, { 0,0,(float)Nice_to_meet_you_2_image.width,(float)Nice_to_meet_you_2_image.height }, { 0 + recoffest,Nice_to_meet_you_2_image.height * 4 + ChallengePositionY,GetScreenWidth() - recoffest,(float)(GetScreenHeight() / 2) + recoffest * 2 }, { 0,0 }, 0, WHITE);
+    DrawTexturePro(carzy_aimer_2_texture, { 0,0,(float)Nice_to_meet_you_2_image.width,(float)Nice_to_meet_you_2_image.height }, { 0 + recoffest,Nice_to_meet_you_2_image.height * 6 + ChallengePositionY,GetScreenWidth() - recoffest,(float)(GetScreenHeight() / 2) + recoffest * 2 }, { 0,0 }, 0, WHITE);
+    DrawTexturePro(strike_2_texture, { 0,0,(float)Nice_to_meet_you_2_image.width,(float)Nice_to_meet_you_2_image.height }, { 0 + recoffest,Nice_to_meet_you_2_image.height * 8 + ChallengePositionY,GetScreenWidth() - recoffest,(float)(GetScreenHeight() / 2) + recoffest * 2 }, { 0,0 }, 0, WHITE);
+
+
+
+    mouse_control();
+    if (IsKeyPressed(KEY_SPACE)) {
+        gamestate = GameState::LobbyScreen;
+    }
+}
 

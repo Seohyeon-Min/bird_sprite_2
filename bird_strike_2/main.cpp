@@ -133,6 +133,14 @@ int main() {
             UpdateMusicStream(option_music);
             setting();
             break;
+        case GameState::Star:
+            UpdateMusicStream(option_music);
+            leaderborad();
+            break;
+        case GameState::Challenge:
+            UpdateMusicStream(option_music);
+            challenge();
+            break;
         }
         
         EndMode2D();

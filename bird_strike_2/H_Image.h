@@ -5,6 +5,7 @@
 
 constexpr float capybara_size{ 250 };
 
+
 extern Image capybara_image;
 extern Texture2D Capybara_texture;
 extern Image DigiPenlogo_image;
@@ -45,9 +46,30 @@ extern Image challenge_icon_image;
 extern Texture2D challenge_icon_texture;
 extern Image vignetting_image;
 extern Texture2D vignetting_texture;
+extern Image Nice_to_meet_you_1_image;
+extern Texture2D Nice_to_meet_you_1_texture;
+extern Image Nice_to_meet_you_2_image;
+extern Texture2D Nice_to_meet_you_2_texture;
+extern Image Its_my_first_day_1_image;
+extern Texture2D Its_my_first_day_1_texture;
+extern Image Its_my_first_day_2_image;
+extern Texture2D Its_my_first_day_2_texture;
+extern Image best_aimer_1_image;
+extern Texture2D best_aimer_1_texture;
+extern Image best_aimer_2_image;
+extern Texture2D best_aimer_2_texture;
+extern Image carzy_aimer_1_image;
+extern Texture2D carzy_aimer_1_texture;
+extern Image carzy_aimer_2_image;
+extern Texture2D carzy_aimer_2_texture;
+extern Image strike_1_image;
+extern Texture2D strike_1_texture;
+extern Image strike_2_image;
+extern Texture2D strike_2_texture;
+extern Image player_stop_image;
+extern Texture2D player_stop_texture;
 extern Font font;
 extern Font font2;
-
 
 void loadimage();
 
