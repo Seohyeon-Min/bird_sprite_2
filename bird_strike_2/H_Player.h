@@ -10,6 +10,7 @@ private:
 	float reaching_time = 2;
 	Vector2 speed = { -1,-1 };
 	int radius = 30;
+	float sprite_scale;
 	
 
 public:

@@ -17,7 +17,7 @@ std::vector<Vector2> marked_crow_positions;
 
 double animation_timer = 0;
 const double animation_speed = 15;
-float sprite_scale{ (float)(window_width / 512.0f) };
+float sprite_scale;
 int texture_sizes{ 50 };
 int erase_number = 1;
 int Switch = 1;
@@ -182,6 +182,7 @@ bool Crow::mouse_click() { //checking whether the mouse is down or not
 
 //decide the spawn point (left or right side of window)
 Crow::Crow() {
+	sprite_scale =  (float)(GetScreenWidth() / 640.0f) ;
 	position.x = GetRandomValue(0, 1) == 0 ? -radius * 2, speed.x *= -1 : GetScreenWidth() + radius * 2, speed.x *= -1;
 	position.y = GetRandomValue(radius * 2, GetScreenHeight() - GetScreenHeight() / 3);
 	animation_timer = GetRandomValue(0, 15);

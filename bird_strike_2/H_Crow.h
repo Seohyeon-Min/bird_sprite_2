@@ -19,7 +19,7 @@ extern bool crow_just_erased;
 
 struct Crow {
 private:
-    int radius = GetScreenWidth() / 25.6;//30
+    int radius = GetScreenWidth() / 30.72;//30
     Vector2 position = { 0, 0 };
     Vector2 speed = { 2, 1 };
     Vector2 acc = { 0.05, 0.008 };

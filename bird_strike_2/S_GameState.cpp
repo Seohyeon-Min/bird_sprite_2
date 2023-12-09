@@ -124,9 +124,11 @@ void draw_lobby_button() {
     int font_size = (float)(GetScreenWidth() / 27.4);
     int spacing_1 = (float)(GetScreenWidth() / 384);
     int spacing_2 = (float)(GetScreenWidth() / 192);
+    unsigned char alpha = 0;
 
     Color text_color = { 255, 159, 68, 255 };
     Color box_color = { 255,255,255,178 };
+
 
     Rectangle rec = { GetScreenWidth() / 2 - box_witdh / 2, (GetScreenHeight() / 44) * 30, box_witdh, box_height };
     Rectangle rec2 = { GetScreenWidth() / 2 - box_witdh / 2, (GetScreenHeight() / 44) * 34, box_witdh, box_height };
@@ -273,10 +275,10 @@ void stage_1() {
     Effect::make_effect();
     Effect::update_effect();
     crow._crow();   
-    drag.Fx();
-    beat_circle();
-    show_score();
+    drag.Fx(); 
     player._player();
+    show_score();
+    beat_circle();
     mouse_control();
 
 }
@@ -297,15 +299,15 @@ void stage_2() {
     continuous_beat();
     crow._crow();
     drag.Fx();
-    beat_circle();
-    show_score();
     player._player();
+    show_score();
 
     if(a > 0){
         std::cout << a << std::endl;
         DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), { 255,255,255,(unsigned char)a });
         a-=5;
     }
+    beat_circle();
     mouse_control();
 
 }

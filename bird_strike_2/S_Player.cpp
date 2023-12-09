@@ -30,8 +30,13 @@ float get_distance_y(float posy, float desy) {
 void Player::draw(Vector2 pos) {
     DrawTexturePro(player_go_texture,
         { 0,0,(float)player_go_image.width,(float)player_go_image.height },
-        { pos.x,pos.y, 100,100 },
-        { 50,50 },
+        {
+                position.x ,
+                position.y ,
+                float(player_go_image.width * sprite_scale),
+                float(player_go_image.height * sprite_scale)
+        }, 
+        { (float)(player_go_image.width * sprite_scale / 2) ,(float)(player_go_image.height * sprite_scale / 2) },
         0,
         WHITE
     );
@@ -44,7 +49,8 @@ void Player::get_destination() {
 
     if (return_delete_crow_position().x == 0 && return_delete_crow_position().y == 0) {
         speed = { 0,0 };
-        position = { (float)(GetScreenWidth() / 2) ,(float)(GetScreenHeight() - 60) };
+        position = { (float)(GetScreenWidth() / 2) ,(float)(GetScreenHeight() - GetScreenHeight() / 8) };
+        sprite_scale = (float)(GetScreenWidth() / 512.0f);
     }
 }
 

@@ -36,7 +36,6 @@ float drop_b(float i) {
 
 
 void background(float sky_y) {
-	std::cout << GetFPS()<< std::endl;
 	DrawTexture;
 	DrawTexturePro(
 		stage1_background_texture,
@@ -53,7 +52,7 @@ void background(float sky_y) {
 float fall;
 
 void draw_sun(float sun_y) {
-	DrawCircleGradient(GetScreenWidth() / 2, initial_sun_y + sun_y, (SecondTerms() - GetMusicTimePlayed(music)) * (800) + (800), { 0,0,0, 200 }, { 0,0,0,0 });
+	DrawCircleGradient(GetScreenWidth() / 2, initial_sun_y + sun_y+300, (SecondTerms() - GetMusicTimePlayed(music)) * (1300) + (1300), { 0,0,0, 200 }, { 0,0,0,0 });
 	//DrawCircle(window_width / 2, sun_y, sun_radius, sun_color_4);
 	//DrawCircle(window_width / 2, sun_y, sun_radius - 13, sun_color_3);
 	//DrawCircle(window_width / 2, sun_y, sun_radius - 24, sun_color_2);
@@ -129,16 +128,10 @@ void _sun() {
 		0,
 		WHITE
 	);
-
-	//std::cout << i - 325 << "    ,    " << GetTime() << std::endl;
-	//if (is_gameover) {
-	//	double sun_y = initial_sun_y;
-	//}
 }
 
 bool is_sun_fall() {
 	if (fall >= GetScreenHeight() + sun_radius) {
-		//int wait = GetFPS() * 2;
 		SetSoundVolume(to_two_phase, 2.0f);
 		PlaySound(to_two_phase);
 		WaitTime(2);
