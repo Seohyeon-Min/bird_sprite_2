@@ -24,8 +24,8 @@ Color crow_size_text_color = BLACK;
 
 
 
-int return_score() {
-	return score;
+int *return_score() {
+	return &score;
 }
 
 void judge_text_draw() {

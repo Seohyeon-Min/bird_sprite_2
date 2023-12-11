@@ -7,9 +7,7 @@
 #include "H_Mouse.h"
 #include "H_Image.h"
 #include "H_GameState.h"
-#include "H_Beat_system.h"
-#include "H_Particle.h"
-#include "H_Audio.h"
+
 
 //Music music;
 //Sound crow_blow;

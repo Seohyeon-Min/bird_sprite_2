@@ -31,7 +31,7 @@ float get_distance_y(float posy, float desy) {
 
 void Player::draw(Vector2 pos) {
     playeranimation += (GetFrameTime() * playeranimation_speed);
-    std::cout << playeranimation << std::endl;
+    //std::cout << playeranimation << std::endl;
     if (speed.x > 0) {
         direction = 1;
         playerdirection = (direction * 2 - 1);

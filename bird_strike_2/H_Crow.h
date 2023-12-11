@@ -4,7 +4,7 @@
 #include <vector>
 
 
-constexpr int max_crow =30;
+constexpr int max_crow =5;
 constexpr int crow_per_sec = 3;
 
 struct Crow;
@@ -35,20 +35,23 @@ public:
 
     int erase_index = 0;
     int order = 0;
-    bool mouse_click();
     bool marked = false;  //mark the crow that will be deleted
     Vector2 get_position();
-    void add_crow();
-    bool intersection(float x, float y);
-    void first_move();
     void _crow();
-    void draw(bool hover);
+    bool mouse_click();
+    bool intersection(float x, float y);
+    void add_crow();
+    void first_move();
     void move();
+    void draw(bool hover);
     void checkdirection();
     void animation_move();
-    void delete_crow();
+    void fail_to_connect();
 
 };
+
+void ready_to_delete();
+void delete_crow();
 Vector2 return_delete_crow_position();
 std::string check_game_over();
 int return_order_counter();

@@ -183,7 +183,7 @@ bool Crow::mouse_click() { //checking whether the mouse is down or not
 //decide the spawn point (left or right side of window)
 Crow::Crow() {
 	sprite_scale =  (float)(GetScreenWidth() / 640.0f) ;
-	position.x = GetRandomValue(0, 1) == 0 ? -radius * 2, speed.x *= -1 : GetScreenWidth() + radius * 2, speed.x *= -1;
+	position.x = GetRandomValue(0, 1) == 0 ? -(radius * 2), speed.x *= -1 : GetScreenWidth() + radius * 2, speed.x *= -1;
 	position.y = GetRandomValue(radius * 2, GetScreenHeight() - GetScreenHeight() / 3);
 	animation_timer = GetRandomValue(0, 15);
 
@@ -204,6 +204,24 @@ void Crow::add_crow() {
 }
 
 
+
+void Crow::fail_to_connect() {
+	if (continuous_fail) {
+		lose_score();
+		holding = false;
+		order_counter = 1;
+		marked_crow_positions.clear();
+		for (Crow& crow : crows) {
+			if (crow.marked) {
+				crow.speed = { float(GetRandomValue(0,1) == 0 ? 2 : 1), 1 };
+				crow.acc = { 0.05, 0.008 };
+				crow.order = 0;
+				crow.marked = false;
+			}
+		}
+	}
+	continuous_fail = false;
+}
 
 
 
@@ -240,46 +258,10 @@ void Crow::_crow() {
 				hasRun = false;
 			}
 		}
-		if (continuous_fail) {
-			lose_score();
-			holding = false;
-			order_counter = 1;
-			marked_crow_positions.clear();
-			for (Crow& crow : crows) {
-				if (crow.marked) {
-					crow.speed = { float(GetRandomValue(0,1) == 0 ? 2 : 1), 1 };
-					crow.acc = { 0.05, 0.008 };
-					crow.order = 0;
-					crow.marked = false;
-				}
-			}
-		}
-		continuous_fail = false;
+		
 	}
-	if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && holding) {
-		bonus_score();
-		erase_flag = true;
-		isMouseInputAllowed = false;
-		holding = false;
-		marked_crow_positions.clear();
-	}
-
-	if (erase_flag == true && is_changed == true && splited_beat == true)
-	{
-		crow_just_erased = true;
-		delete_crow();
-		erase_number++;
-		if (order_counter == erase_number)
-		{
-
-			order_counter = 1;
-			erase_number = 1;
-			erase_flag = false;
-			isMouseInputAllowed = true;
-
-		}
-	}
-	else crow_just_erased = false;
+	fail_to_connect();
+	ready_to_delete();
 
 	for (int i = crows.size() - 1; i >= 0; i--) {
 		if (crows[i].spawn_count == 0) {
@@ -337,7 +319,33 @@ std::string check_game_over() {
 }
 
 
-void Crow::delete_crow() {
+void ready_to_delete() {
+	if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && holding) {
+		bonus_score();
+		erase_flag = true;
+		isMouseInputAllowed = false;
+		holding = false;
+		marked_crow_positions.clear();
+	}
+	if (erase_flag == true && is_changed == true && splited_beat == true)
+	{
+		crow_just_erased = true;
+		delete_crow();
+		erase_number++;
+		if (order_counter == erase_number)
+		{
+
+			order_counter = 1;
+			erase_number = 1;
+			erase_flag = false;
+			isMouseInputAllowed = true;
+
+		}
+	}
+	else crow_just_erased = false;
+}
+
+void delete_crow() {
 	for (int i = crows.size() - 1; i >= 0; i--) { //delete the crow
 		if (crows[i].marked == true && crows[i].order == erase_number) { //i need a counter to check the order of crow by it clicked
 			Particle::make_particle(crows[i].get_position());
@@ -359,7 +367,6 @@ int return_order_counter() {
 	int cnt = order_counter - 1;
 	return cnt;
 }
-
 
 int return_crow_size() {
 	return crows.size();

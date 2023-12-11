@@ -7,6 +7,7 @@
 #include "H_Particle.h"
 #include "H_Player.h"
 #include "H_Audio.h"
+#include "H_Option.h"
 
 GameState gamestate = GameState::Startloading;
 Crow crow;
@@ -267,6 +268,7 @@ void draw_game_over() {
         spacing,
         BLACK);
     if (IsKeyPressed(KEY_R)) {
+        *return_score() = 0;
         gamestate = GameState::LobbyScreen;
     }
 }
@@ -304,15 +306,16 @@ void end_game() {
 
 void lobbyscreen() {
 
+    
     animation_move();
     draw_lobby_animation();
     draw_lobby_icon();
     click_lobby_icon();
     draw_lobby_button();
 
-    if (IsKeyPressed(KEY_SPACE)) {
-        start_game();
-    }
+    //if (IsKeyPressed(KEY_SPACE)) {
+    //    start_game();
+    //}
     
     mouse_control();
 }
@@ -328,6 +331,7 @@ void stage_1() {
     if (is_gameover) {
         end_game();
     }
+    
     IsOnBeat();
     beat_spliting();
     continuous_beat();
@@ -384,9 +388,9 @@ void gameover() {
 }
 
 void setting() {
+    Control_bar bar;
+    bar.update_all();
     PlayMusicStream(option_music);
-    DrawText("Welcome! This is setting screen!", 110, (float)GetScreenHeight() / 2 - 50, text_size, BLACK);
-    DrawText("Press Space to go back to the title.", 110, (float)GetScreenHeight() / 2 - 20, text_size, BLACK);
     mouse_control();
     if (IsKeyPressed(KEY_SPACE)) {
         StopMusicStream(option_music);

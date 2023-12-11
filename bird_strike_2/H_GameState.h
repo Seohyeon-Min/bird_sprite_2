@@ -1,7 +1,11 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
-#include <raylib.h>
+#include "H_Beat_system.h"
+#include "H_Score.h"
+#include "H_Particle.h"
+#include "H_Player.h"
+#include "H_Audio.h"
 #include "H_Sun.h"
 #include "H_Crow.h"
 #include "H_Main.h"
