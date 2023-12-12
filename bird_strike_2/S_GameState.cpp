@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <string>
 #include "H_GameState.h"
 #include "H_Beat_system.h"
 #include "H_Sun.h"
@@ -432,6 +433,7 @@ void gameover() {
         if (IsKeyPressed(KEY_ENTER)) {
             gameover_once = true;
             save_once = false;
+            letterCount = 0;
         }
     }
 
@@ -471,14 +473,28 @@ void setting() {
     }
 }
 
+bool load_leaderbored_once = true;
+
 void leaderborad() {
+    static bool scoresLoaded = false;
+    static std::vector<ScoreEntry> scores;
 
-    DrawText("Welcome! This is Leaderbord screen!", 110, window_height / 2 - 50, text_size, BLACK);
-    DrawText("Press Space to go back to the title.", 110, window_height / 2 - 20, text_size, BLACK);
+    if (!scoresLoaded) {
+        scores = loadScores(scorefile);
+        scoresLoaded = true;
+    }
+    for (int i = 0; i < 5 && i < scores.size(); i++) {
+        const ScoreEntry& entry = scores[i];
+        std::string scoreString = std::to_string(scores[i].score);
+        const char* savedScore = scoreString.c_str();
+        const char* savedName = scores[i].playerName.c_str();
 
-
+        DrawTextPro(font,savedName, { 100,float(300 + (60 * i))}, {0,0}, 0, GetScreenWidth() / 15, GetScreenWidth() / 384, BLACK); //username출력. 위치조정 자유롭게 해주십쇼
+        DrawTextPro(font, savedScore, { 500,float(300 +(60*i))}, {0,0}, 0, GetScreenWidth() / 15, GetScreenWidth() / 384, BLACK); //스코어 출력. 위치조정 자유롭게 해주십쇼
+    }
     if (IsKeyPressed(KEY_SPACE)) {
         gamestate = GameState::LobbyScreen;
+        scoresLoaded = false;
     }
 }
 void challenge() {

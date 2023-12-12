@@ -1,1 +1,63 @@
-﻿  bird_strike_2.vcxproj -> C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\x64\Debug\bird_strike_2.exe
+﻿  S_GameState.cpp
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\H_Crow.h(22,35): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'S_GameState.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\H_Crow.h(25,21): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+  (소스 파일 'S_GameState.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\H_Crow.h(25,27): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+  (소스 파일 'S_GameState.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(40,24): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(136,13): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(137,19): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(138,19): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(139,19): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(153,86): warning C4838: 'int'에서 'float'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(153,86): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(154,87): warning C4838: 'int'에서 'float'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(154,87): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(155,87): warning C4838: 'int'에서 'float'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(155,87): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(157,103): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(157,92): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(157,44): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(163,103): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(163,92): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(163,44): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(168,103): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(168,92): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(168,44): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(228,59): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(228,48): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(231,9): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(230,9): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(237,61): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(237,50): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(240,9): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(239,9): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(246,54): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(246,43): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(249,9): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(248,9): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(262,56): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(262,45): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(262,117): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(262,106): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(262,179): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(262,168): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(265,9): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(264,9): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(273,70): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(273,57): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(276,9): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(275,9): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(453,110): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(453,87): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(455,94): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(455,71): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(492,117): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(492,94): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(493,116): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\S_GameState.cpp(493,93): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  bird_strike_2.vcxproj -> C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\x64\Debug\bird_strike_2.exe

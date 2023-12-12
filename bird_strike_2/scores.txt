@@ -1,10 +1,17 @@
+RHH 830
+HSH 770
+USE 410
+FFF 350
+HSH 300
 hello 240
 hello 240
 hello 240
 hello 130
 hello 100
 DIF 80
+RDF 60
 DKI 50
 hello 30
 DKK 30
+DFD 30
 DDF 0
