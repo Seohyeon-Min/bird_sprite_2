@@ -7,7 +7,7 @@
 #include "H_Mouse.h"
 #include "H_Image.h"
 #include "H_GameState.h"
-#include "H_Txt_read.h"
+
 
 //Music music;
 //Sound crow_blow;
@@ -22,10 +22,10 @@ float camera_offset = 2;
 
 int main() {
     InitWindow(window_width, window_height, "Bird Strike!");
-    
+    SetExitKey(KEY_NULL);
 
-    std::vector<ScoreEntry> scores = loadScores(scorefile);
-    std::vector<ChallengeEntry> Bools = loadChallenge(challengefile);
+    bool exitWindowRequested = false;
+    bool exitWindow = false;
 
 
     Camera2D camera{
@@ -43,9 +43,19 @@ int main() {
 
     loadimage();
     loadaudio();
-    SetSoundVolume(crow_blow, 0.3f);
 
-    while (WindowShouldClose() == false) {
+
+    while (!exitWindow) {
+
+        if (WindowShouldClose() || IsKeyPressed(KEY_ESCAPE)) {
+            exitWindowRequested = true;
+        }
+
+        if (exitWindowRequested)
+        {
+            if (IsKeyPressed(KEY_Y)) exitWindow = true;
+            else if (IsKeyPressed(KEY_N)) exitWindowRequested = false;
+        }
 
 
         if (IsKeyPressed(KEY_ENTER) && (IsKeyDown(KEY_LEFT_ALT) || IsKeyDown(KEY_RIGHT_ALT)))
@@ -58,30 +68,30 @@ int main() {
         BeginDrawing();
         BeginMode2D(camera);
         ClearBackground(WHITE);
-        
-        
-        
 
-        if (clickEffectActive){
+
+
+
+        if (clickEffectActive) {
             double currentTime = GetTime();
             double elapsedTime = currentTime - clickEffectStartTime;
 
-            if (elapsedTime < 0.06){
+            if (elapsedTime < 0.06) {
                 float offsetX = (float)GetRandomValue(-camera_offset, camera_offset);
                 float offsetY = (float)GetRandomValue(-camera_offset, camera_offset);
                 camerapos.x = window_width / 2 + offsetX;
                 camerapos.y = window_height / 2 + offsetY;
 
-                camera.target = {camerapos.x,camerapos.y};
+                camera.target = { camerapos.x,camerapos.y };
             }
-            
-            else{
+
+            else {
                 //camera.target = { window_width / 2 , window_height / 2 };
                 zoomEffectActive = false;
             }
         }
-        
-        
+
+
         if (camera.target.x > window_width / 2) {
             camera.target.x -= 0.05;
         }
@@ -94,8 +104,8 @@ int main() {
         if (camera.target.y > window_height / 2) {
             camera.target.y -= 0.05;
         }
-            
-        
+
+
 
         if (false) {
             double currentTime = GetTime();
@@ -110,25 +120,26 @@ int main() {
             }
         }
 
-        
+
 
         switch (gamestate) {
         case GameState::Startloading:
             startloding();
             break;
         case GameState::LobbyScreen:
+            UpdateMusicStream(lobby_music);
             lobbyscreen();
             break;
         case GameState::Stage_1:
-            UpdateMusicStream(music);
+            UpdateMusicStream(stage1_music);
             stage_1();
             break;
         case GameState::Stage_2:
-            UpdateMusicStream(music);
+            UpdateMusicStream(stage1_music);
             stage_2();
             break;
         case GameState::Gameover:
-            PauseMusicStream(music);
+            PauseMusicStream(stage1_music);
             gameover();
             break;
         case GameState::Setting:
@@ -144,7 +155,13 @@ int main() {
             challenge();
             break;
         }
-        
+
+        if (exitWindowRequested)
+        {
+            DrawRectangle(0, 100, GetScreenWidth(), 200, BLACK);
+            DrawText("Are you sure you want to exit program? [Y/N]", 40, 180, 30, WHITE);
+        }
+
         EndMode2D();
         EndDrawing();
 
@@ -157,18 +174,19 @@ int main() {
         }
 
 
-        if (crow_just_erased){
+        if (crow_just_erased) {
             clickEffectActive = true;
             clickEffectStartTime = GetTime();
         }
         if (window_close) {
             break;
         }
-       
+
     }
 
 
-    UnloadMusicStream(music);
+    UnloadMusicStream(lobby_music);
+    UnloadMusicStream(stage1_music);
     UnloadMusicStream(option_music);
     UnloadSound(crow_blow);
     UnloadFont(font);

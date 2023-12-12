@@ -10,6 +10,7 @@ hello 130
 hello 100
 DIF 80
 RDF 60
+EFE 60
 DKI 50
 hello 30
 DKK 30

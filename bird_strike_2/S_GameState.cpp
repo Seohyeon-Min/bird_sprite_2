@@ -277,14 +277,15 @@ void draw_game_over() {
         BLACK);
     if (IsKeyPressed(KEY_R)) {
         *return_score() = 0;
+        *return_BPM() = 100;
         gamestate = GameState::LobbyScreen;
-        save_once = true;
     }
 }
 
 
 
 void startloding() {
+    SetSoundVolume(crow_blow, default_SFX);
     draw_loading();
     if (IsKeyReleased(MOUSE_BUTTON_LEFT) || IsKeyReleased(KEY_SPACE) || int(GetTime()) > 7) {
         gamestate = GameState::LobbyScreen;
@@ -293,20 +294,21 @@ void startloding() {
 }
 
 void start_game() {
-    PlayMusicStream(music);
+    StopMusicStream(lobby_music);
+    PlayMusicStream(stage1_music);
     is_gameover = false;
     gamestate = GameState::Stage_1;
 
 }
 
 void start_stage_2() {
-    PlayMusicStream(music);
+    PlayMusicStream(stage1_music);
     gamestate = GameState::Stage_2;
 
 }
 
 void end_game() {
-    StopMusicStream(music);
+    StopMusicStream(stage1_music);
     crows.clear();
     gamestate = GameState::Gameover;
 }
@@ -315,7 +317,7 @@ void end_game() {
 
 void lobbyscreen() {
 
-    
+    PlayMusicStream(lobby_music);
     animation_move();
     draw_lobby_animation();
     draw_lobby_icon();
@@ -332,11 +334,17 @@ void lobbyscreen() {
 
 void stage_1() {
 
-    if (is_sun_fall()) {
-        StopMusicStream(music);
+    if (is_sun_fall() && *return_score() >= 80) {
+        StopMusicStream(stage1_music);
+        SetSoundVolume(to_two_phase, 2.0f);
+        PlaySound(to_two_phase);
+        WaitTime(2);
         start_stage_2();
     }
+    if (is_sun_fall() && *return_score() <= 80)end_game();
+
     _sun();
+
     if (is_gameover) {
         end_game();
     }
@@ -463,7 +471,9 @@ void gameover() {
 }
 
 void setting() {
+    StopMusicStream(lobby_music);
     Control_bar bar;
+    update_others();
     bar.update_all();
     PlayMusicStream(option_music);
     mouse_control();

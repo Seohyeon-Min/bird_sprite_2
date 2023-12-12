@@ -4,12 +4,12 @@
 #include "H_Beat_system.h"
 #include "H_Audio.h"
 
-constexpr int mouse_R{6};
-constexpr int beat_circle_scale{25};
+constexpr int mouse_R{ 6 };
+constexpr int beat_circle_scale{ 25 };
 
 void beat_circle() {
-    DrawCircleLines(GetMouseX(), GetMouseY(), ((SecondTerms() - GetMusicTimePlayed(music)) * beat_circle_scale + beat_circle_scale)-1, { 255, 255, 255, 125 });
-    DrawCircleLines(GetMouseX(), GetMouseY(), (SecondTerms() - GetMusicTimePlayed(music)) * beat_circle_scale + beat_circle_scale, { 0,0,0,125 });
+    DrawCircleLines(GetMouseX(), GetMouseY(), ((SecondTerms() - GetMusicTimePlayed(stage1_music)) * beat_circle_scale + beat_circle_scale) - 1, { 255, 255, 255, 125 });
+    DrawCircleLines(GetMouseX(), GetMouseY(), (SecondTerms() - GetMusicTimePlayed(stage1_music)) * beat_circle_scale + beat_circle_scale, { 0,0,0,125 });
 }
 
 void mousedown() {
