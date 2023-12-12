@@ -291,7 +291,7 @@ std::string check_game_over() {
 		wait_for--;
 		if (holding) {
 			is_gameover = false;
-			std::cout << (int)(wait_for / 60) << " holding:" << holding << std::endl;
+			//std::cout << (int)(wait_for / 60) << " holding:" << holding << std::endl;
 
 			if (wait_for < 0) {
 				return "bonus time";
@@ -302,7 +302,7 @@ std::string check_game_over() {
 		}
 		else {
 			if (wait_for > 0) {
-				std::cout << (int)(wait_for / 60) << " holding:" << holding << std::endl;
+				//std::cout << (int)(wait_for / 60) << " holding:" << holding << std::endl;
 				return to_string((int)(wait_for / 60) + 1);
 			}
 			else {

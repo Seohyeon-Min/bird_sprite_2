@@ -4,7 +4,7 @@
 #include <vector>
 
 
-constexpr int max_crow =5;
+constexpr int max_crow =30;
 constexpr int crow_per_sec = 3;
 
 struct Crow;

@@ -1,0 +1,8 @@
+Nice_to_meet_you 1
+Its_my_first_day 0
+Best_aimer 0
+Crazy_aimer 1
+Not_done 0
+Strike 0
+Bird_striker 1
+The_bird 0

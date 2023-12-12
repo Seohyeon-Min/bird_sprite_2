@@ -7,7 +7,7 @@
 #include "H_Mouse.h"
 #include "H_Image.h"
 #include "H_GameState.h"
-
+#include "H_Txt_read.h"
 
 //Music music;
 //Sound crow_blow;
@@ -18,6 +18,7 @@ bool zoomEffectActive = false;
 double clickEffectStartTime = 0;
 double fail_StarTime = 0;
 float camera_offset = 2;
+
 
 
 int main() {
@@ -46,6 +47,9 @@ int main() {
 
 
     while (!exitWindow) {
+
+
+        
 
         if (WindowShouldClose() || IsKeyPressed(KEY_ESCAPE)) {
             exitWindowRequested = true;
@@ -168,7 +172,7 @@ int main() {
 
         if (return_continuous_fail()) {
 
-            std::cout << "Boom!" << std::endl;
+            //std::cout << "Boom!" << std::endl;
             zoomEffectActive = true;
             fail_StarTime = GetTime();
         }

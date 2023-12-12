@@ -7,7 +7,6 @@
 
 
 ScoreEntry::ScoreEntry(const std::string& name, int s) : playerName(name), score(s) {}
-
 ChallengeEntry::ChallengeEntry(const std::string& challenge, bool b) : challengeName(challenge), completed(b) {}
 
 
@@ -82,7 +81,7 @@ std::vector<ChallengeEntry> loadChallenge(const std::string& filename) {
 void updateChallenge(std::vector<ChallengeEntry>& completed_, const std::string& challengeName) {
     for (ChallengeEntry& entry : completed_) {
         if (entry.challengeName == challengeName) {
-            entry.completed = true;
+            entry.completed = 1;
             break;
         }
     }

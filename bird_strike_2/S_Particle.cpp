@@ -8,6 +8,7 @@ std::vector<Effect*> Effect::effects = { };
 
 const Color outline_color{ 255,255,255,200 };
 const Color effect_color{ 0,0,0,100 };
+const Color effect_color2{ 255,255,255,100 };
 
 int x = 10;
 int frameX = x;
@@ -37,6 +38,22 @@ void Effect::make_effect() {
         effects.push_back(newEffect);
     }
         
+}
+
+void Effect::make_effect2() {
+    if (frameX > 0) {
+        frameX--;
+    }
+    else {
+        frameX = x;
+        Effect* newEffect = new Effect;
+        newEffect->postion = { float(GetRandomValue(-5,GetScreenWidth())),float(GetScreenHeight()) };
+        newEffect->speed = { float(1 + rand() % 4) / 6 };
+        newEffect->size = { float(5 + rand() % 10) };
+        newEffect->color = effect_color2;
+        effects.push_back(newEffect);
+    }
+
 }
 
 void Particle::update_particle() {

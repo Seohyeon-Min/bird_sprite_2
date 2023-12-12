@@ -20,6 +20,7 @@ private:
 class Effect {
 public:
     static void make_effect();
+    static void make_effect2();
     static void update_effect();
     static std::vector<Effect*> effects;
 

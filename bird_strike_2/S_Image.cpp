@@ -62,6 +62,20 @@ Image strike_2_image;
 Texture2D strike_2_texture;
 Image player_stop_image;
 Texture2D player_stop_texture;
+Image BIRD_STRIKER_1_image;
+Texture2D  BIRD_STRIKER_1_texture;
+Image BIRD_STRIKER_2_image;
+Texture2D  BIRD_STRIKER_2_texture;
+Image not_done_1_image;
+Texture2D  not_done_1_texture;
+Image not_done_2_image;
+Texture2D  not_done_2_texture;
+Image THE_BIRD_1_image;
+Texture2D  THE_BIRD_1_texture;
+Image THE_BIRD_2_image;
+Texture2D  THE_BIRD_2_texture;
+
+
 Font font;
 Font font2;
 
@@ -192,6 +206,32 @@ void loadimage() {
     player_stop_image = LoadImage("textures/player_stop.png");
     player_stop_texture = LoadTextureFromImage(player_stop_image);
     UnloadImage(player_stop_image);
+
+    BIRD_STRIKER_1_image = LoadImage("textures/challenge/BIRD_STRIKER_1.png");
+    BIRD_STRIKER_1_texture = LoadTextureFromImage(BIRD_STRIKER_1_image);
+    UnloadImage(BIRD_STRIKER_1_image);
+
+    BIRD_STRIKER_2_image = LoadImage("textures/challenge/BIRD_STRIKER_2.png");
+    BIRD_STRIKER_2_texture = LoadTextureFromImage(BIRD_STRIKER_2_image);
+    UnloadImage(BIRD_STRIKER_2_image);
+
+    not_done_1_image = LoadImage("textures/challenge/not_done_1.png");
+    not_done_1_texture = LoadTextureFromImage(not_done_1_image);
+    UnloadImage(not_done_1_image);
+
+    not_done_2_image = LoadImage("textures/challenge/not_done_2.png");
+    not_done_2_texture = LoadTextureFromImage(not_done_2_image);
+    UnloadImage(not_done_2_image);
+
+    THE_BIRD_1_image = LoadImage("textures/challenge/THE_BIRD_1.png");
+    THE_BIRD_1_texture = LoadTextureFromImage(THE_BIRD_1_image);
+    UnloadImage(THE_BIRD_1_image);
+
+
+    THE_BIRD_2_image = LoadImage("textures/challenge/THE_BIRD_2.png");
+    THE_BIRD_2_texture = LoadTextureFromImage(THE_BIRD_2_image);
+    UnloadImage(THE_BIRD_2_image);
+
 
     font = LoadFont("resources/romulus.png");
     font2 = LoadFont("resources/mecha.png");

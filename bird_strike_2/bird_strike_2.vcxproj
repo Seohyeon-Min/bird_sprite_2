@@ -157,6 +157,13 @@
     <ClInclude Include="H_Particle.h" />
     <ClInclude Include="H_Score.h" />
     <ClInclude Include="H_Sun.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="bird_strike_2.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="textures\Bird_strike.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

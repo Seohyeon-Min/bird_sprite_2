@@ -68,6 +68,19 @@ extern Image strike_2_image;
 extern Texture2D strike_2_texture;
 extern Image player_stop_image;
 extern Texture2D player_stop_texture;
+extern Image BIRD_STRIKER_1_image;
+extern Texture2D  BIRD_STRIKER_1_texture;
+extern Image BIRD_STRIKER_2_image;
+extern Texture2D  BIRD_STRIKER_2_texture;
+extern Image not_done_1_image;
+extern Texture2D  not_done_1_texture;
+extern Image not_done_2_image;
+extern Texture2D  not_done_2_texture;
+extern Image THE_BIRD_1_image;
+extern Texture2D  THE_BIRD_1_texture;
+extern Image THE_BIRD_2_image;
+extern Texture2D  THE_BIRD_2_texture;
+
 extern Font font;
 extern Font font2;
 
