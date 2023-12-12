@@ -7,7 +7,7 @@
 #include "H_Mouse.h"
 #include "H_Image.h"
 #include "H_GameState.h"
-
+#include "H_Txt_read.h"
 
 //Music music;
 //Sound crow_blow;
@@ -23,6 +23,10 @@ float camera_offset = 2;
 int main() {
     InitWindow(window_width, window_height, "Bird Strike!");
     
+
+    std::vector<ScoreEntry> scores = loadScores(scorefile);
+    std::vector<ChallengeEntry> Bools = loadChallenge(challengefile);
+
 
     Camera2D camera{
     { window_width / 2, window_height / 2. },

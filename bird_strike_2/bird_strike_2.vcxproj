@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="H_Txt_read.h" />
     <ClCompile Include="S_Audio.cpp" />
     <ClCompile Include="S_Beat_system.cpp" />
     <ClCompile Include="S_Crow.cpp" />
@@ -140,6 +141,7 @@
     <ClCompile Include="S_Player.cpp" />
     <ClCompile Include="S_Score.cpp" />
     <ClCompile Include="S_Sun.cpp" />
+    <ClCompile Include="S_Txt_read.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="H_Audio.h" />

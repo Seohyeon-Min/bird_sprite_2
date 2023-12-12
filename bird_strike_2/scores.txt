@@ -1,0 +1,10 @@
+hello 240
+hello 240
+hello 240
+hello 130
+hello 100
+DIF 80
+DKI 50
+hello 30
+DKK 30
+DDF 0

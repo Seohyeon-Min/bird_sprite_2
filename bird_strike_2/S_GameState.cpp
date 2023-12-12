@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 #include "H_GameState.h"
 #include "H_Beat_system.h"
 #include "H_Sun.h"
@@ -8,6 +9,10 @@
 #include "H_Player.h"
 #include "H_Audio.h"
 #include "H_Option.h"
+#include "H_Txt_read.h"
+#include "H_Main.h"
+
+#define MAX_INPUT_CHARS     3
 
 GameState gamestate = GameState::Startloading;
 Crow crow;
@@ -21,6 +26,8 @@ extern bool is_gameover;
 extern Vector2 mousepostion;
 double animation_timer_title = 0;
 bool window_close = false;
+bool gameover_once = false;
+bool save_once = true;
 int title_x = 0;
 float ChallengePositionY = 0;
 
@@ -270,6 +277,7 @@ void draw_game_over() {
     if (IsKeyPressed(KEY_R)) {
         *return_score() = 0;
         gamestate = GameState::LobbyScreen;
+        save_once = true;
     }
 }
 
@@ -367,7 +375,7 @@ void stage_2() {
     show_score();
 
     if(a > 0){
-        std::cout << a << std::endl;
+        //std::cout << a << std::endl;
         DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), { 255,255,255,(unsigned char)a });
         a-=5;
     }
@@ -376,9 +384,74 @@ void stage_2() {
 
 }
 
+
+bool IsAnyKeyPressed()
+{
+    bool keyPressed = false;
+    int key = GetKeyPressed();
+
+    if ((key >= 32) && (key <= 126)) keyPressed = true;
+
+    return keyPressed;
+}
+
+char name[MAX_INPUT_CHARS + 1] = "\0";
+int letterCount = 0;
+
+
 void gameover() {
 
+    int key = GetCharPressed();
+
+    while (key > 0)
+    {
+        if ((key >= 65) && (key <= 90) && (letterCount < MAX_INPUT_CHARS))
+        {
+            name[letterCount] = (char)key;
+            name[letterCount + 1] = '\0'; 
+        }
+        if ((key >= 97) && (key <= 122) && (letterCount < MAX_INPUT_CHARS))
+        {
+            name[letterCount] = (char)(key - 32);
+            name[letterCount + 1] = '\0'; 
+
+            letterCount++;
+        }
+
+        key = GetCharPressed();  
+    }
+
+    if (IsKeyPressed(KEY_BACKSPACE))
+    {
+        letterCount--;
+        if (letterCount < 0) letterCount = 0;
+        name[letterCount] = '\0';
+    }
+
+    if (save_once == true && letterCount == 3) {
+        if (IsKeyPressed(KEY_ENTER)) {
+            gameover_once = true;
+            save_once = false;
+        }
+    }
+
+    
+    while (gameover_once == true) {
+        std::vector<ScoreEntry> scores = loadScores(scorefile);
+        scores.emplace_back(name, *return_score());
+        std::sort(scores.begin(), scores.end(), [](const ScoreEntry& a, const ScoreEntry& b) {
+            return a.score > b.score;
+            });
+        saveScores(scores, scorefile);
+        gameover_once = false;
+    }
     _sun(); // todo: when you die in stage2, it should change into sun_stage2
+
+    if (save_once == false) {
+        DrawTextPro(font, "SAVE COMPLETE!", { 100,300 }, { 0,0 }, 0, GetScreenWidth() / 15, GetScreenWidth() / 384, BLACK); //데이터 베이스 업로드 완료시 텍스트 출력. 위치조정 자유롭게 해주십쇼
+    }
+    DrawTextPro(font, name, { 100,100 }, { 0,0 }, 0, GetScreenWidth() / 15, GetScreenWidth() / 384, BLACK); //여기서 name을 받고 출력중임! 위치조정 자유롭게 해주십쇼
+
     Effect::make_effect();
     Effect::update_effect();
     mouse_control();
@@ -399,30 +472,9 @@ void setting() {
 }
 
 void leaderborad() {
-    string line;
+
     DrawText("Welcome! This is Leaderbord screen!", 110, window_height / 2 - 50, text_size, BLACK);
     DrawText("Press Space to go back to the title.", 110, window_height / 2 - 20, text_size, BLACK);
-    string name = "jone!";
-    int X_score = 3000;
-    ifstream file("Leaderborad.txt");
-    if (file.is_open()) {
-        if (IsKeyPressed(KEY_H)) {
-            ofstream file("Leaderborad.txt");
-            file << name;
-            file << X_score;
-            cout << "it's worked!" << endl;
-        }
-        if (IsKeyPressed(KEY_J)) {
-            while (true) {
-                cout << line << endl;
-            }
-            cout << "it's worked! too!" << endl;
-        }
-        file.close();
-    }
-    else {
-        cout << "error" << endl;
-    }
 
 
     if (IsKeyPressed(KEY_SPACE)) {
