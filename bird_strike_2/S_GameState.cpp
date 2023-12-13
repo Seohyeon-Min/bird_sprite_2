@@ -12,7 +12,6 @@
 #include "H_Option.h"
 #include "H_Txt_read.h"
 #include "H_Main.h"
-#include "H_Crow.h"
 
 #define MAX_INPUT_CHARS     3
 
@@ -30,73 +29,23 @@ double animation_timer_title = 0;
 bool window_close = false;
 bool gameover_once = false;
 bool save_once = true;
-bool call_flag1 = true;
-bool call_flag2 = true;
-bool call_flag3 = true;
-bool call_flag4 = true;
-bool call_flag5 = true;
-bool call_flag6 = true;
-bool call_flag7 = true;
 int title_x = 0;
-int chall_count = 0;
 float ChallengePositionY = 0;
+
+bool IsAnyKeyPressed()
+{
+    bool keyPressed = false;
+    int key = GetKeyPressed();
+
+    if ((key >= 32) && (key <= 126)) keyPressed = true;
+
+    return keyPressed;
+}
+
 char name[MAX_INPUT_CHARS + 1] = "\0";
 int letterCount = 0;
 
 
-
-
-
-void challenge_flag() {
-
-    if (return_order_counter() > 11) {
-        while (call_flag3 == true) {
-            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
-            std::string challengename = "Best_aimer";
-            updateChallenge(completed_, challengename);
-            saveChallenge(completed_, challengefile);
-            call_flag3 = false;
-        }
-    }
-    else if (return_order_counter() > 19) {
-        while (call_flag4 == true) {
-            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
-            std::string challengename = "Crazy_aimer";
-            updateChallenge(completed_, challengename);
-            saveChallenge(completed_, challengefile);
-            call_flag4 = false;
-        }
-    }
-
-    while (call_flag5 == true) {
-        std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
-        std::string challengename = "Not_done";
-        updateChallenge(completed_, challengename);
-        saveChallenge(completed_, challengefile);
-        call_flag5 = false;
-    }
-}
-void challenge_flag2() {
-    if (return_order_counter() > 11) {
-        while (call_flag3 == true) {
-            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
-            std::string challengename = "Best_aimer";
-            updateChallenge(completed_, challengename);
-            saveChallenge(completed_, challengefile);
-            call_flag3 = false;
-        }
-    }
-    else if (return_order_counter() > 19) {
-        while (call_flag4 == true) {
-            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
-            std::string challengename = "Crazy_aimer";
-            updateChallenge(completed_, challengename);
-            saveChallenge(completed_, challengefile);
-            call_flag4 = false;
-        }
-    }
-
-}
 
 void animation_move() {
     if (animation_timer_title < 40) {
@@ -106,14 +55,7 @@ void animation_move() {
 }
 
 void draw_loading() {
-    while (call_flag1 == true) {
-        std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
-        std::string challengename = "Nice_to_meet_you";
-        updateChallenge(completed_, challengename);
-        saveChallenge(completed_, challengefile);
-        call_flag1 = false;
-    }
-    if (int(GetTime() < 6)) {
+    if (int(GetTime() < 3)) {
         ClearBackground(WHITE);
 
         DrawTexturePro(
@@ -126,7 +68,7 @@ void draw_loading() {
 
     }
 
-    else if (int(GetTime()) > 6 && int(GetTime()) < 10) {
+    else if (int(GetTime()) > 3 && int(GetTime()) < 7) {
         ClearBackground(WHITE);
         DrawTexturePro(
             DigiPenlogo_texture,
@@ -234,7 +176,7 @@ void draw_lobby_button() {
             PlaySound(hover_button);
             hasRun = true;
         }
-
+        
         DrawRectangle(GetScreenWidth() / 2 - box_witdh / 2, (GetScreenHeight() / 44) * 30, box_witdh, box_height, box_color);
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
             PlaySound(click_button);
@@ -246,7 +188,7 @@ void draw_lobby_button() {
     else {
         hasRun = false;
     }
-
+    
 
     if (CheckCollisionPointRec(GetMousePosition(), rec2)) {
         if (!hasRun2) {
@@ -427,7 +369,7 @@ void draw_game_over() {
             0,
             30,
             GetScreenWidth() / 384,
-            BLACK); //?????? ????? ???ε? ???? ???? ???. ??????? ??????? ??????
+            BLACK); //데이터 베이스 업로드 완료시 텍스트 출력. 위치조정 자유롭게 해주십쇼
         DrawTextPro(
             font,
             "> PRESS R TO RESTART THE GAME <",
@@ -463,102 +405,71 @@ void draw_game_over() {
         0,
         GetScreenWidth() / 15,
         GetScreenWidth() / 384,
-        BLACK);
+        BLACK); //여기서 name을 받고 출력중임! 위치조정 자유롭게 해주십쇼
 
-    if (*return_score() == 0) {
-        while (call_flag2 == true) {
-            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
-            std::string challengename = "Its_my_first_day";
-            updateChallenge(completed_, challengename);
-            saveChallenge(completed_, challengefile);
-            call_flag2 = false;
-        }
-    }
-    else if (*return_score() >= 10000) {
-        while (call_flag6 == true) {
-            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
-            std::string challengename = "Bird_striker";
-            updateChallenge(completed_, challengename);
-            saveChallenge(completed_, challengefile);
-            call_flag6 = false;
-        }
-    }
-
-
-
-
-    //=================================
-
-    //int key = GetCharPressed();
-
-    //while (key > 0)
-    //{
-    //    if ((key >= 65) && (key <= 90) && (letterCount < MAX_INPUT_CHARS))
-    //    {
-    //        name[letterCount] = (char)key;
-    //        name[letterCount + 1] = '\0';
-    //    }
-    //    if ((key >= 97) && (key <= 122) && (letterCount < MAX_INPUT_CHARS))
-    //    {
-    //        name[letterCount] = (char)(key - 32);
-    //        name[letterCount + 1] = '\0';
-
-    //        letterCount++;
-    //    }
-
-    //    key = GetCharPressed();
-    //}
-
-    //if (IsKeyPressed(KEY_BACKSPACE))
-    //{
-    //    letterCount--;
-    //    if (letterCount < 0) letterCount = 0;
-    //    name[letterCount] = '\0';
-    //}
-
-    //if (save_once == true && letterCount == 3) {
-    //    if (IsKeyPressed(KEY_ENTER)) {
-    //        gameover_once = true;
-    //        save_once = false;
-    //        letterCount = 0;
-    //    }
-    //}
-
-
-
-    //while (gameover_once == true) {
-    //    std::vector<ScoreEntry> scores = loadScores(scorefile);
-    //    scores.emplace_back(name, *return_score());
-    //    std::sort(scores.begin(), scores.end(), [](const ScoreEntry& a, const ScoreEntry& b) {
-    //        return a.score > b.score;
-    //        });
-    //    saveScores(scores, scorefile);
-    //    gameover_once = false;
-    //}
-   
-
-
-    //if (save_once == false) {
-    //    DrawTextPro(font, "SAVE COMPLETE!", { 100,300 }, { 0,0 }, 0, GetScreenWidth() / 15, GetScreenWidth() / 384, BLACK); //데이터 베이스 업로드 완료시 텍스트 출력. 위치조정 자유롭게 해주십쇼
-    //}
-    //DrawTextPro(font, name, { 100,100 }, { 0,0 }, 0, GetScreenWidth() / 15, GetScreenWidth() / 384, BLACK); //여기서 name을 받고 출력중임! 위치조정 자유롭게 해주십쇼
+    //DrawTextPro(font,
+    //    "|",
+    //    { (float)GetScreenWidth() / 2,453 },
+    //    { -MeasureTextEx(font, name, GetScreenWidth() / 15, GetScreenWidth() / 384).x,0},
+    //    0,
+    //    GetScreenWidth() / 15,
+    //    GetScreenWidth() / 384,
+    //    BLACK);
 
 }
-bool IsAnyKeyPressed()
-{
-    bool keyPressed = false;
-    int key = GetKeyPressed();
+void draw_setting_button() {
+    DrawRectangleRounded(
+        { 965,   66,
+        50,  50 },
+        0.09,
+        0,
+        BLACK
+    );
+    DrawTextPro(
+        font,
+        "X",
+        { 973,  66 },
+        { 0,0 },
+        0,
+        50,
+        2,
+        { 251, 241, 232, 255 });
 
-    if ((key >= 32) && (key <= 126)) keyPressed = true;
 
-    return keyPressed;
+    DrawRectangleRounded(
+        { (float)GetScreenWidth() / 2 - MeasureTextEx(font,"CREDIT", 50, 2).x / 2 - 15,   540,
+        MeasureTextEx(font,"CREDIT", 50, 2).x + 30,    MeasureTextEx(font,"CREDIT", 50, 2).y + 10 },
+        0.09,
+        0,
+        BLACK
+    );
+
+    DrawTextPro(
+        font,
+        "CREDIT",
+        { (float)GetScreenWidth() / 2,  540 },
+        { MeasureTextEx(font,"CREDIT", 50, 2).x / 2, -5 },
+        0,
+        50,
+        2,
+        { 251, 241, 232, 255 });
+
+
+    if (CheckCollisionPointRec(GetMousePosition(), { 965, 66, 50, 50 }) && IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
+        StopMusicStream(option_music);
+        gamestate = GameState::LobbyScreen;
+    }
 }
 
 
 void startloding() {
+
     SetSoundVolume(crow_blow, default_SFX);
+    SetMusicVolume(stage1_music, default_music);
     draw_loading();
-    if (IsKeyReleased(MOUSE_BUTTON_LEFT) || IsKeyReleased(KEY_SPACE) || int(GetTime()) > 10) {
+    if (IsKeyReleased(MOUSE_BUTTON_LEFT) || IsKeyReleased(KEY_SPACE) || int(GetTime()) > 7) {
+        PlaySound(fly_in);
+        make_bars();
         gamestate = GameState::LobbyScreen;
     }
     mouse_control();
@@ -573,42 +484,50 @@ void start_game() {
 }
 
 void start_stage_2() {
-    PlayMusicStream(stage1_music);
+    StopMusicStream(stage1_music);
+    PlayMusicStream(stage2_music);
     gamestate = GameState::Stage_2;
 
 }
 
 void end_game() {
+    is_gameover = true;
     StopMusicStream(stage1_music);
+    StopMusicStream(stage2_music);
     crows.clear();
     gamestate = GameState::Gameover;
 }
 
-
-
 void lobbyscreen() {
 
     PlayMusicStream(lobby_music);
+    
     animation_move();
     draw_lobby_animation();
     draw_lobby_icon();
     click_lobby_icon();
     draw_lobby_button();
+
+    //if (IsKeyPressed(KEY_SPACE)) {
+    //    start_game();
+    //}
+    
     mouse_control();
 }
 
 
 void stage_1() {
-    challenge_flag2();
 
-    if (is_sun_fall() && *return_score() >= 80) {
+    if (is_sun_fall() && *return_score() >= 100) {
         StopMusicStream(stage1_music);
         SetSoundVolume(to_two_phase, 2.0f);
         PlaySound(to_two_phase);
         WaitTime(2);
         start_stage_2();
     }
-    if (is_sun_fall() && *return_score() <= 80)end_game();
+    if (is_sun_fall() && *return_score() <= 100) {
+        end_game();
+    }
 
     _sun();
 
@@ -622,24 +541,20 @@ void stage_1() {
     Particle::update_particle();
     Effect::make_effect();
     Effect::update_effect();
+    show_score();
     crow._crow();   
     drag.Fx(); 
     player._player();
-    show_score();
     beat_circle();
     mouse_control();
 
 }
 
-
 int a = 255;
 
 void stage_2() {
 
-    challenge_flag();
-    Particle::update_particle();
-    Effect::make_effect2();
-    Effect::update_effect();
+    
 
     if (is_gameover) {
         end_game();
@@ -649,11 +564,11 @@ void stage_2() {
     IsOnBeat();
     beat_spliting();
     continuous_beat();
+    Particle::update_particle();
     crow._crow();
     drag.Fx();
     player._player();
     show_score();
-
 
     if(a > 0){
         //std::cout << a << std::endl;
@@ -665,10 +580,10 @@ void stage_2() {
 
 }
 
-
-
-
 void gameover() {
+
+    
+
 
     _sun(); // todo: when you die in stage2, it should change into sun_stage2
     Effect::make_effect();
@@ -676,6 +591,7 @@ void gameover() {
     mouse_control();
     show_score();
     draw_game_over();
+
 }
 
 void setting() {
@@ -684,16 +600,15 @@ void setting() {
     Control_bar bar;
     bar.update_all();
     PlayMusicStream(option_music);
+    draw_setting_button();
     mouse_control();
-    if (IsKeyPressed(KEY_SPACE)) {
-        StopMusicStream(option_music);
-        gamestate = GameState::LobbyScreen;
-    }
 }
 
 bool load_leaderbored_once = true;
 
 void leaderborad() {
+    ClearBackground({ 0,0,0,255 });
+
     static bool scoresLoaded = false;
     static std::vector<ScoreEntry> scores;
 
@@ -707,8 +622,22 @@ void leaderborad() {
         const char* savedScore = scoreString.c_str();
         const char* savedName = scores[i].playerName.c_str();
 
-        DrawTextPro(font,savedName, { 100,float(300 + (60 * i))}, {0,0}, 0, GetScreenWidth() / 15, GetScreenWidth() / 384, BLACK); //username출력. 위치조정 자유롭게 해주십쇼
-        DrawTextPro(font, savedScore, { 500,float(300 +(60*i))}, {0,0}, 0, GetScreenWidth() / 15, GetScreenWidth() / 384, BLACK); //스코어 출력. 위치조정 자유롭게 해주십쇼
+        DrawTextPro(font,
+            savedName, 
+            { 100,float(300 + (60 * i))}, 
+            {0,0},
+            0, 
+            GetScreenWidth() / 15, 
+            GetScreenWidth() / 384, 
+            WHITE); //username출력. 위치조정 자유롭게 해주십쇼
+        DrawTextPro(font, 
+            savedScore, 
+            { 500,float(300 +(60*i))}, 
+            {0,0},
+            0, 
+            GetScreenWidth() / 15,
+            GetScreenWidth() / 384, 
+            WHITE); //스코어 출력. 위치조정 자유롭게 해주십쇼
     }
     if (IsKeyPressed(KEY_SPACE)) {
         gamestate = GameState::LobbyScreen;
@@ -716,71 +645,20 @@ void leaderborad() {
     }
 }
 void challenge() {
-    std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
-    int scrollSpeed = 30;
+    int scrollSpeed = 15;
     float recoffest = 20;
-    std::vector<Texture> clear_challengelist = 
-    {
-        Nice_to_meet_you_1_texture,
-        Its_my_first_day_1_texture,
-        best_aimer_1_texture,
-        carzy_aimer_1_texture,
-        not_done_1_texture,
-        strike_1_texture,
-        BIRD_STRIKER_1_texture,
-        THE_BIRD_1_texture
-    };
-
-    std::vector<Texture> unclear_challengelist =
-    {
-        Nice_to_meet_you_2_texture,
-        Its_my_first_day_2_texture,
-        best_aimer_2_texture,
-        carzy_aimer_2_texture,
-        not_done_2_texture,
-        strike_2_texture,
-        BIRD_STRIKER_2_texture,
-        THE_BIRD_2_texture
-    };
-
     ChallengePositionY += (GetMouseWheelMove() * scrollSpeed);
-    if (ChallengePositionY > 0) {
-        ChallengePositionY = 0;
-    }
-    else if (ChallengePositionY < -3150) {
-        ChallengePositionY = -3150;
-    }
-    DrawTextPro(font, ">ACHIEVENMENTS<", { 100,100 }, { 0,50 - ChallengePositionY }, 0, 102, 15, BLACK);
-    DrawTextPro(font, "Can you achieve the following tasks?", { 120,310 }, { 0,100 - ChallengePositionY }, 0, 50, 5, BLACK);
-    DrawTextPro(font, "Achieve the challenges and get 'THE BIRD'", { 57,360 }, { 0,100 - ChallengePositionY }, 0, 50, 5, BLACK);
-    DrawTextPro(font, "Press the 'SPACEBAR' to get out", { 370,450 }, { 0,100 - ChallengePositionY }, 0, 25, 5, {0,0,0,100});
+    DrawTexturePro(Nice_to_meet_you_2_texture, { 0,0,(float)Nice_to_meet_you_2_image.width,(float)Nice_to_meet_you_2_image.height }, { 0 + recoffest,0 + ChallengePositionY,GetScreenWidth() - recoffest,(float)(GetScreenHeight() / 2) + recoffest * 2 }, { 0,0 }, 0, WHITE);
+    DrawTexturePro(Its_my_first_day_2_texture, { 0,0,(float)Nice_to_meet_you_2_image.width,(float)Nice_to_meet_you_2_image.height }, { 0 + recoffest,Nice_to_meet_you_2_image.height * 2 + ChallengePositionY,GetScreenWidth() - recoffest,(float)(GetScreenHeight() / 2) + recoffest * 2 }, { 0,0 }, 0, WHITE);
+    DrawTexturePro(best_aimer_2_texture, { 0,0,(float)Nice_to_meet_you_2_image.width,(float)Nice_to_meet_you_2_image.height }, { 0 + recoffest,Nice_to_meet_you_2_image.height * 4 + ChallengePositionY,GetScreenWidth() - recoffest,(float)(GetScreenHeight() / 2) + recoffest * 2 }, { 0,0 }, 0, WHITE);
+    DrawTexturePro(carzy_aimer_2_texture, { 0,0,(float)Nice_to_meet_you_2_image.width,(float)Nice_to_meet_you_2_image.height }, { 0 + recoffest,Nice_to_meet_you_2_image.height * 6 + ChallengePositionY,GetScreenWidth() - recoffest,(float)(GetScreenHeight() / 2) + recoffest * 2 }, { 0,0 }, 0, WHITE);
+    DrawTexturePro(strike_2_texture, { 0,0,(float)Nice_to_meet_you_2_image.width,(float)Nice_to_meet_you_2_image.height }, { 0 + recoffest,Nice_to_meet_you_2_image.height * 8 + ChallengePositionY,GetScreenWidth() - recoffest,(float)(GetScreenHeight() / 2) + recoffest * 2 }, { 0,0 }, 0, WHITE);
 
-    for (int i = 0; i < completed_.size(); i++) {
-        const ChallengeEntry& entry = completed_[i];
-        if (completed_[i].completed == true) {
-            chall_count++;
-            DrawTexturePro(clear_challengelist[i], { 0,0,(float)Nice_to_meet_you_2_image.width,(float)Nice_to_meet_you_2_image.height }, { 0 + recoffest,Nice_to_meet_you_2_image.height * (3*(i+1)) + ChallengePositionY,GetScreenWidth() - recoffest,(float)(GetScreenHeight() / 2) + recoffest * 2 }, { 0,0 }, 0, WHITE);
-            if (chall_count == 7) {
-                while (call_flag7 == true) {
-                    std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
-                    std::string challengename = "Bird_striker";
-                    updateChallenge(completed_, challengename);
-                    saveChallenge(completed_, challengefile);
-                    call_flag7 = false;
-                }
-            }
-        }
-        else {
-            DrawTexturePro(unclear_challengelist[i], { 0,0,(float)Nice_to_meet_you_2_image.width,(float)Nice_to_meet_you_2_image.height }, { 0 + recoffest,Nice_to_meet_you_2_image.height * (3 * (i + 1)) + ChallengePositionY,GetScreenWidth() - recoffest,(float)(GetScreenHeight() / 2) + recoffest * 2 }, { 0,0 }, 0, WHITE);
-        }
-        
-    }
 
 
     mouse_control();
     if (IsKeyPressed(KEY_SPACE)) {
         gamestate = GameState::LobbyScreen;
-        ChallengePositionY = 0;
     }
 }
 

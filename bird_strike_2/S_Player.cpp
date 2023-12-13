@@ -89,10 +89,11 @@ void Player::get_destination() {
     speed.x = get_distance_x(position.x, destination.x) / reaching_time;
     speed.y = get_distance_y(position.y, destination.y) / reaching_time;
 
-    if (return_delete_crow_position().x == 0 && return_delete_crow_position().y == 0) {
+    if ((return_delete_crow_position().x == 0 && return_delete_crow_position().y == 0)|| is_gameover) {
         speed = { 0,0 };
         position = { (float)(GetScreenWidth() / 2) ,(float)(GetScreenHeight() - GetScreenHeight() / 8) };
         sprite_scale = (float)(GetScreenWidth() / 512.0f);
+        direction = 0;
     }
 }
 
@@ -102,7 +103,7 @@ void Player::move() {
     if (speed.x == 0) {
         speed.y = 0;
     }
-    //std::cout <<"position:" << position << "   destination:" << return_delete_crow_position() << "  speed:"<<speed<< " floating: " <<floating<< std::endl;
+
     get_destination();
     position.x -= speed.x;
     position.y -= speed.y;
@@ -113,6 +114,7 @@ void Player::move() {
 }
 
 void Player::_player() {
+
     move();
     draw(position);
 }

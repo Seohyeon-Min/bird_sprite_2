@@ -139,7 +139,7 @@ int main() {
             stage_1();
             break;
         case GameState::Stage_2:
-            UpdateMusicStream(stage1_music);
+            UpdateMusicStream(stage2_music);
             stage_2();
             break;
         case GameState::Gameover:
@@ -171,8 +171,7 @@ int main() {
 
 
         if (return_continuous_fail()) {
-
-            //std::cout << "Boom!" << std::endl;
+            std::cout << "Boom!" << std::endl;
             zoomEffectActive = true;
             fail_StarTime = GetTime();
         }
@@ -191,6 +190,7 @@ int main() {
 
     UnloadMusicStream(lobby_music);
     UnloadMusicStream(stage1_music);
+    UnloadMusicStream(stage2_music);
     UnloadMusicStream(option_music);
     UnloadSound(crow_blow);
     UnloadFont(font);

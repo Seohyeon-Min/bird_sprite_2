@@ -80,6 +80,10 @@ extern Image THE_BIRD_1_image;
 extern Texture2D  THE_BIRD_1_texture;
 extern Image THE_BIRD_2_image;
 extern Texture2D  THE_BIRD_2_texture;
+extern Image check_image;
+extern Texture2D  check_texture;
+extern Image check2_image;
+extern Texture2D  check2_texture;
 
 extern Font font;
 extern Font font2;

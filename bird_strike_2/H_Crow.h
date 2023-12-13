@@ -3,8 +3,7 @@
 #include <raylib.h> 
 #include <vector>
 
-
-constexpr int max_crow =30;
+constexpr int max_crow =5;
 constexpr int crow_per_sec = 3;
 
 struct Crow;
@@ -53,7 +52,8 @@ public:
 void ready_to_delete();
 void delete_crow();
 Vector2 return_delete_crow_position();
-std::string check_game_over();
+void check_game_over();
+std::tuple <std::string, float> return_game_over_txt();
 int return_order_counter();
 int return_crow_size();
 

@@ -74,6 +74,10 @@ Image THE_BIRD_1_image;
 Texture2D  THE_BIRD_1_texture;
 Image THE_BIRD_2_image;
 Texture2D  THE_BIRD_2_texture;
+Image check_image;
+Texture2D  check_texture;
+Image check2_image;
+Texture2D  check2_texture;
 
 
 Font font;
@@ -231,6 +235,14 @@ void loadimage() {
     THE_BIRD_2_image = LoadImage("textures/challenge/THE_BIRD_2.png");
     THE_BIRD_2_texture = LoadTextureFromImage(THE_BIRD_2_image);
     UnloadImage(THE_BIRD_2_image);
+
+    check_image = LoadImage("textures/check.png");
+    check_texture = LoadTextureFromImage(check_image);
+    UnloadImage(check_image);
+
+    check2_image = LoadImage("textures/check2.png");
+    check2_texture = LoadTextureFromImage(check2_image);
+    UnloadImage(check2_image);
 
 
     font = LoadFont("resources/romulus.png");

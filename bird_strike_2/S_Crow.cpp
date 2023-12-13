@@ -11,6 +11,7 @@
 #include "H_Particle.h"
 #include "H_Player.h"
 #include "H_Audio.h"
+#include <tuple>
 
 std::vector<Crow> crows{};
 std::vector<Vector2> marked_crow_positions;
@@ -206,7 +207,7 @@ void Crow::add_crow() {
 
 
 void Crow::fail_to_connect() {
-	if (continuous_fail) {
+	if (return_continuous_fail()) {
 		lose_score();
 		holding = false;
 		order_counter = 1;
@@ -220,7 +221,6 @@ void Crow::fail_to_connect() {
 			}
 		}
 	}
-	continuous_fail = false;
 }
 
 
@@ -280,44 +280,51 @@ void Crow::_crow() {
 }
 
 
-
+tuple <std::string,float> game_over_txt;
 bool is_gameover;
 int wait_for = target_frame_rate * 3;
 
-//나이거 튜플로 하고싶음
-std::string check_game_over() {
+void check_game_over() {
 
 	if (crows.size() >= max_crow && !erase_flag) {
 		wait_for--;
 		if (holding) {
 			is_gameover = false;
-			//std::cout << (int)(wait_for / 60) << " holding:" << holding << std::endl;
 
 			if (wait_for < 0) {
-				return "bonus time";
+				game_over_txt = { "EXTENTION",120 };
 			}
 			else {
-				return to_string((int)(wait_for / 60) + 1);
+				game_over_txt = { to_string((int)(wait_for / 60) + 1) , 200};
 			}
 		}
 		else {
 			if (wait_for > 0) {
-				//std::cout << (int)(wait_for / 60) << " holding:" << holding << std::endl;
-				return to_string((int)(wait_for / 60) + 1);
+				if(wait_for == 179)
+				PlaySound(count_sound);
+				if (wait_for == 120)
+				PlaySound(count_sound);
+				if (wait_for == 60)
+				PlaySound(count_sound);
+				game_over_txt = { to_string((int)(wait_for / 60) + 1) , 200};
 			}
 			else {
+				PlaySound(count_sound);
 				is_gameover = true;
 				crows.clear();
-				return to_string((int)(wait_for / 60) + 1);
+				game_over_txt = { to_string((int)(wait_for / 60) + 1) , 200 };
 			}
 		}
 	}
 	else {
 		wait_for = target_frame_rate * 3;
-		return " ";
+		game_over_txt = { "0" , 0 };
 	}
 }
 
+tuple <std::string, float> return_game_over_txt() {
+	return game_over_txt;
+}
 
 void ready_to_delete() {
 	if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && holding) {

@@ -6,7 +6,6 @@ void IsOnBeat();
 void beat_spliting();
 void continuous_beat();
 bool return_continuous_fail();
-int change_BPM();
 int* return_BPM();
 
 extern bool crow_delete_flag;

@@ -36,7 +36,7 @@ int* return_BPM() {
 }
 
 void IsOnBeat() {
-    std::cout << "  BPM:" << SecondTerm << "  time:" << GetMusicTimePlayed(stage1_music) << std::endl; // 33.7, 57.7
+    //std::cout << "  BPM:" << SecondTerm << "  time:" << GetMusicTimePlayed(stage1_music) << std::endl; // 33.7, 57.7
     double time = double(GetMusicTimePlayed(stage1_music));
     is_changed_j = false;
     static bool hasRun = false;
@@ -80,9 +80,10 @@ void IsOnBeat() {
 }
 
 int continuous_count = 1;
-
+int wait = 60;
 void continuous_beat() {
-    //std::cout << " fail" << continuous_fail << " cnt:" << continuous_count << "  order:" << return_order_counter() << std::endl;
+    
+        std::cout << " fail" << continuous_fail << "  wait:" << wait << std::endl;
 
     Drag drag;
     double time = double(GetMusicTimePlayed(stage1_music));
@@ -101,12 +102,21 @@ void continuous_beat() {
 
         if (continuous_count > return_order_counter() + 1) {
             drag.fail_drag(); //TODO: maintatin the func
-            std::cout << continuous_fail << std::endl;
             continuous_fail = true;
         }
+        
 
     }
     else {
+        if ((wait > 0)&& continuous_fail) {
+            continuous_fail = true;
+            wait--;
+        }
+        else {
+            continuous_fail = false;
+            wait = 60;
+        }
+        
         continuous_count = 1;
     }
 
