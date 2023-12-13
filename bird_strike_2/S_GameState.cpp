@@ -40,8 +40,63 @@ bool call_flag7 = true;
 int title_x = 0;
 int chall_count = 0;
 float ChallengePositionY = 0;
+char name[MAX_INPUT_CHARS + 1] = "\0";
+int letterCount = 0;
 
 
+
+
+
+void challenge_flag() {
+
+    if (return_order_counter() > 11) {
+        while (call_flag3 == true) {
+            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
+            std::string challengename = "Best_aimer";
+            updateChallenge(completed_, challengename);
+            saveChallenge(completed_, challengefile);
+            call_flag3 = false;
+        }
+    }
+    else if (return_order_counter() > 19) {
+        while (call_flag4 == true) {
+            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
+            std::string challengename = "Crazy_aimer";
+            updateChallenge(completed_, challengename);
+            saveChallenge(completed_, challengefile);
+            call_flag4 = false;
+        }
+    }
+
+    while (call_flag5 == true) {
+        std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
+        std::string challengename = "Not_done";
+        updateChallenge(completed_, challengename);
+        saveChallenge(completed_, challengefile);
+        call_flag5 = false;
+    }
+}
+void challenge_flag2() {
+    if (return_order_counter() > 11) {
+        while (call_flag3 == true) {
+            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
+            std::string challengename = "Best_aimer";
+            updateChallenge(completed_, challengename);
+            saveChallenge(completed_, challengefile);
+            call_flag3 = false;
+        }
+    }
+    else if (return_order_counter() > 19) {
+        while (call_flag4 == true) {
+            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
+            std::string challengename = "Crazy_aimer";
+            updateChallenge(completed_, challengename);
+            saveChallenge(completed_, challengefile);
+            call_flag4 = false;
+        }
+    }
+
+}
 
 void animation_move() {
     if (animation_timer_title < 40) {
@@ -160,6 +215,9 @@ void draw_lobby_button() {
     bool star_btnAcion = false;
     int challenge_btnState = 0;
     bool challenge_btnAcion = false;
+    static bool hasRun = false;
+    static bool hasRun2 = false;
+    static bool hasRun3 = false;
 
     Color setbtncolor = { 125,125,125,255 };
     Color text_color = { 255, 159, 68, 255 };
@@ -169,22 +227,53 @@ void draw_lobby_button() {
     Rectangle rec = { GetScreenWidth() / 2 - box_witdh / 2, (GetScreenHeight() / 44) * 30, box_witdh, box_height };
     Rectangle rec2 = { GetScreenWidth() / 2 - box_witdh / 2, (GetScreenHeight() / 44) * 34, box_witdh, box_height };
     Rectangle rec3 = { GetScreenWidth() / 2 - box_witdh / 2, (GetScreenHeight() / 44) * 38, box_witdh, box_height };
+
+
     if (CheckCollisionPointRec(GetMousePosition(), rec)) {
+        if (!hasRun) {
+            PlaySound(hover_button);
+            hasRun = true;
+        }
+
         DrawRectangle(GetScreenWidth() / 2 - box_witdh / 2, (GetScreenHeight() / 44) * 30, box_witdh, box_height, box_color);
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
+            PlaySound(click_button);
+
             start_game();
+
         }
     }
+    else {
+        hasRun = false;
+    }
+
+
     if (CheckCollisionPointRec(GetMousePosition(), rec2)) {
+        if (!hasRun2) {
+            PlaySound(hover_button);
+            hasRun2 = true;
+        }
         DrawRectangle(GetScreenWidth() / 2 - box_witdh / 2, (GetScreenHeight() / 44) * 34, box_witdh, box_height, box_color);
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
+            PlaySound(click_button);
         }
     }
+    else {
+        hasRun2 = false;
+    }
+
     if (CheckCollisionPointRec(GetMousePosition(), rec3)) {
+        if (!hasRun3) {
+            PlaySound(hover_button);
+            hasRun3 = true;
+        }
         DrawRectangle(GetScreenWidth() / 2 - box_witdh / 2, (GetScreenHeight() / 44) * 38, box_witdh, box_height, box_color);
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
             window_close = true;
         }
+    }
+    else {
+        hasRun3 = false;
     }
         if (GetMouseX() > setting_position && GetMouseX() < setting_position + icon_width && GetMouseY() > window_height - (setting_position + icon_width) && GetMouseY() < window_height - setting_position) {
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) setting_btnState = 2;
@@ -282,22 +371,188 @@ void draw_game_over() {
         BLACK);
 
 
-    DrawTextPro(
-        font,
-        "> PRESS R TO RESTART <",
-        { (float)(GetScreenWidth() / 2),(float)((GetScreenHeight() / 2) + 30) },
-        { MeasureTextEx(font, "> PRESS R TO RESTART <", font_size_2, spacing).x / 2,0 },
-        0,
-        font_size_2,
-        spacing,
-        BLACK);
-    if (IsKeyPressed(KEY_R)) {
-        *return_score() = 0;
-        *return_BPM() = 100;
-        gamestate = GameState::LobbyScreen;
-    }
-}
 
+    int key = GetCharPressed();
+
+    while (key > 0)
+    {
+        if ((key >= 65) && (key <= 90) && (letterCount < MAX_INPUT_CHARS))
+        {
+            name[letterCount] = (char)key;
+            name[letterCount + 1] = '\0';
+        }
+        if ((key >= 97) && (key <= 122) && (letterCount < MAX_INPUT_CHARS))
+        {
+            name[letterCount] = (char)(key - 32);
+            name[letterCount + 1] = '\0';
+
+            letterCount++;
+        }
+
+        key = GetCharPressed();
+    }
+
+    if (IsKeyPressed(KEY_BACKSPACE))
+    {
+        letterCount--;
+        if (letterCount < 0) letterCount = 0;
+        name[letterCount] = '\0';
+    }
+
+    if (save_once == true && letterCount == 3) {
+        if (IsKeyPressed(KEY_ENTER)) {
+            gameover_once = true;
+            save_once = false;
+            letterCount = 0;
+        }
+    }
+
+
+    while (gameover_once == true) {
+        std::vector<ScoreEntry> scores = loadScores(scorefile);
+        scores.emplace_back(name, *return_score());
+        std::sort(scores.begin(), scores.end(), [](const ScoreEntry& a, const ScoreEntry& b) {
+            return a.score > b.score;
+            });
+        saveScores(scores, scorefile);
+        gameover_once = false;
+    }
+
+
+    if (save_once == false) {
+        DrawTextPro(font,
+            "SAVE COMPLETE!",
+            { (float)GetScreenWidth() / 2,200 },
+            { MeasureTextEx(font,"SAVE COMPLETE!", 30, GetScreenWidth() / 384).x / 2 , 0 },
+            0,
+            30,
+            GetScreenWidth() / 384,
+            BLACK); //?????? ????? ???ε? ???? ???? ???. ??????? ??????? ??????
+        DrawTextPro(
+            font,
+            "> PRESS R TO RESTART THE GAME <",
+            { (float)(GetScreenWidth() / 2),(float)((GetScreenHeight() / 2) + 30) },
+            { MeasureTextEx(font, "> PRESS R TO RESTART THE GAME  <", font_size_2, spacing).x / 2,0 },
+            0,
+            font_size_2,
+            spacing,
+            BLACK);
+
+        if (IsKeyPressed(KEY_R)) {
+            save_once = true;
+            *return_score() = 0;
+            *return_BPM() = 100;
+            gamestate = GameState::LobbyScreen;
+        }
+    }
+    else {
+        DrawTextPro(
+            font,
+            "> ENTER YOUR NAME TO SAVE <",
+            { (float)(GetScreenWidth() / 2),(float)((GetScreenHeight() / 2) + 30) },
+            { MeasureTextEx(font, "> ENTER YOUR NAME TO SAVE <", font_size_2, spacing).x / 2,0 },
+            0,
+            font_size_2,
+            spacing,
+            BLACK);
+    }
+    DrawTextPro(font,
+        name,
+        { (float)GetScreenWidth() / 2,453 },
+        { MeasureTextEx(font, name, GetScreenWidth() / 15, GetScreenWidth() / 384).x / 2,0 },
+        0,
+        GetScreenWidth() / 15,
+        GetScreenWidth() / 384,
+        BLACK);
+
+    if (*return_score() == 0) {
+        while (call_flag2 == true) {
+            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
+            std::string challengename = "Its_my_first_day";
+            updateChallenge(completed_, challengename);
+            saveChallenge(completed_, challengefile);
+            call_flag2 = false;
+        }
+    }
+    else if (*return_score() >= 10000) {
+        while (call_flag6 == true) {
+            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
+            std::string challengename = "Bird_striker";
+            updateChallenge(completed_, challengename);
+            saveChallenge(completed_, challengefile);
+            call_flag6 = false;
+        }
+    }
+
+
+
+
+    //=================================
+
+    //int key = GetCharPressed();
+
+    //while (key > 0)
+    //{
+    //    if ((key >= 65) && (key <= 90) && (letterCount < MAX_INPUT_CHARS))
+    //    {
+    //        name[letterCount] = (char)key;
+    //        name[letterCount + 1] = '\0';
+    //    }
+    //    if ((key >= 97) && (key <= 122) && (letterCount < MAX_INPUT_CHARS))
+    //    {
+    //        name[letterCount] = (char)(key - 32);
+    //        name[letterCount + 1] = '\0';
+
+    //        letterCount++;
+    //    }
+
+    //    key = GetCharPressed();
+    //}
+
+    //if (IsKeyPressed(KEY_BACKSPACE))
+    //{
+    //    letterCount--;
+    //    if (letterCount < 0) letterCount = 0;
+    //    name[letterCount] = '\0';
+    //}
+
+    //if (save_once == true && letterCount == 3) {
+    //    if (IsKeyPressed(KEY_ENTER)) {
+    //        gameover_once = true;
+    //        save_once = false;
+    //        letterCount = 0;
+    //    }
+    //}
+
+
+
+    //while (gameover_once == true) {
+    //    std::vector<ScoreEntry> scores = loadScores(scorefile);
+    //    scores.emplace_back(name, *return_score());
+    //    std::sort(scores.begin(), scores.end(), [](const ScoreEntry& a, const ScoreEntry& b) {
+    //        return a.score > b.score;
+    //        });
+    //    saveScores(scores, scorefile);
+    //    gameover_once = false;
+    //}
+   
+
+
+    //if (save_once == false) {
+    //    DrawTextPro(font, "SAVE COMPLETE!", { 100,300 }, { 0,0 }, 0, GetScreenWidth() / 15, GetScreenWidth() / 384, BLACK); //데이터 베이스 업로드 완료시 텍스트 출력. 위치조정 자유롭게 해주십쇼
+    //}
+    //DrawTextPro(font, name, { 100,100 }, { 0,0 }, 0, GetScreenWidth() / 15, GetScreenWidth() / 384, BLACK); //여기서 name을 받고 출력중임! 위치조정 자유롭게 해주십쇼
+
+}
+bool IsAnyKeyPressed()
+{
+    bool keyPressed = false;
+    int key = GetKeyPressed();
+
+    if ((key >= 32) && (key <= 126)) keyPressed = true;
+
+    return keyPressed;
+}
 
 
 void startloding() {
@@ -339,35 +594,12 @@ void lobbyscreen() {
     draw_lobby_icon();
     click_lobby_icon();
     draw_lobby_button();
-
-    //if (IsKeyPressed(KEY_SPACE)) {
-    //    start_game();
-    //}
-    
     mouse_control();
 }
 
 
 void stage_1() {
-    if (return_order_counter() > 11) {
-        while (call_flag3 == true) {
-            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
-            std::string challengename = "Best_aimer";
-            updateChallenge(completed_, challengename);
-            saveChallenge(completed_, challengefile);
-            call_flag3 = false;
-        }
-    }
-    else if (return_order_counter() > 19) {
-        while (call_flag4 == true) {
-            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
-            std::string challengename = "Crazy_aimer";
-            updateChallenge(completed_, challengename);
-            saveChallenge(completed_, challengefile);
-            call_flag4 = false;
-        }
-    }
-
+    challenge_flag2();
 
     if (is_sun_fall() && *return_score() >= 80) {
         StopMusicStream(stage1_music);
@@ -399,37 +631,12 @@ void stage_1() {
 
 }
 
+
 int a = 255;
 
 void stage_2() {
 
-    if (return_order_counter() > 11) {
-        while (call_flag3 == true) {
-            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
-            std::string challengename = "Best_aimer";
-            updateChallenge(completed_, challengename);
-            saveChallenge(completed_, challengefile);
-            call_flag3 = false;
-        }
-    }
-    else if (return_order_counter() > 19) {
-        while (call_flag4 == true) {
-            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
-            std::string challengename = "Crazy_aimer";
-            updateChallenge(completed_, challengename);
-            saveChallenge(completed_, challengefile);
-            call_flag4 = false;
-        }
-    }
-
-    while (call_flag5 == true) {
-        std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
-        std::string challengename = "Not_done";
-        updateChallenge(completed_, challengename);
-        saveChallenge(completed_, challengefile);
-        call_flag5 = false;
-    }
-
+    challenge_flag();
     Particle::update_particle();
     Effect::make_effect2();
     Effect::update_effect();
@@ -459,105 +666,22 @@ void stage_2() {
 }
 
 
-bool IsAnyKeyPressed()
-{
-    bool keyPressed = false;
-    int key = GetKeyPressed();
-
-    if ((key >= 32) && (key <= 126)) keyPressed = true;
-
-    return keyPressed;
-}
-
-char name[MAX_INPUT_CHARS + 1] = "\0";
-int letterCount = 0;
 
 
 void gameover() {
 
-    int key = GetCharPressed();
-
-    while (key > 0)
-    {
-        if ((key >= 65) && (key <= 90) && (letterCount < MAX_INPUT_CHARS))
-        {
-            name[letterCount] = (char)key;
-            name[letterCount + 1] = '\0'; 
-        }
-        if ((key >= 97) && (key <= 122) && (letterCount < MAX_INPUT_CHARS))
-        {
-            name[letterCount] = (char)(key - 32);
-            name[letterCount + 1] = '\0'; 
-
-            letterCount++;
-        }
-
-        key = GetCharPressed();  
-    }
-
-    if (IsKeyPressed(KEY_BACKSPACE))
-    {
-        letterCount--;
-        if (letterCount < 0) letterCount = 0;
-        name[letterCount] = '\0';
-    }
-
-    if (save_once == true && letterCount == 3) {
-        if (IsKeyPressed(KEY_ENTER)) {
-            gameover_once = true;
-            save_once = false;
-            letterCount = 0;
-        }
-    }
-
-
-
-    while (gameover_once == true) {
-        std::vector<ScoreEntry> scores = loadScores(scorefile);
-        scores.emplace_back(name, *return_score());
-        std::sort(scores.begin(), scores.end(), [](const ScoreEntry& a, const ScoreEntry& b) {
-            return a.score > b.score;
-            });
-        saveScores(scores, scorefile);
-        gameover_once = false;
-    }
     _sun(); // todo: when you die in stage2, it should change into sun_stage2
-
-    if (*return_score() == 0) {
-        while (call_flag2 == true) {
-            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
-            std::string challengename = "Its_my_first_day";
-            updateChallenge(completed_, challengename);
-            saveChallenge(completed_, challengefile);
-            call_flag2 = false;
-        }
-    }
-    else if (*return_score() >= 10000) {
-        while (call_flag6 == true) {
-            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
-            std::string challengename = "Bird_striker";
-            updateChallenge(completed_, challengename);
-            saveChallenge(completed_, challengefile);
-            call_flag6 = false;
-        }
-    }
-    if (save_once == false) {
-        DrawTextPro(font, "SAVE COMPLETE!", { 100,300 }, { 0,0 }, 0, GetScreenWidth() / 15, GetScreenWidth() / 384, BLACK); //데이터 베이스 업로드 완료시 텍스트 출력. 위치조정 자유롭게 해주십쇼
-    }
-    DrawTextPro(font, name, { 100,100 }, { 0,0 }, 0, GetScreenWidth() / 15, GetScreenWidth() / 384, BLACK); //여기서 name을 받고 출력중임! 위치조정 자유롭게 해주십쇼
-
     Effect::make_effect();
     Effect::update_effect();
     mouse_control();
     show_score();
     draw_game_over();
-
 }
 
 void setting() {
+    _sun();
     StopMusicStream(lobby_music);
     Control_bar bar;
-    update_others();
     bar.update_all();
     PlayMusicStream(option_music);
     mouse_control();

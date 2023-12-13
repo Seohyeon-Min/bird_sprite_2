@@ -6,10 +6,9 @@ constexpr float default_SFX = 0.3;
 class Control_bar
 {
 public:
-	void draw_bar(int y);
-	void draw_button(int y);
+	void draw(int y);
 	void update_all();
-	void move_button();
+	void move_button(int y);
 	void adjust();
 
 private:
@@ -21,7 +20,6 @@ private:
 	Vector2 padding = { 250,50 };
 };
 
-void update_others();
 void draw_toggle();
 
 #endif 

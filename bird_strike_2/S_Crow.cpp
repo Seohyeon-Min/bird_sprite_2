@@ -360,6 +360,9 @@ void delete_crow() {
 }
 
 Vector2 return_delete_crow_position() {
+	if (is_gameover)
+		deleted_position = { 0,0 };
+
 	return deleted_position;
 }
 

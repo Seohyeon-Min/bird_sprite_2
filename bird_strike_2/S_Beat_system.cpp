@@ -30,24 +30,13 @@ float SecondTerms() {
     return float(beat_count * SecondTerm);
 }
 
-void change_BPM() {
-
-    if (GetMusicTimePlayed(stage1_music) >= 33.62f) {
-        BPM = 120;
-    }
-    if (GetMusicTimePlayed(stage1_music) >= 57.7f) {
-        BPM = 140;
-    }
-    SecondTerm = 60.0 / BPM;
-}
 
 int* return_BPM() {
     return &BPM;
 }
 
 void IsOnBeat() {
-    change_BPM();
-    //std::cout << "  BPM:" << SecondTerm << "  time:" << GetMusicTimePlayed(stage1_music) << std::endl; // 33.7, 57.7
+    std::cout << "  BPM:" << SecondTerm << "  time:" << GetMusicTimePlayed(stage1_music) << std::endl; // 33.7, 57.7
     double time = double(GetMusicTimePlayed(stage1_music));
     is_changed_j = false;
     static bool hasRun = false;
@@ -112,7 +101,7 @@ void continuous_beat() {
 
         if (continuous_count > return_order_counter() + 1) {
             drag.fail_drag(); //TODO: maintatin the func
-            //std::cout << continuous_fail << std::endl;
+            std::cout << continuous_fail << std::endl;
             continuous_fail = true;
         }
 
@@ -141,7 +130,6 @@ void beat_spliting() {
     else if (return_order_counter() >= 4) {
         splited_gap = long double(SecondTerm / 2);
     }
-    
     else {
         splited_gap = SecondTerm;
     }
@@ -155,7 +143,7 @@ void beat_spliting() {
         time >  long double(beat_count_splited * splited_gap - judge_offSet)) {
 
         splited_beat = true;
-        DrawCircle(80, 80, 20, BLUE);
+        //DrawCircle(80, 80, 20, BLUE);
     }
     else
     {

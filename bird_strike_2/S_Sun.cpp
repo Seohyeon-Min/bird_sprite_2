@@ -90,6 +90,14 @@ void draw_sun(float sun_y) {
 
 
 void draw_sun_stage_2() {
+
+	DrawRing({ (float)GetScreenWidth() / 2, 551 },
+		(SecondTerms() - GetMusicTimePlayed(stage1_music)) * (500) + (500),
+		(SecondTerms() - GetMusicTimePlayed(stage1_music)) * (505) + (505),
+		0,
+		360,
+		0,
+		WHITE);
 	//DrawCircleGradient(window_width / 2, sun_y, (SecondTerms() - GetMusicTimePlayed(music)) * (800) + (800), { 0,0,0, 200 }, { 0,0,0,0 });
 	//DrawCircle(window_width / 2, sun_y, sun_radius, sun_color_4);
 
