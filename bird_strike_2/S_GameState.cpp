@@ -688,10 +688,30 @@ void setting() {
 bool load_leaderbored_once = true;
 
 void leaderborad() {
-    ClearBackground({ 0,0,0,255 });
+    ClearBackground({ 251,241,232,255 });
 
     static bool scoresLoaded = false;
     static std::vector<ScoreEntry> scores;
+
+    std::vector<Color>textcolor = {
+        {217,166,71,255},
+        {167, 165, 177,255},
+        {139,110,107,255},
+        {BLACK},
+        {BLACK}
+    };
+
+    std::vector<const char*>textborard = {
+    "1st",
+    "2nd",
+    "3rd",
+    "4th",
+    "5th"
+    };
+
+    DrawTextPro(font, ">LEADERBORAD<", { 180,150 }, { 0,50  }, 0, 102, 15, BLACK);
+    DrawTextPro(font, "Press the 'SPACEBAR' to get out", { 370,330 }, { 0,100}, 0, 25, 5, { 0,0,0,100 });
+
 
     if (!scoresLoaded) {
         scores = loadScores(scorefile);
@@ -702,24 +722,39 @@ void leaderborad() {
         std::string scoreString = std::to_string(scores[i].score);
         const char* savedScore = scoreString.c_str();
         const char* savedName = scores[i].playerName.c_str();
-
+        DrawTextPro(font,
+            textborard[i],
+            { 200,float(300 + (60 * i)) },
+            { 0,0 },
+            0,
+            GetScreenWidth() / 15,
+            GetScreenWidth() / 384,
+            textcolor[i]);
         DrawTextPro(font,
             savedName, 
-            { 100,float(300 + (60 * i))}, 
+            { (float)GetScreenWidth()/2-150,float(300 + (60 * i))},
             {0,0},
             0, 
             GetScreenWidth() / 15, 
             GetScreenWidth() / 384, 
-            WHITE); //username출력. 위치조정 자유롭게 해주십쇼
+            textcolor[i]); //username출력. 위치조정 자유롭게 해주십쇼
         DrawTextPro(font, 
             savedScore, 
-            { 500,float(300 +(60*i))}, 
+            { (float)GetScreenWidth() / 2 + 150,float(300 +(60*i))},
             {0,0},
             0, 
             GetScreenWidth() / 15,
             GetScreenWidth() / 384, 
-            WHITE); //스코어 출력. 위치조정 자유롭게 해주십쇼
+            textcolor[i]); //스코어 출력. 위치조정 자유롭게 해주십쇼
     }
+
+    DrawTexturePro(kingturi_texture,
+        { 0,0,(float)kingturi_image.width,(float)kingturi_image.height },
+        {(float)GetScreenWidth()-210,(float)GetScreenHeight()-200,200,200},
+        {0,0},
+        0,
+        WHITE
+        );
     if (IsKeyPressed(KEY_SPACE)) {
         gamestate = GameState::LobbyScreen;
         scoresLoaded = false;

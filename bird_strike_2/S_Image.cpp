@@ -92,6 +92,9 @@ Image tutorial_5_image;
 Texture2D tutorial_5_texture;
 Image tutorial_6_image;
 Texture2D tutorial_6_texture;
+Image kingturi_image;
+Texture2D kingturi_texture;
+
 
 
 
@@ -287,6 +290,11 @@ void loadimage() {
 
     tutorial_6_image = LoadImage("textures/tutorial/tutorial_6.png");
     tutorial_6_texture = LoadTextureFromImage(tutorial_6_image);
+    UnloadImage(tutorial_6_image);
+
+    kingturi_image = LoadImage("textures/kingturi.png");
+    kingturi_texture = LoadTextureFromImage(kingturi_image);
+    UnloadImage(kingturi_image);
 
 
     font = LoadFont("resources/romulus.png");

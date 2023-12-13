@@ -176,7 +176,7 @@ void tutorial() {
 		break;
 	case 11:
 		crow_flag = true;
-		textbox("As you connect more and more crow", " ", 1, 0);
+		textbox("As you connect more and more crow", "I attack faster! ", 1, 0);
 		if (IsKeyPressed(KEY_SPACE)) tutorial_count += 1;
 		break;
 	case 12:
