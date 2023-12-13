@@ -2,10 +2,11 @@
 #define BEAT_SYSTEM_H
 
 float SecondTerms();
-void IsOnBeat();
+void IsOnBeat(bool for_T);
 void beat_spliting();
 void continuous_beat();
 bool return_continuous_fail();
+bool return_connect_4();
 int* return_BPM();
 
 extern bool crow_delete_flag;

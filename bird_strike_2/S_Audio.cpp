@@ -4,6 +4,8 @@ Music option_music;
 Music lobby_music;
 Music stage1_music;
 Music stage2_music;
+Music tutorial_music;
+
 Sound crow_blow;
 Sound to_two_phase;
 Sound fly_in;
@@ -16,6 +18,7 @@ void loadaudio() {
 	lobby_music = LoadMusicStream("audio/lobby_audio.mp3");
 	stage1_music = LoadMusicStream("audio/stage1.mp3");
 	stage2_music = LoadMusicStream("audio/stage2.mp3");
+	tutorial_music = LoadMusicStream("audio/Tutorial.mp3");
 
 	crow_blow = LoadSound("audio/crow_blow.mp3");
 	to_two_phase = LoadSound("audio/to_2phase.mp3");

@@ -62,6 +62,8 @@ Image strike_2_image;
 Texture2D strike_2_texture;
 Image player_stop_image;
 Texture2D player_stop_texture;
+Image player_stop_uncon_image;
+Texture2D player_stop_uncon_texture;
 Image BIRD_STRIKER_1_image;
 Texture2D  BIRD_STRIKER_1_texture;
 Image BIRD_STRIKER_2_image;
@@ -78,6 +80,20 @@ Image check_image;
 Texture2D  check_texture;
 Image check2_image;
 Texture2D  check2_texture;
+Image tutorial_1_image;
+Texture2D tutorial_1_texture;
+Image tutorial_2_image;
+Texture2D tutorial_2_texture;
+Image tutorial_3_image;
+Texture2D tutorial_3_texture;
+Image tutorial_4_image;
+Texture2D tutorial_4_texture;
+Image tutorial_5_image;
+Texture2D tutorial_5_texture;
+Image tutorial_6_image;
+Texture2D tutorial_6_texture;
+
+
 
 
 Font font;
@@ -211,6 +227,10 @@ void loadimage() {
     player_stop_texture = LoadTextureFromImage(player_stop_image);
     UnloadImage(player_stop_image);
 
+    player_stop_uncon_image = LoadImage("textures/player_stop_uncon.png");
+    player_stop_uncon_texture = LoadTextureFromImage(player_stop_uncon_image);
+    UnloadImage(player_stop_uncon_image);
+
     BIRD_STRIKER_1_image = LoadImage("textures/challenge/BIRD_STRIKER_1.png");
     BIRD_STRIKER_1_texture = LoadTextureFromImage(BIRD_STRIKER_1_image);
     UnloadImage(BIRD_STRIKER_1_image);
@@ -243,6 +263,30 @@ void loadimage() {
     check2_image = LoadImage("textures/check2.png");
     check2_texture = LoadTextureFromImage(check2_image);
     UnloadImage(check2_image);
+
+    tutorial_1_image = LoadImage("textures/tutorial/tutorial_1.png");
+    tutorial_1_texture = LoadTextureFromImage(tutorial_1_image);
+    UnloadImage(tutorial_1_image);
+
+    tutorial_2_image = LoadImage("textures/tutorial/tutorial_2.png");
+    tutorial_2_texture = LoadTextureFromImage(tutorial_2_image);
+    UnloadImage(tutorial_2_image);
+
+    tutorial_3_image = LoadImage("textures/tutorial/tutorial_3.png");
+    tutorial_3_texture = LoadTextureFromImage(tutorial_3_image);
+    UnloadImage(tutorial_3_image);
+
+    tutorial_4_image = LoadImage("textures/tutorial/tutorial_4.png");
+    tutorial_4_texture = LoadTextureFromImage(tutorial_4_image);
+    UnloadImage(tutorial_4_image);
+
+
+    tutorial_5_image = LoadImage("textures/tutorial/tutorial_5.png");
+    tutorial_5_texture = LoadTextureFromImage(tutorial_5_image);
+    UnloadImage(tutorial_5_image);
+
+    tutorial_6_image = LoadImage("textures/tutorial/tutorial_6.png");
+    tutorial_6_texture = LoadTextureFromImage(tutorial_6_image);
 
 
     font = LoadFont("resources/romulus.png");

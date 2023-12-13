@@ -5,6 +5,7 @@
 #include "H_Drag.h"
 #include "H_Score.h"
 #include "H_Audio.h"
+#include "H_Image.h"
 
 constexpr double judge_offSet = 0.1;
 constexpr double judge_offSet_great = 0.05;
@@ -20,6 +21,7 @@ bool judge_great = false;
 bool is_changed_j = false;
 bool is_changed = false;
 bool continuous_fail = false;
+bool connect_4 = false;
 
 double SecondTerm = 60.0 / BPM;
 
@@ -30,12 +32,23 @@ float SecondTerms() {
     return float(beat_count * SecondTerm);
 }
 
+void change_BPM() {
+
+    if (GetMusicTimePlayed(stage1_music) >= 33.62f) {
+        BPM = 120;
+    }
+    if (GetMusicTimePlayed(stage1_music) >= 57.7f) {
+        BPM = 140;
+    }
+    SecondTerm = 60.0 / BPM;
+}
 
 int* return_BPM() {
     return &BPM;
 }
 
-void IsOnBeat() {
+void IsOnBeat(bool for_T) {
+    change_BPM();
     //std::cout << "  BPM:" << SecondTerm << "  time:" << GetMusicTimePlayed(stage1_music) << std::endl; // 33.7, 57.7
     double time = double(GetMusicTimePlayed(stage1_music));
     is_changed_j = false;
@@ -44,6 +57,9 @@ void IsOnBeat() {
     if (time < double(SecondTerms() + judge_offSet) &&
         time >  double(SecondTerms() - judge_offSet)) {
         judge = true;
+        if (!for_T && judge) {
+            DrawTextPro(font, "BEAT!", { (float)GetScreenWidth() / 2 - 50,100 }, { 0,0 }, 0, 30, 5, BLACK);
+        }
         if (time < double(SecondTerms() + judge_offSet_great) &&
             time >  double(SecondTerms() - judge_offSet_great)) {
             judge_great = true;
@@ -57,20 +73,20 @@ void IsOnBeat() {
     {
         judge = false;
     }
-
-    if (int(SecondTerms() / SecondTerm) % 5 == 0) {
-        if (!hasRun) {
-            for (int c = 0; c < 3; c++) {
-                Crow* p_crow = new Crow;
-                p_crow->add_crow();
+    if (for_T == true) {
+        if (int(SecondTerms() / SecondTerm) % 5 == 0) {
+            if (!hasRun) {
+                for (int c = 0; c < 3; c++) {
+                    Crow* p_crow = new Crow;
+                    p_crow->add_crow();
+                }
+                hasRun = true;
             }
-            hasRun = true;
+        }
+        else {
+            hasRun = false;
         }
     }
-    else {
-        hasRun = false;
-    }
-
     if (judge != prev_judge)
     {
         is_changed_j = true;
@@ -80,10 +96,10 @@ void IsOnBeat() {
 }
 
 int continuous_count = 1;
+
 int wait = 60;
 void continuous_beat() {
-    
-        std::cout << " fail" << continuous_fail << "  wait:" << wait << std::endl;
+    //Music music = return_music();
 
     Drag drag;
     double time = double(GetMusicTimePlayed(stage1_music));
@@ -104,11 +120,11 @@ void continuous_beat() {
             drag.fail_drag(); //TODO: maintatin the func
             continuous_fail = true;
         }
-        
+
 
     }
     else {
-        if ((wait > 0)&& continuous_fail) {
+        if ((wait > 0) && continuous_fail) {
             continuous_fail = true;
             wait--;
         }
@@ -116,7 +132,7 @@ void continuous_beat() {
             continuous_fail = false;
             wait = 60;
         }
-        
+
         continuous_count = 1;
     }
 
@@ -139,7 +155,9 @@ void beat_spliting() {
     }
     else if (return_order_counter() >= 4) {
         splited_gap = long double(SecondTerm / 2);
+        connect_4 = true;
     }
+
     else {
         splited_gap = SecondTerm;
     }
@@ -173,7 +191,9 @@ void beat_spliting() {
 
 
 bool return_continuous_fail() {
-
-
     return continuous_fail;
+}
+
+bool return_connect_4() {
+    return connect_4;
 }

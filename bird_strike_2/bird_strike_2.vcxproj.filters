@@ -60,6 +60,9 @@
     <ClCompile Include="H_Txt_read.h">
       <Filter>헤더 파일</Filter>
     </ClCompile>
+    <ClCompile Include="S_Tutorial.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="H_Drag.h">

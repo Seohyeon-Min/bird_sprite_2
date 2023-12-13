@@ -21,7 +21,8 @@ enum GameState {
     Gameover,
     Setting,
     Star,
-    Challenge
+    Challenge,
+    Tutorial
 };
 
 extern GameState gamestate;

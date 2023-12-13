@@ -12,6 +12,8 @@
 #include "H_Option.h"
 #include "H_Txt_read.h"
 #include "H_Main.h"
+#include "H_Tutorial.h"
+
 
 #define MAX_INPUT_CHARS     3
 
@@ -31,6 +33,16 @@ bool gameover_once = false;
 bool save_once = true;
 int title_x = 0;
 float ChallengePositionY = 0;
+int chall_count = 0;
+
+
+bool call_flag1 = true;
+bool call_flag2 = true;
+bool call_flag3 = true;
+bool call_flag4 = true;
+bool call_flag5 = true;
+bool call_flag6 = true;
+bool call_flag7 = true;
 
 bool IsAnyKeyPressed()
 {
@@ -55,6 +67,14 @@ void animation_move() {
 }
 
 void draw_loading() {
+    while (call_flag1 == true) {
+        std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
+        std::string challengename = "Nice_to_meet_you";
+        updateChallenge(completed_, challengename);
+        saveChallenge(completed_, challengefile);
+        call_flag1 = false;
+    }
+
     if (int(GetTime() < 3)) {
         ClearBackground(WHITE);
 
@@ -197,6 +217,7 @@ void draw_lobby_button() {
         }
         DrawRectangle(GetScreenWidth() / 2 - box_witdh / 2, (GetScreenHeight() / 44) * 34, box_witdh, box_height, box_color);
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
+            gamestate = GameState::Tutorial;
             PlaySound(click_button);
         }
     }
@@ -517,6 +538,24 @@ void lobbyscreen() {
 
 
 void stage_1() {
+    if (return_order_counter() > 11) {
+        while (call_flag3 == true) {
+            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
+            std::string challengename = "Best_aimer";
+            updateChallenge(completed_, challengename);
+            saveChallenge(completed_, challengefile);
+            call_flag3 = false;
+        }
+    }
+    else if (return_order_counter() > 19) {
+        while (call_flag4 == true) {
+            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
+            std::string challengename = "Crazy_aimer";
+            updateChallenge(completed_, challengename);
+            saveChallenge(completed_, challengefile);
+            call_flag4 = false;
+        }
+    }
 
     if (is_sun_fall() && *return_score() >= 100) {
         StopMusicStream(stage1_music);
@@ -535,7 +574,7 @@ void stage_1() {
         end_game();
     }
     
-    IsOnBeat();
+    IsOnBeat(true);
     beat_spliting();
     continuous_beat();
     Particle::update_particle();
@@ -553,7 +592,32 @@ void stage_1() {
 int a = 255;
 
 void stage_2() {
+    if (return_order_counter() > 11) {
+        while (call_flag3 == true) {
+            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
+            std::string challengename = "Best_aimer";
+            updateChallenge(completed_, challengename);
+            saveChallenge(completed_, challengefile);
+            call_flag3 = false;
+        }
+    }
+    else if (return_order_counter() > 19) {
+        while (call_flag4 == true) {
+            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
+            std::string challengename = "Crazy_aimer";
+            updateChallenge(completed_, challengename);
+            saveChallenge(completed_, challengefile);
+            call_flag4 = false;
+        }
+    }
 
+    while (call_flag5 == true) {
+        std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
+        std::string challengename = "Not_done";
+        updateChallenge(completed_, challengename);
+        saveChallenge(completed_, challengefile);
+        call_flag5 = false;
+    }
     
 
     if (is_gameover) {
@@ -561,7 +625,7 @@ void stage_2() {
     }
     ClearBackground(Color{ 4, 18, 31,255 });
     _sun_stage2();
-    IsOnBeat();
+    IsOnBeat(true);
     beat_spliting();
     continuous_beat();
     Particle::update_particle();
@@ -582,7 +646,24 @@ void stage_2() {
 
 void gameover() {
 
-    
+    if (*return_score() == 0) {
+        while (call_flag2 == true) {
+            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
+            std::string challengename = "Its_my_first_day";
+            updateChallenge(completed_, challengename);
+            saveChallenge(completed_, challengefile);
+            call_flag2 = false;
+        }
+    }
+    if (*return_score() > 10000) {
+        while (call_flag6 == true) {
+            std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
+            std::string challengename = "Bird_striker";
+            updateChallenge(completed_, challengename);
+            saveChallenge(completed_, challengefile);
+            call_flag6 = false;
+        }
+    }
 
 
     _sun(); // todo: when you die in stage2, it should change into sun_stage2
@@ -645,20 +726,71 @@ void leaderborad() {
     }
 }
 void challenge() {
-    int scrollSpeed = 15;
+    std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
+    int scrollSpeed = 30;
     float recoffest = 20;
-    ChallengePositionY += (GetMouseWheelMove() * scrollSpeed);
-    DrawTexturePro(Nice_to_meet_you_2_texture, { 0,0,(float)Nice_to_meet_you_2_image.width,(float)Nice_to_meet_you_2_image.height }, { 0 + recoffest,0 + ChallengePositionY,GetScreenWidth() - recoffest,(float)(GetScreenHeight() / 2) + recoffest * 2 }, { 0,0 }, 0, WHITE);
-    DrawTexturePro(Its_my_first_day_2_texture, { 0,0,(float)Nice_to_meet_you_2_image.width,(float)Nice_to_meet_you_2_image.height }, { 0 + recoffest,Nice_to_meet_you_2_image.height * 2 + ChallengePositionY,GetScreenWidth() - recoffest,(float)(GetScreenHeight() / 2) + recoffest * 2 }, { 0,0 }, 0, WHITE);
-    DrawTexturePro(best_aimer_2_texture, { 0,0,(float)Nice_to_meet_you_2_image.width,(float)Nice_to_meet_you_2_image.height }, { 0 + recoffest,Nice_to_meet_you_2_image.height * 4 + ChallengePositionY,GetScreenWidth() - recoffest,(float)(GetScreenHeight() / 2) + recoffest * 2 }, { 0,0 }, 0, WHITE);
-    DrawTexturePro(carzy_aimer_2_texture, { 0,0,(float)Nice_to_meet_you_2_image.width,(float)Nice_to_meet_you_2_image.height }, { 0 + recoffest,Nice_to_meet_you_2_image.height * 6 + ChallengePositionY,GetScreenWidth() - recoffest,(float)(GetScreenHeight() / 2) + recoffest * 2 }, { 0,0 }, 0, WHITE);
-    DrawTexturePro(strike_2_texture, { 0,0,(float)Nice_to_meet_you_2_image.width,(float)Nice_to_meet_you_2_image.height }, { 0 + recoffest,Nice_to_meet_you_2_image.height * 8 + ChallengePositionY,GetScreenWidth() - recoffest,(float)(GetScreenHeight() / 2) + recoffest * 2 }, { 0,0 }, 0, WHITE);
+    std::vector<Texture> clear_challengelist =
+    {
+        Nice_to_meet_you_1_texture,
+        Its_my_first_day_1_texture,
+        best_aimer_1_texture,
+        carzy_aimer_1_texture,
+        not_done_1_texture,
+        strike_1_texture,
+        BIRD_STRIKER_1_texture,
+        THE_BIRD_1_texture
+    };
 
+    std::vector<Texture> unclear_challengelist =
+    {
+        Nice_to_meet_you_2_texture,
+        Its_my_first_day_2_texture,
+        best_aimer_2_texture,
+        carzy_aimer_2_texture,
+        not_done_2_texture,
+        strike_2_texture,
+        BIRD_STRIKER_2_texture,
+        THE_BIRD_2_texture
+    };
+
+    ChallengePositionY += (GetMouseWheelMove() * scrollSpeed);
+    if (ChallengePositionY > 0) {
+        ChallengePositionY = 0;
+    }
+    else if (ChallengePositionY < -3150) {
+        ChallengePositionY = -3150;
+    }
+    DrawTextPro(font, ">ACHIEVENMENTS<", { 100,100 }, { 0,50 - ChallengePositionY }, 0, 102, 15, BLACK);
+    DrawTextPro(font, "Can you achieve the following tasks?", { 120,310 }, { 0,100 - ChallengePositionY }, 0, 50, 5, BLACK);
+    DrawTextPro(font, "Achieve the challenges and get 'THE BIRD'", { 57,360 }, { 0,100 - ChallengePositionY }, 0, 50, 5, BLACK);
+    DrawTextPro(font, "Press the 'SPACEBAR' to get out", { 370,450 }, { 0,100 - ChallengePositionY }, 0, 25, 5, { 0,0,0,100 });
+
+    for (int i = 0; i < completed_.size(); i++) {
+        chall_count += 1;
+        const ChallengeEntry& entry = completed_[i];
+        if (completed_[i].completed == true) {
+            DrawTexturePro(clear_challengelist[i], { 0,0,(float)Nice_to_meet_you_2_image.width,(float)Nice_to_meet_you_2_image.height }, { 0 + recoffest,Nice_to_meet_you_2_image.height * (3 * (i + 1)) + ChallengePositionY,GetScreenWidth() - recoffest,(float)(GetScreenHeight() / 2) + recoffest * 2 }, { 0,0 }, 0, WHITE);
+            if (chall_count == 7) {
+                while (call_flag7 == true) {
+                    std::vector<ChallengeEntry> completed_ = loadChallenge(challengefile);
+                    std::string challengename = "The_bird";
+                    updateChallenge(completed_, challengename);
+                    saveChallenge(completed_, challengefile);
+                    call_flag7 = false;
+                }
+            }
+        }
+        else {
+            DrawTexturePro(unclear_challengelist[i], { 0,0,(float)Nice_to_meet_you_2_image.width,(float)Nice_to_meet_you_2_image.height }, { 0 + recoffest,Nice_to_meet_you_2_image.height * (3 * (i + 1)) + ChallengePositionY,GetScreenWidth() - recoffest,(float)(GetScreenHeight() / 2) + recoffest * 2 }, { 0,0 }, 0, WHITE);
+        }
+
+    }
 
 
     mouse_control();
     if (IsKeyPressed(KEY_SPACE)) {
         gamestate = GameState::LobbyScreen;
+        ChallengePositionY = 0;
     }
 }
 

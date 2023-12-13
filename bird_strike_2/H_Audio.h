@@ -13,6 +13,8 @@ extern Sound fly_in;
 extern Sound hover_button;
 extern Sound click_button;
 extern Sound count_sound;
+extern Music tutorial_music;
+
 
 
 void loadaudio();

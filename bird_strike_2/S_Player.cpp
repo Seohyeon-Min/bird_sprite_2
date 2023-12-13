@@ -4,6 +4,7 @@
 #include "H_Crow.h"
 #include "H_Player.h"
 #include "H_Image.h"
+#include "H_Beat_system.h"
 
 Vector2 distance;
 Vector2 destination; //why it doesn't work when it moves to header file?
@@ -38,24 +39,44 @@ void Player::draw(Vector2 pos) {
         directiontheta = atan2((double)pos.y - return_delete_crow_position().y, (double)pos.x - return_delete_crow_position().x) * 90;
     }
     else if (speed.x == 0 || speed.y == 0) {
-
+        
         DrawTexturePro(player_stop_texture,
-            { 
+            {
                 float(((float)(player_stop_image.width / 5) * (int)playeranimation)),
                 0,
                 float(playerdirection * player_stop_image.width / 5),
-                (float)player_stop_image.height 
+                (float)player_stop_image.height
             },
-            { 
-                position.x ,
-                position.y ,
-                float(player_go_image.width * sprite_scale),
-                float(player_go_image.height * sprite_scale) 
-            },
+        {
+            position.x ,
+            position.y ,
+            float(player_go_image.width * sprite_scale),
+            float(player_go_image.height * sprite_scale)
+        },
             { (float)(player_go_image.width * sprite_scale / 2) ,(float)(player_go_image.height * sprite_scale / 2) },
             0,
             WHITE
         );
+        
+        if (return_continuous_fail() == true) {
+            DrawTexturePro(player_stop_uncon_texture,
+                {
+                    float(((float)(player_stop_image.width / 5) * (int)playeranimation)),
+                    0,
+                    float(playerdirection * player_stop_image.width / 5),
+                    (float)player_stop_image.height
+                },
+            {
+                position.x ,
+                position.y ,
+                float(player_go_image.width * sprite_scale),
+                float(player_go_image.height * sprite_scale)
+            },
+                { (float)(player_go_image.width * sprite_scale / 2) ,(float)(player_go_image.height * sprite_scale / 2) },
+                0,
+                WHITE
+            );
+        }
     }
 
     else {

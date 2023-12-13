@@ -8,6 +8,7 @@
 #include "H_Image.h"
 #include "H_GameState.h"
 #include "H_Txt_read.h"
+#include "H_Tutorial.h"
 
 //Music music;
 //Sound crow_blow;
@@ -158,7 +159,13 @@ int main() {
             UpdateMusicStream(option_music);
             challenge();
             break;
+        case GameState::Tutorial:
+            UpdateMusicStream(stage1_music);
+            UpdateMusicStream(tutorial_music);
+            tutorial();
+            break;
         }
+        
 
         if (exitWindowRequested)
         {
