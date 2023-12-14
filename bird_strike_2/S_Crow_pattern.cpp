@@ -39,13 +39,13 @@ void Crow_pattern::fire_crow() {
 		at_toggle = 1;
 		draw_toggle = 1;
 		pos_toggle = 1;
-		LR = GetRandomValue(0, 2);
+		LR = 0;//GetRandomValue(0, 2);
 	}
 }
 
 void Crow_pattern::aim_line() {
 	float hor_spawn_range = 0.7; //if value is 0.7, spawn range is 70% of each edge. 
-	float ver_spawn_range = 0.7; 
+	float ver_spawn_range = 0.3; 
 	int ver_min = int(GetScreenHeight() * ((1.0f - ver_spawn_range) / 2));
 	int ver_max = int(GetScreenHeight() * (ver_spawn_range + ((1 - ver_spawn_range) / 2)));
 	int hor_min = int(GetScreenWidth() * ((1.0f - hor_spawn_range) / 2));
@@ -109,7 +109,7 @@ void Crow_pattern::aim_line() {
 			end_pos.x = (float)GetScreenWidth() - (((float)GetScreenWidth() / 1000) * up_to_ten);
 			end_pos.y = (angle * (end_pos.x - (float)GetScreenWidth())) + start_pos.y;
 		}
-
+		std::cout << end_pos.x << std::endl;
 		DrawLineEx(start_pos, end_pos, 5, WHITE);
 
 
@@ -117,7 +117,7 @@ void Crow_pattern::aim_line() {
 			fire = 1;
 			aim = 0;
 		}
-		else if (LR == 0 && end_pos.x >= GetScreenWidth() - 10) {//horizental right
+		else if (LR == 0 && end_pos.x >= GetScreenWidth() - 20) {//horizental right
 			fire = 1;
 			aim = 0;
 		}
@@ -130,7 +130,7 @@ void Crow_pattern::aim_line() {
 
 void Crow_pattern::draw() {
 	constexpr int speed = 30;
-	constexpr int hitbox_size = 20;
+	constexpr int hitbox_size = 40;
 
 	if (fire == 1) {
 		if (draw_toggle == 1) {
@@ -149,8 +149,9 @@ void Crow_pattern::draw() {
 		Rhitbox_pos = { crow_pos.x + hitbox_size, crow_pos.y };
 		Rhitbox_back = { crow_pos.x - hitbox_size, crow_pos.y + hitbox_size };
 
-		DrawLineV(Lhitbox_pos, Lhitbox_back, { 0, 0, 0, 0 });
-		DrawLineV(Rhitbox_pos, Rhitbox_back, { 0, 0, 0, 0 });
+		DrawLineV(Lhitbox_pos, Lhitbox_back, { 0, 0, 0, 255 });
+		DrawLineV(Rhitbox_pos, Rhitbox_back, { 0, 0, 0, 255 });
+		//DrawRectangle(Lhitbox_pos.x, Lhitbox_pos.y, hitbox_size * 2, hitbox_size, WHITE);
 
 		if (LR == 1) {//vertical
 			crow_pos.y += speed;

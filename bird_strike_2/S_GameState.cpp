@@ -21,7 +21,8 @@
 
 GameState gamestate = GameState::Startloading;
 Crow crow;
-Crow_pattern crow_pattern;
+Crow_pattern crow_pattern_1;
+Crow_pattern crow_pattern_2;
 Drag drag;
 Player player;
 constexpr int icon_width = 40;
@@ -621,13 +622,20 @@ void stage_2() {
     Effect::make_effect2();
     Effect::update_effect();
     crow._crow();
-    crow_pattern.fire_crow();
-    crow_pattern.aim_line();
-    crow_pattern.draw();
-    if (crow_pattern.line_colide()) {
+    crow_pattern_1.fire_crow();
+    crow_pattern_1.aim_line();
+    crow_pattern_1.draw();
+    if (crow_pattern_1.line_colide()) {
         drag.fail_drag();
         delete_crow();
     }
+    //crow_pattern_2.fire_crow();
+    //crow_pattern_2.aim_line();
+    //crow_pattern_2.draw();
+    //if (crow_pattern_2.line_colide()) {
+    //    drag.fail_drag();
+    //    delete_crow();
+    //}
     drag.Fx();
     player._player();
 

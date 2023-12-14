@@ -1,5 +1,5 @@
 Nice_to_meet_you 1
-Its_my_first_day 0
+Its_my_first_day 1
 Best_aimer 1
 Crazy_aimer 0
 Not_done 1
