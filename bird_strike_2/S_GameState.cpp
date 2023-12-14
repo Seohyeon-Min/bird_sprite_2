@@ -183,6 +183,7 @@ void draw_lobby_button() {
 
     Color setbtncolor = { 125,125,125,255 };
     Color text_color = { 255, 159, 68, 255 };
+    Color text_outline_color = { WHITE };
     Color box_color = { 255,255,255,178 };
 
 
@@ -286,36 +287,23 @@ void draw_lobby_button() {
     if (challenge_btnAcion) {
         gamestate = GameState::Challenge;
     }
+    DrawTextPro(font, "> GAMESTART <", { (float)(GetScreenWidth() / 2) + 2,(float)((GetScreenHeight() / 44) * 30) }, { MeasureTextEx(font, "> GAMESTART <", font_size, spacing_1).x / 2, 0 }, 0, font_size, spacing_1, text_outline_color);
+    DrawTextPro(font, "> GAMESTART <", { (float)(GetScreenWidth() / 2) - 2,(float)((GetScreenHeight() / 44) * 30) }, { MeasureTextEx(font, "> GAMESTART <", font_size, spacing_1).x / 2, 0 }, 0, font_size, spacing_1, text_outline_color);
+    DrawTextPro(font, "> GAMESTART <", { (float)(GetScreenWidth() / 2),(float)((GetScreenHeight() / 44) * 30) + 2 }, { MeasureTextEx(font, "> GAMESTART <", font_size, spacing_1).x / 2, 0 }, 0, font_size, spacing_1, text_outline_color);
+    DrawTextPro(font, "> GAMESTART <", { (float)(GetScreenWidth() / 2),(float)((GetScreenHeight() / 44) * 30) - 2 }, { MeasureTextEx(font, "> GAMESTART <", font_size, spacing_1).x / 2, 0 }, 0, font_size, spacing_1, text_outline_color);
+    DrawTextPro(font, "> GAMESTART <", { (float)(GetScreenWidth() / 2),(float)((GetScreenHeight() / 44) * 30) }, { MeasureTextEx(font, "> GAMESTART <", font_size, spacing_1).x / 2, 0 }, 0, font_size, spacing_1, text_color);
 
+    DrawTextPro(font, "> HOW TO PLAY <", { (float)(GetScreenWidth() / 2) + 2,(float)((GetScreenHeight() / 44) * 34) }, { MeasureTextEx(font, "> HOW TO PLAY <", font_size, spacing_1).x / 2 ,0 }, 0, font_size, spacing_1, text_outline_color);
+    DrawTextPro(font, "> HOW TO PLAY <", { (float)(GetScreenWidth() / 2) - 2,(float)((GetScreenHeight() / 44) * 34) }, { MeasureTextEx(font, "> HOW TO PLAY <", font_size, spacing_1).x / 2 ,0 }, 0, font_size, spacing_1, text_outline_color);
+    DrawTextPro(font, "> HOW TO PLAY <", { (float)(GetScreenWidth() / 2),(float)((GetScreenHeight() / 44) * 34) + 2 }, { MeasureTextEx(font, "> HOW TO PLAY <", font_size, spacing_1).x / 2 ,0 }, 0, font_size, spacing_1, text_outline_color);
+    DrawTextPro(font, "> HOW TO PLAY <", { (float)(GetScreenWidth() / 2),(float)((GetScreenHeight() / 44) * 34) - 2 }, { MeasureTextEx(font, "> HOW TO PLAY <", font_size, spacing_1).x / 2 ,0 }, 0, font_size, spacing_1, text_outline_color);
+    DrawTextPro(font, "> HOW TO PLAY <", { (float)(GetScreenWidth() / 2),(float)((GetScreenHeight() / 44) * 34) }, { MeasureTextEx(font, "> HOW TO PLAY <", font_size, spacing_1).x / 2 ,0 }, 0, font_size, spacing_1, text_color);
 
-
-    DrawTextPro(
-        font,
-        "> GAMESTART <",
-        { (float)(GetScreenWidth() / 2),(float)((GetScreenHeight() / 44) * 30) },
-        { MeasureTextEx(font, "> GAMESTART <", font_size, spacing_1).x / 2, 0 },
-        0,
-        font_size,
-        spacing_1,
-        text_color);
-    DrawTextPro(
-        font,
-        "> HOW TO PLAY <",
-        { (float)(GetScreenWidth() / 2),(float)((GetScreenHeight() / 44) * 34) },
-        { MeasureTextEx(font, "> HOW TO PLAY <", font_size, spacing_1).x / 2 ,0 },
-        0,
-        font_size,
-        spacing_1,
-        text_color);
-    DrawTextPro(
-        font,
-        "> QUIT <",
-        { (float)(GetScreenWidth() / 2),(float)((GetScreenHeight() / 44) * 38) },
-        { MeasureTextEx(font, "> QUIT <", font_size, spacing_1).x / 2 ,0 },
-        0,
-        font_size,
-        spacing_2,
-        text_color);
+    DrawTextPro(font, "> QUIT <", { (float)(GetScreenWidth() / 2) + 2,(float)((GetScreenHeight() / 44) * 38) }, { MeasureTextEx(font, "> QUIT <", font_size, spacing_1).x / 2 ,0 }, 0, font_size, spacing_2, text_outline_color);
+    DrawTextPro(font, "> QUIT <", { (float)(GetScreenWidth() / 2) - 2,(float)((GetScreenHeight() / 44) * 38) }, { MeasureTextEx(font, "> QUIT <", font_size, spacing_1).x / 2 ,0 }, 0, font_size, spacing_2, text_outline_color);
+    DrawTextPro(font, "> QUIT <", { (float)(GetScreenWidth() / 2),(float)((GetScreenHeight() / 44) * 38) + 2 }, { MeasureTextEx(font, "> QUIT <", font_size, spacing_1).x / 2 ,0 }, 0, font_size, spacing_2, text_outline_color);
+    DrawTextPro(font, "> QUIT <", { (float)(GetScreenWidth() / 2),(float)((GetScreenHeight() / 44) * 38) - 2 }, { MeasureTextEx(font, "> QUIT <", font_size, spacing_1).x / 2 ,0 }, 0, font_size, spacing_2, text_outline_color);
+    DrawTextPro(font, "> QUIT <", { (float)(GetScreenWidth() / 2),(float)((GetScreenHeight() / 44) * 38) }, { MeasureTextEx(font, "> QUIT <", font_size, spacing_1).x / 2 ,0 }, 0, font_size, spacing_2, text_color);
 }
 void draw_game_over() {
 
@@ -390,7 +378,7 @@ void draw_game_over() {
             0,
             30,
             GetScreenWidth() / 384,
-            BLACK); //데이터 베이스 업로드 완료시 텍스트 출력. 위치조정 자유롭게 해주십쇼
+            BLACK);
         DrawTextPro(
             font,
             "> PRESS R TO RESTART THE GAME <",
@@ -426,17 +414,7 @@ void draw_game_over() {
         0,
         GetScreenWidth() / 15,
         GetScreenWidth() / 384,
-        BLACK); //여기서 name을 받고 출력중임! 위치조정 자유롭게 해주십쇼
-
-    //DrawTextPro(font,
-    //    "|",
-    //    { (float)GetScreenWidth() / 2,453 },
-    //    { -MeasureTextEx(font, name, GetScreenWidth() / 15, GetScreenWidth() / 384).x,0},
-    //    0,
-    //    GetScreenWidth() / 15,
-    //    GetScreenWidth() / 384,
-    //    BLACK);
-
+        BLACK);
 }
 void draw_setting_button() {
     DrawRectangleRounded(
@@ -482,9 +460,15 @@ void draw_setting_button() {
     }
 }
 
+Music music_here;
+Music return_music() {
+    return music_here;
+}
+
+
 
 void startloding() {
-
+    music_here = stage1_music;
     SetSoundVolume(crow_blow, default_SFX);
     SetMusicVolume(stage1_music, default_music);
     draw_loading();
@@ -495,18 +479,21 @@ void startloding() {
     }
     mouse_control();
 }
-
 void start_game() {
+    *return_BPM() = 100;
     StopMusicStream(lobby_music);
     PlayMusicStream(stage1_music);
+    music_here = stage1_music;
     is_gameover = false;
     gamestate = GameState::Stage_1;
 
 }
 
 void start_stage_2() {
+    *return_BPM() = 140;
     StopMusicStream(stage1_music);
     PlayMusicStream(stage2_music);
+    music_here = stage2_music;
     gamestate = GameState::Stage_2;
 
 }
@@ -515,10 +502,10 @@ void end_game() {
     is_gameover = true;
     StopMusicStream(stage1_music);
     StopMusicStream(stage2_music);
+    music_here = stage1_music;
     crows.clear();
     gamestate = GameState::Gameover;
 }
-
 void lobbyscreen() {
 
     PlayMusicStream(lobby_music);
@@ -528,11 +515,6 @@ void lobbyscreen() {
     draw_lobby_icon();
     click_lobby_icon();
     draw_lobby_button();
-
-    //if (IsKeyPressed(KEY_SPACE)) {
-    //    start_game();
-    //}
-    
     mouse_control();
 }
 
@@ -629,15 +611,29 @@ void stage_2() {
     beat_spliting();
     continuous_beat();
     Particle::update_particle();
+    Effect::make_effect2();
+    Effect::update_effect();
     crow._crow();
     drag.Fx();
     player._player();
+
+    BeginBlendMode(BLEND_ADDITIVE);
+    DrawTexturePro(vignetting_texture,
+        { 0,0,float(vignetting_image.width), float(vignetting_image.height) },
+        { 0,0, (float)GetScreenWidth(), (float)GetScreenHeight() },
+        { 0,0 },
+        0,
+        WHITE);
+    EndBlendMode();
+
+    Light::make_light();
+    Light::update_light();
     show_score();
 
-    if(a > 0){
+    if (a > 0) {
         //std::cout << a << std::endl;
         DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), { 255,255,255,(unsigned char)a });
-        a-=5;
+        a -= 5;
     }
     beat_circle();
     mouse_control();
@@ -684,6 +680,21 @@ void setting() {
     draw_setting_button();
     mouse_control();
 }
+
+void credit() {
+    DrawTexturePro(credit_texture,
+        { 0,0,float(credit_image.width), float(credit_image.height) },
+        { 0,0, (float)GetScreenWidth(), (float)GetScreenHeight() },
+        { 0,0 },
+        0,
+        WHITE);
+
+    if (IsKeyPressed(KEY_SPACE)) {
+        gamestate = GameState::Setting;
+    }
+
+}
+
 
 bool load_leaderbored_once = true;
 
@@ -737,7 +748,7 @@ void leaderborad() {
             0, 
             GetScreenWidth() / 15, 
             GetScreenWidth() / 384, 
-            textcolor[i]); //username출력. 위치조정 자유롭게 해주십쇼
+            textcolor[i]); 
         DrawTextPro(font, 
             savedScore, 
             { (float)GetScreenWidth() / 2 + 150,float(300 +(60*i))},
@@ -745,7 +756,7 @@ void leaderborad() {
             0, 
             GetScreenWidth() / 15,
             GetScreenWidth() / 384, 
-            textcolor[i]); //스코어 출력. 위치조정 자유롭게 해주십쇼
+            textcolor[i]);
     }
 
     DrawTexturePro(kingturi_texture,

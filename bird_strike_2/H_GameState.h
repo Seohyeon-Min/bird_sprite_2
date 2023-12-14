@@ -22,11 +22,13 @@ enum GameState {
     Setting,
     Star,
     Challenge,
-    Tutorial
+    Tutorial,
+    Credit
 };
 
 extern GameState gamestate;
 extern bool window_close;
+Music return_music();
 
 void startloding();
 void start_game();
@@ -38,5 +40,6 @@ void gameover();
 void setting();
 void leaderborad();
 void challenge();
+void credit();
 
 #endif

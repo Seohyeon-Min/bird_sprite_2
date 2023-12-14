@@ -207,8 +207,12 @@ void Crow::add_crow() {
 
 
 void Crow::fail_to_connect() {
+	static bool hasRun2 = false;
 	if (return_continuous_fail()) {
-		lose_score();
+		if (!hasRun2) {
+			lose_score();
+			hasRun2 = true;
+		}
 		holding = false;
 		order_counter = 1;
 		marked_crow_positions.clear();
@@ -221,6 +225,7 @@ void Crow::fail_to_connect() {
 			}
 		}
 	}
+	else hasRun2 = false;
 }
 
 

@@ -6,8 +6,10 @@
 #include "H_Score.h"
 #include "H_Audio.h"
 #include "H_Image.h"
+#include "H_GameState.h"
 
 constexpr double judge_offSet = 0.1;
+constexpr double judge_offSet_stage2 = 0.05;
 constexpr double judge_offSet_great = 0.05;
 constexpr int trigger_bar = 1;
 
@@ -26,21 +28,11 @@ bool connect_4 = false;
 double SecondTerm = 60.0 / BPM;
 
 float SecondTerms() {
-    double time = double(GetMusicTimePlayed(stage1_music));
+    Music music = return_music();
+    double time = double(GetMusicTimePlayed(music));
     int beat_count = time / SecondTerm;
 
     return float(beat_count * SecondTerm);
-}
-
-void change_BPM() {
-
-    if (GetMusicTimePlayed(stage1_music) >= 33.62f) {
-        BPM = 120;
-    }
-    if (GetMusicTimePlayed(stage1_music) >= 57.7f) {
-        BPM = 140;
-    }
-    SecondTerm = 60.0 / BPM;
 }
 
 int* return_BPM() {
@@ -48,9 +40,10 @@ int* return_BPM() {
 }
 
 void IsOnBeat(bool for_T) {
-    change_BPM();
+    SecondTerm = 60.0 / BPM;
+    Music music = return_music();
     //std::cout << "  BPM:" << SecondTerm << "  time:" << GetMusicTimePlayed(stage1_music) << std::endl; // 33.7, 57.7
-    double time = double(GetMusicTimePlayed(stage1_music));
+    double time = double(GetMusicTimePlayed(music));
     is_changed_j = false;
     static bool hasRun = false;
     //judge
@@ -96,13 +89,11 @@ void IsOnBeat(bool for_T) {
 }
 
 int continuous_count = 1;
-
 int wait = 60;
 void continuous_beat() {
-    //Music music = return_music();
-
+    Music music = return_music();
     Drag drag;
-    double time = double(GetMusicTimePlayed(stage1_music));
+    double time = double(GetMusicTimePlayed(music));
     int beat_count = time / SecondTerm;
 
     int prev_beat = 0;
@@ -144,6 +135,7 @@ bool splited_beat = false;
 long double splited_gap;
 
 void beat_spliting() {
+    Music music = return_music();
     is_changed = false;
 
 
@@ -164,14 +156,13 @@ void beat_spliting() {
 
 
 
-    long double time = long double(GetMusicTimePlayed(stage1_music));
+    long double time = long double(GetMusicTimePlayed(music));
     int beat_count_splited = time / splited_gap;
 
-    if (time < long double(beat_count_splited * splited_gap + judge_offSet) &&
-        time >  long double(beat_count_splited * splited_gap - judge_offSet)) {
+    if (time < long double(beat_count_splited * splited_gap + judge_offSet_stage2) &&
+        time >  long double(beat_count_splited * splited_gap - judge_offSet_stage2)) {
 
         splited_beat = true;
-        //DrawCircle(80, 80, 20, BLUE);
     }
     else
     {
@@ -185,7 +176,6 @@ void beat_spliting() {
     {
         is_changed = true;
     }
-    //std::cout << double(beat_count_splited * SecondTerm - judge_offSet) << "    <    " << time << "   <     " << double(beat_count_splited * SecondTerm + judge_offSet) << std::endl;
     prev_splited_beat = splited_beat;
 }
 

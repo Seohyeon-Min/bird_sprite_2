@@ -3,13 +3,15 @@
 #include "H_Drag.h"
 #include "H_Beat_system.h"
 #include "H_Audio.h"
+#include "H_GameState.h"
 
 constexpr int mouse_R{ 6 };
 constexpr int beat_circle_scale{ 25 };
 
 void beat_circle() {
-    DrawCircleLines(GetMouseX(), GetMouseY(), ((SecondTerms() - GetMusicTimePlayed(stage1_music)) * beat_circle_scale + beat_circle_scale) - 1, { 255, 255, 255, 125 });
-    DrawCircleLines(GetMouseX(), GetMouseY(), (SecondTerms() - GetMusicTimePlayed(stage1_music)) * beat_circle_scale + beat_circle_scale, { 0,0,0,125 });
+    Music music = return_music();
+    DrawCircleLines(GetMouseX(), GetMouseY(), ((SecondTerms() - GetMusicTimePlayed(music)) * beat_circle_scale + beat_circle_scale) - 1, { 255, 255, 255, 125 });
+    DrawCircleLines(GetMouseX(), GetMouseY(), (SecondTerms() - GetMusicTimePlayed(music)) * beat_circle_scale + beat_circle_scale, { 0,0,0,125 });
 }
 
 void mousedown() {

@@ -164,8 +164,11 @@ int main() {
             UpdateMusicStream(tutorial_music);
             tutorial();
             break;
+        case GameState::Credit:
+            UpdateMusicStream(option_music);
+            credit();
+            break;
         }
-        
 
         if (exitWindowRequested)
         {
@@ -178,7 +181,6 @@ int main() {
 
 
         if (return_continuous_fail()) {
-            std::cout << "Boom!" << std::endl;
             zoomEffectActive = true;
             fail_StarTime = GetTime();
         }

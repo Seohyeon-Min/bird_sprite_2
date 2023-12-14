@@ -8,7 +8,7 @@
 
 constexpr int initial_sun_y = 325;
 constexpr int sun_radius = 300;
-int max_time = 90;//90;
+int max_time = 8;//90;
 
 constexpr Color sun_color_1 = Color{ 247, 240, 234, 255 };
 constexpr Color sun_color_2 = Color{ 246, 236, 218, 255 };
@@ -92,14 +92,15 @@ void draw_sun(float sun_y) {
 void draw_sun_stage_2() {
 	int increase_rate = 80;
 	int ring_padding = 2;
-
+	Music music = return_music();
 	DrawRing({ (float)GetScreenWidth() / 2, 551 },
-		(SecondTerms() + SecondTerm - GetMusicTimePlayed(stage1_music)) * increase_rate + 500,
-		(SecondTerms() + SecondTerm - GetMusicTimePlayed(stage1_music)) * (increase_rate + ring_padding) + (500 + ring_padding),
+		(SecondTerms() + SecondTerm - GetMusicTimePlayed(music)) * increase_rate + 500,
+		(SecondTerms() + SecondTerm - GetMusicTimePlayed(music)) * (increase_rate + ring_padding) + (500 + ring_padding),
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		0,
 		360,
 		0,
-		LIGHTGRAY);
+		{ 251, 241, 232 ,150});
 	//DrawCircleGradient(window_width / 2, sun_y, (SecondTerms() - GetMusicTimePlayed(music)) * (800) + (800), { 0,0,0, 200 }, { 0,0,0,0 });
 	//DrawCircle(window_width / 2, sun_y, sun_radius, sun_color_4);
 

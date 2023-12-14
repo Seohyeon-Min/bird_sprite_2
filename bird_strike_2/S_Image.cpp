@@ -94,7 +94,8 @@ Image tutorial_6_image;
 Texture2D tutorial_6_texture;
 Image kingturi_image;
 Texture2D kingturi_texture;
-
+Image credit_image;
+Texture2D  credit_texture;
 
 
 
@@ -181,10 +182,6 @@ void loadimage() {
     sun_stage_2_image = LoadImage("textures/sun/sun_stage_2.png");
     sun_stage_2_texture = LoadTextureFromImage(sun_stage_2_image);
     UnloadImage(sun_stage_2_image);
-
-    vignetting_image = LoadImage("textures/vignetting.png");
-    vignetting_texture = LoadTextureFromImage(vignetting_image);
-    UnloadImage(vignetting_image);
 
     Nice_to_meet_you_1_image = LoadImage("textures/challenge/Nice_to_meet_you_1.png");
     Nice_to_meet_you_1_texture = LoadTextureFromImage(Nice_to_meet_you_1_image);
@@ -295,6 +292,14 @@ void loadimage() {
     kingturi_image = LoadImage("textures/kingturi.png");
     kingturi_texture = LoadTextureFromImage(kingturi_image);
     UnloadImage(kingturi_image);
+
+    credit_image = LoadImage("textures/credit.png");
+    credit_texture = LoadTextureFromImage(credit_image);
+    UnloadImage(credit_image);
+
+    vignetting_image = LoadImage("textures/vignette_white.png");
+    vignetting_texture = LoadTextureFromImage(vignetting_image);
+    UnloadImage(vignetting_image);
 
 
     font = LoadFont("resources/romulus.png");

@@ -34,16 +34,43 @@ void judge_text_draw() {
 		alpha -= 5;
 		alpha_2 -= 3.4;
 		Color text_color = { 0,0,0,alpha };
-		Color text_color_white = { 255,255,255,alpha_2 };
+		////////////////////////////////////////////////////////////////////////////////////////////////////
 		DrawTextPro(
 			font,
 			judge_text.c_str(),
-			{ (float)(GetScreenWidth() / 1.075), (float)(GetScreenHeight() / 2.14) },
+			{ (float)(GetScreenWidth() / 1.075) + 2, (float)(GetScreenHeight() / 2.16) },
 			{ MeasureTextEx(font,judge_text.c_str(), judge_text_size, spacing).x / 2, 0 },
 			0,
 			judge_text_size,
 			spacing,
-			text_color_white);
+			alpha_white);
+		DrawTextPro(
+			font,
+			judge_text.c_str(),
+			{ (float)(GetScreenWidth() / 1.075) - 2, (float)(GetScreenHeight() / 2.16) },
+			{ MeasureTextEx(font,judge_text.c_str(), judge_text_size, spacing).x / 2, 0 },
+			0,
+			judge_text_size,
+			spacing,
+			alpha_white);
+		DrawTextPro(
+			font,
+			judge_text.c_str(),
+			{ (float)(GetScreenWidth() / 1.075), (float)(GetScreenHeight() / 2.16) + 2 },
+			{ MeasureTextEx(font,judge_text.c_str(), judge_text_size, spacing).x / 2, 0 },
+			0,
+			judge_text_size,
+			spacing,
+			alpha_white);
+		DrawTextPro(
+			font,
+			judge_text.c_str(),
+			{ (float)(GetScreenWidth() / 1.075), (float)(GetScreenHeight() / 2.16) - 2 },
+			{ MeasureTextEx(font,judge_text.c_str(), judge_text_size, spacing).x / 2, 0 },
+			0,
+			judge_text_size,
+			spacing,
+			alpha_white);
 
 		DrawTextPro(
 			font,
@@ -54,22 +81,51 @@ void judge_text_draw() {
 			judge_text_size,
 			spacing,
 			text_color);
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	}
 }
 
 
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void crow_size_text_draw() {
 	DrawTextPro(
 		font,
 		std::to_string(return_crow_size()).c_str(),
-		{ (float)GetScreenWidth() / 2, (float)(GetScreenHeight() / 10.6) },
+		{ (float)(GetScreenWidth() / 2) + 2, (float)(GetScreenHeight() / 10.8) },
 		{ MeasureTextEx(font,std::to_string(return_crow_size()).c_str(), (float)(GetScreenWidth() / 20), 0).x / 2,0 },
 		0,
 		(float)(GetScreenWidth() / 20),
 		0,
 		alpha_white);
+	DrawTextPro(
+		font,
+		std::to_string(return_crow_size()).c_str(),
+		{ (float)(GetScreenWidth() / 2) - 2, (float)(GetScreenHeight() / 10.8) },
+		{ MeasureTextEx(font,std::to_string(return_crow_size()).c_str(), (float)(GetScreenWidth() / 20), 0).x / 2,0 },
+		0,
+		(float)(GetScreenWidth() / 20),
+		0,
+		alpha_white);
+	DrawTextPro(
+		font,
+		std::to_string(return_crow_size()).c_str(),
+		{ (float)(GetScreenWidth() / 2), (float)(GetScreenHeight() / 10.8) + 2 },
+		{ MeasureTextEx(font,std::to_string(return_crow_size()).c_str(), (float)(GetScreenWidth() / 20), 0).x / 2,0 },
+		0,
+		(float)(GetScreenWidth() / 20),
+		0,
+		alpha_white);
+	DrawTextPro(
+		font,
+		std::to_string(return_crow_size()).c_str(),
+		{ (float)(GetScreenWidth() / 2), (float)(GetScreenHeight() / 10.8) - 2 },
+		{ MeasureTextEx(font,std::to_string(return_crow_size()).c_str(), (float)(GetScreenWidth() / 20), 0).x / 2,0 },
+		0,
+		(float)(GetScreenWidth() / 20),
+		0,
+		alpha_white);
+
 	DrawTextPro(
 		font,
 		std::to_string(return_crow_size()).c_str(),
@@ -98,20 +154,37 @@ void show_score() {
 		DrawTextPro(
 			font,
 			"score",
-			{ (float)(GetScreenWidth() / 25.6) , (float)(GetScreenHeight() / 21.3) },
+			{ (float)(GetScreenWidth() / 25.6) + 2 , (float)(GetScreenHeight() / 21.6) },
 			{ 0,0 },
 			0,
 			(float)(GetScreenWidth() / 25.6),
 			3,
 			alpha_white);
-
 		DrawTextPro(
 			font,
-			std::to_string(score).c_str(),
-			{ (float)(GetScreenWidth() / 25.6) ,(float)(GetScreenHeight() / 10.6) },
+			"score",
+			{ (float)(GetScreenWidth() / 25.6) - 2 , (float)(GetScreenHeight() / 21.6) },
 			{ 0,0 },
 			0,
-			(float)(GetScreenWidth() / 19.2),
+			(float)(GetScreenWidth() / 25.6),
+			3,
+			alpha_white);
+		DrawTextPro(
+			font,
+			"score",
+			{ (float)(GetScreenWidth() / 25.6) , (float)(GetScreenHeight() / 21.6) + 2 },
+			{ 0,0 },
+			0,
+			(float)(GetScreenWidth() / 25.6),
+			3,
+			alpha_white);
+		DrawTextPro(
+			font,
+			"score",
+			{ (float)(GetScreenWidth() / 25.6) , (float)(GetScreenHeight() / 21.6) - 2 },
+			{ 0,0 },
+			0,
+			(float)(GetScreenWidth() / 25.6),
 			3,
 			alpha_white);
 
@@ -125,6 +198,45 @@ void show_score() {
 			3,
 			BLACK);
 
+
+		DrawTextPro(
+			font,
+			std::to_string(score).c_str(),
+			{ (float)(GetScreenWidth() / 25.6) + 2 ,(float)(GetScreenHeight() / 10.8) },
+			{ 0,0 },
+			0,
+			(float)(GetScreenWidth() / 19.2),
+			3,
+			alpha_white);
+		DrawTextPro(
+			font,
+			std::to_string(score).c_str(),
+			{ (float)(GetScreenWidth() / 25.6) - 2,(float)(GetScreenHeight() / 10.8) },
+			{ 0,0 },
+			0,
+			(float)(GetScreenWidth() / 19.2),
+			3,
+			alpha_white);
+		DrawTextPro(
+			font,
+			std::to_string(score).c_str(),
+			{ (float)(GetScreenWidth() / 25.6) ,(float)(GetScreenHeight() / 10.8) + 2 },
+			{ 0,0 },
+			0,
+			(float)(GetScreenWidth() / 19.2),
+			3,
+			alpha_white);
+		DrawTextPro(
+			font,
+			std::to_string(score).c_str(),
+			{ (float)(GetScreenWidth() / 25.6) ,(float)(GetScreenHeight() / 10.8) - 2 },
+			{ 0,0 },
+			0,
+			(float)(GetScreenWidth() / 19.2),
+			3,
+			alpha_white);
+
+
 		DrawTextPro(
 			font,
 			std::to_string(score).c_str(),
@@ -136,7 +248,7 @@ void show_score() {
 			BLACK);
 
 
-		
+
 
 		//DrawTextPro(
 		//	font,
@@ -152,18 +264,48 @@ void show_score() {
 			font,
 			std::get<0>(return_game_over_txt()).c_str(),
 			{ (float)(GetScreenWidth() / 2),(float)(GetScreenHeight() / 2) },
-			{ MeasureTextEx(font, std::get<0>(return_game_over_txt()).c_str(), std::get<1>(return_game_over_txt()), 2).x / 2 ,MeasureTextEx(font, std::get<0>(return_game_over_txt()).c_str(), std::get<1>(return_game_over_txt()), 2).y/2 },
+			{ MeasureTextEx(font, std::get<0>(return_game_over_txt()).c_str(), std::get<1>(return_game_over_txt()), 2).x / 2 ,MeasureTextEx(font, std::get<0>(return_game_over_txt()).c_str(), std::get<1>(return_game_over_txt()), 2).y / 2 },
 			0,
 			std::get<1>(return_game_over_txt()),
 			2,
-			{200,200,200,125});
+			{ 200,200,200,125 });
 
 
 		if (return_order_counter() > 0) {
 			DrawTextPro(
 				font,
 				std::to_string(return_order_counter()).c_str(),
-				{ (float)(GetScreenWidth() / 1.075),(float)(GetScreenHeight() / 2.45) },
+				{ (float)(GetScreenWidth() / 1.075) + 2,(float)(GetScreenHeight() / 2.47) },
+				{ MeasureTextEx(font, std::to_string(return_order_counter()).c_str(), connected_crow_text_size, 0).x / 2 ,
+				MeasureTextEx(font, std::to_string(return_order_counter()).c_str(), connected_crow_text_size, 0).y / 2 },
+				0,
+				connected_crow_text_size,
+				0,
+				alpha_white);
+			DrawTextPro(
+				font,
+				std::to_string(return_order_counter()).c_str(),
+				{ (float)(GetScreenWidth() / 1.075) - 2,(float)(GetScreenHeight() / 2.47) },
+				{ MeasureTextEx(font, std::to_string(return_order_counter()).c_str(), connected_crow_text_size, 0).x / 2 ,
+				MeasureTextEx(font, std::to_string(return_order_counter()).c_str(), connected_crow_text_size, 0).y / 2 },
+				0,
+				connected_crow_text_size,
+				0,
+				alpha_white);
+			DrawTextPro(
+				font,
+				std::to_string(return_order_counter()).c_str(),
+				{ (float)(GetScreenWidth() / 1.075),(float)(GetScreenHeight() / 2.47) + 2 },
+				{ MeasureTextEx(font, std::to_string(return_order_counter()).c_str(), connected_crow_text_size, 0).x / 2 ,
+				MeasureTextEx(font, std::to_string(return_order_counter()).c_str(), connected_crow_text_size, 0).y / 2 },
+				0,
+				connected_crow_text_size,
+				0,
+				alpha_white);
+			DrawTextPro(
+				font,
+				std::to_string(return_order_counter()).c_str(),
+				{ (float)(GetScreenWidth() / 1.075),(float)(GetScreenHeight() / 2.47) - 2 },
 				{ MeasureTextEx(font, std::to_string(return_order_counter()).c_str(), connected_crow_text_size, 0).x / 2 ,
 				MeasureTextEx(font, std::to_string(return_order_counter()).c_str(), connected_crow_text_size, 0).y / 2 },
 				0,

@@ -5,6 +5,7 @@
 
 std::vector<Particle*> Particle::particles = { };
 std::vector<Effect*> Effect::effects = { };
+std::vector<Light*> Light::lights = { };
 
 const Color outline_color{ 255,255,255,200 };
 const Color effect_color{ 0,0,0,100 };
@@ -22,6 +23,21 @@ void Particle::make_particle(Vector2 position) {
         newParticle->color = { BLACK };
         particles.push_back(newParticle);
     }
+}
+
+void Light::make_light() {
+    for (int i = 0; i < 2; i++) {
+
+        Light* newLight = new Light;
+        newLight->postion = {
+            GetRandomValue(0, 1) == 1 ? float(GetRandomValue(-20,300)) : float(GetRandomValue(GetScreenWidth() - 300 ,GetScreenWidth() + 20)),
+            GetRandomValue(0, 1) == 1 ? float(GetRandomValue(-20, 300)) : float(GetRandomValue(GetScreenHeight() - 300, GetScreenHeight() + 20))
+        };
+        newLight->size = { float(10 + rand() % 52) };
+        newLight->color = effect_color2;
+        lights.push_back(newLight);
+    }
+
 }
 
 void Effect::make_effect() { 
@@ -83,6 +99,35 @@ void Particle::update_particle() {
             particle->position.y < 0 || particle->position.y > GetScreenHeight() || particle->size <= 0) {
             particles.erase(particles.begin() + i);
         }
+    }
+}
+
+
+void Light::update_light() {
+
+    //DrawCircleV({300, 300}, 310, BLUE);
+    //DrawCircleV({ (float)GetScreenWidth()-300, 300}, 310, BLUE);
+    //DrawCircleV({ (float)GetScreenWidth() - 300, (float)GetScreenHeight()-300}, 310, BLUE);
+    //DrawCircleV({ 300, (float)GetScreenHeight() - 300 }, 310, BLUE);
+
+    for (int i = 0; i < lights.size(); i++) {
+        Light* light = lights[i];
+        BeginBlendMode(BLEND_ADDITIVE);
+        if ((!CheckCollisionPointCircle(light->postion, { 300, 300 }, 310)) &&
+            (!CheckCollisionPointCircle(light->postion, { (float)GetScreenWidth() - 300, 300 }, 310)) &&
+            (!CheckCollisionPointCircle(light->postion, { (float)GetScreenWidth() - 300, (float)GetScreenHeight() - 300 }, 310)) &&
+            (!CheckCollisionPointCircle(light->postion, { 300, (float)GetScreenHeight() - 300 }, 310))) {
+            DrawCircleGradient(light->postion.x, light->postion.y, light->size, light->color, {255,255,255,0});
+        }
+        EndBlendMode();
+        light->life--;
+    }
+    for (int i = lights.size() - 1; i >= 0; i--) {
+        Light* light = lights[i];
+        if (light->life < 0 ) {
+            lights.erase(lights.begin() + 1);
+        }
+        
     }
 }
 

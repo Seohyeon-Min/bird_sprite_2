@@ -91,7 +91,9 @@ void Control_bar::update_all() {
 	}
 
 	SetSoundVolume(crow_blow, default_SFX + (bars[0]->adjust()));
+	SetSoundVolume(count_sound, default_SFX + (bars[0]->adjust()));
 	SetMusicVolume(stage1_music, default_music + (bars[1]->adjust()));
+	SetMusicVolume(stage2_music, default_music + (bars[1]->adjust()));
 	
 
 
@@ -135,4 +137,22 @@ void draw_toggle() {
 			0,
 			WHITE);
 	}
+	DrawRectangleRounded(
+		{ (float)GetScreenWidth() / 2 - MeasureTextEx(font,"CREDIT", 50, 2).x / 2 - 15,   540,
+		MeasureTextEx(font,"CREDIT", 50, 2).x + 30,    MeasureTextEx(font,"CREDIT", 50, 2).y + 10 },
+		0.09,
+		0,
+		BLACK
+	);
+
+	DrawTextPro(
+		font,
+		"CREDIT",
+		{ (float)GetScreenWidth() / 2,  540 },
+		{ MeasureTextEx(font,"CREDIT", 50, 2).x / 2, -5 },
+		0,
+		50,
+		2,
+		{ 251, 241, 232, 255 });
+
 }

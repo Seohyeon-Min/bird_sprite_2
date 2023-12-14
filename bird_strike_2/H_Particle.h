@@ -32,6 +32,20 @@ private:
 };
 
 
+class Light {
+public:
+    static void make_light();
+    static void update_light();
+    static std::vector<Light*> lights;
+
+private:
+    int life = 120;
+    Vector2 postion;
+    float size;
+    Color color;
+};
+
+
 #endif PARTICLE_H
 
 

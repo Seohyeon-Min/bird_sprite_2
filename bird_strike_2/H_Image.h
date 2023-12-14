@@ -100,6 +100,8 @@ extern Image tutorial_6_image;
 extern Texture2D tutorial_6_texture;
 extern Image kingturi_image;
 extern Texture2D kingturi_texture;
+extern Image credit_image;
+extern Texture2D  credit_texture;
 
 extern Font font;
 extern Font font2;
