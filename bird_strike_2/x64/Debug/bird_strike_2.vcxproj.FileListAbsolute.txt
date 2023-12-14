@@ -2,3 +2,4 @@ C:\Users\gtg06\Desktop\ㅤ\bird_strike_2\bird_strike_2\x64\Debug\bird_strike_2.v
 C:\Users\admin\Desktop\유용해요\Bird_Strike\bird_sprite_2\bird_strike_2\x64\Debug\bird_strike_2.vcxproj.CopyComplete
 C:\Users\hongs\OneDrive\바탕 화면\bird_sprite_2\bird_strike_2\x64\Debug\bird_strike_2.vcxproj.CopyComplete
 C:\Users\gtg06\Documents\GitHub\bird_sprite_2\bird_strike_2\x64\Debug\bird_strike_2.vcxproj.CopyComplete
+C:\Users\bs040\Desktop\Code\bird\bird_sprite_2\bird_strike_2\x64\Debug\bird_strike_2.vcxproj.CopyComplete

@@ -96,6 +96,8 @@ Image kingturi_image;
 Texture2D kingturi_texture;
 Image credit_image;
 Texture2D  credit_texture;
+Image pattern_crow_image;
+Texture2D pattern_crow_texture;
 
 
 
@@ -300,6 +302,10 @@ void loadimage() {
     vignetting_image = LoadImage("textures/vignette_white.png");
     vignetting_texture = LoadTextureFromImage(vignetting_image);
     UnloadImage(vignetting_image);
+
+    pattern_crow_image = LoadImage("textures/pattern_crow.png");
+    pattern_crow_texture = LoadTextureFromImage(pattern_crow_image);
+    UnloadImage(pattern_crow_image);
 
 
     font = LoadFont("resources/romulus.png");

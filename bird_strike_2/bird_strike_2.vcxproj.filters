@@ -63,6 +63,9 @@
     <ClCompile Include="S_Tutorial.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="S_Crow_pattern.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="H_Drag.h">
@@ -105,6 +108,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="H_Crow_pattern.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

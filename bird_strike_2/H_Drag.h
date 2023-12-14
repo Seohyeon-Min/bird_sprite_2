@@ -1,6 +1,7 @@
 #ifndef DRAG_H
 #define DRAG_H
 #include <vector>
+#include "H_Crow_pattern.h"
 
 constexpr Color drag_color{ BLACK };
 constexpr Color drag_outline = Color{ 255,255,255,178 };
@@ -40,6 +41,7 @@ private:
 public:
 	ConLine(Vector2 prepos, Vector2 post, int ex, Color color);
 	void condraw();
+	friend Crow_pattern;
 };
 
 struct Drag {

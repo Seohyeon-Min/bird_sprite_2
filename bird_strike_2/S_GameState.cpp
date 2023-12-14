@@ -13,12 +13,15 @@
 #include "H_Txt_read.h"
 #include "H_Main.h"
 #include "H_Tutorial.h"
+#include "H_Crow_pattern.h"
+
 
 
 #define MAX_INPUT_CHARS     3
 
 GameState gamestate = GameState::Startloading;
 Crow crow;
+Crow_pattern crow_pattern;
 Drag drag;
 Player player;
 constexpr int icon_width = 40;
@@ -618,8 +621,16 @@ void stage_2() {
     Effect::make_effect2();
     Effect::update_effect();
     crow._crow();
+    crow_pattern.fire_crow();
+    crow_pattern.aim_line();
+    crow_pattern.draw();
+    if (crow_pattern.line_colide()) {
+        drag.fail_drag();
+        delete_crow();
+    }
     drag.Fx();
     player._player();
+
 
     BeginBlendMode(BLEND_ADDITIVE);
     DrawTexturePro(vignetting_texture,

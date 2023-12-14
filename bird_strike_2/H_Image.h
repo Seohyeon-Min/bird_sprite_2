@@ -102,6 +102,8 @@ extern Image kingturi_image;
 extern Texture2D kingturi_texture;
 extern Image credit_image;
 extern Texture2D  credit_texture;
+extern Image pattern_crow_image;
+extern Texture2D pattern_crow_texture;
 
 extern Font font;
 extern Font font2;
