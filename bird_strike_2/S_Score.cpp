@@ -1,3 +1,9 @@
+﻿/* GAM100
+
+Seohyeon Min
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
+
 #include <iostream>
 #include <raylib.h>
 #include <string>
@@ -34,7 +40,6 @@ void judge_text_draw() {
 		alpha -= 5;
 		alpha_2 -= 3.4;
 		Color text_color = { 0,0,0,alpha };
-		////////////////////////////////////////////////////////////////////////////////////////////////////
 		DrawTextPro(
 			font,
 			judge_text.c_str(),
@@ -81,13 +86,11 @@ void judge_text_draw() {
 			judge_text_size,
 			spacing,
 			text_color);
-		///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	}
 }
 
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void crow_size_text_draw() {
 	DrawTextPro(
 		font,
@@ -248,18 +251,6 @@ void show_score() {
 			BLACK);
 
 
-
-
-		//DrawTextPro(
-		//	font,
-		//	check_game_over().x.c_str(),
-		//	{ (float)(GetScreenWidth() / 2) ,(float)(GetScreenHeight() / 2) },
-		//	{ MeasureTextEx(font, check_game_over().x.c_str(), connected_crow_text_size, 0).x / 2,0 },
-		//	0,
-		//	(float)(GetScreenWidth() / 19.2),
-		//	3,
-		//	BLACK);
-		//DrawText(check_game_over().c_str(), 300, 180, 100, BLACK);
 		DrawTextPro(
 			font,
 			std::get<0>(return_game_over_txt()).c_str(),
@@ -324,7 +315,7 @@ void show_score() {
 				0,
 				BLACK);
 			if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && !holding) {
-				connected_crow_text_size = (float)(GetScreenWidth() / 12); // WHY doesn't it work?
+				connected_crow_text_size = (float)(GetScreenWidth() / 10); 
 			}
 		}
 		else {

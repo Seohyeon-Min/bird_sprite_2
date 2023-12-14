@@ -1,3 +1,12 @@
+﻿/* GAM100
+
+Seohyeon Min
+Seokhwa Hong
+Hyeonseong Bae
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
+
+
 #ifndef IMAGE_H
 #define IMAGE_H
 #include "raylib.h"

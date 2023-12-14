@@ -1,3 +1,10 @@
+﻿/* GAM100
+
+Seohyeon Min
+Hyeonseong Bae
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
+
 #ifndef SUN_H
 #define SUN_H
 

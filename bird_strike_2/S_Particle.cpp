@@ -1,3 +1,12 @@
+﻿/* GAM100
+
+Seohyeon Min
+Seokhwa Hong
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
+
+
+
 #include "raylib.h"
 #include <vector>
 #include "H_Particle.h"
@@ -86,7 +95,6 @@ void Particle::update_particle() {
         }
 
 
-        //DrawCircle(particle->position.x, particle->position.y, particle->size, particle->color);
         DrawRectangle(particle->position.x, particle->position.y, particle->size, particle->size, particle->color);
         DrawRectangleLines(particle->position.x, particle->position.y, particle->size, particle->size, outline_color);
     }
@@ -104,11 +112,6 @@ void Particle::update_particle() {
 
 
 void Light::update_light() {
-
-    //DrawCircleV({300, 300}, 310, BLUE);
-    //DrawCircleV({ (float)GetScreenWidth()-300, 300}, 310, BLUE);
-    //DrawCircleV({ (float)GetScreenWidth() - 300, (float)GetScreenHeight()-300}, 310, BLUE);
-    //DrawCircleV({ 300, (float)GetScreenHeight() - 300 }, 310, BLUE);
 
     for (int i = 0; i < lights.size(); i++) {
         Light* light = lights[i];

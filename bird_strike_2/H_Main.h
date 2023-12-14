@@ -1,4 +1,10 @@
+﻿/* GAM100
 
+Seohyeon Min
+Seokhwa Hong
+Hyeonseong Bae
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
 
 #ifndef MAIN_H
 #define MAIN_H

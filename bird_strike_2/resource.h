@@ -1,7 +1,9 @@
+癤�/* GAM100
+
+Seokhwa Hong
+
+All content 짤 2023 DigiPen (USA) Corporation, all rights reserved. */
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++에서 생성한 포함 파일입니다.
-// bird_strike_2.rc에서 사용되고 있습니다.
-//
 #define IDI_ICON1                       101
 
 // Next default values for new objects

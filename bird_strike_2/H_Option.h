@@ -1,3 +1,9 @@
+﻿/* GAM100
+
+Seohyeon Min
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
+
 #ifndef OPTION_H
 #define OPTION_H
 

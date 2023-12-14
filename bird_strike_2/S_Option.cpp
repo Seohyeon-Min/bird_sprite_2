@@ -1,3 +1,9 @@
+﻿/* GAM100
+
+Seohyeon Min
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
+
 #include <raylib.h>
 #include < iostream>
 #include "H_Option.h"
@@ -60,7 +66,6 @@ void Control_bar::limit_button_movement() {
 
 
 float Control_bar::adjust() {
-	//button.x = (bar.width - button.width) / 10 * default_SFX;
 	return float(position / (bar.width - button.width));
 }
 
@@ -94,7 +99,9 @@ void Control_bar::update_all() {
 	SetSoundVolume(count_sound, default_SFX + (bars[0]->adjust()));
 	SetMusicVolume(stage1_music, default_music + (bars[1]->adjust()));
 	SetMusicVolume(stage2_music, default_music + (bars[1]->adjust()));
-	
+	SetMusicVolume(option_music, default_music + (bars[1]->adjust()));
+	SetMusicVolume(lobby_music, default_music + (bars[1]->adjust()));
+	SetMusicVolume(tutorial_music, default_music + (bars[1]->adjust()));
 
 
 	draw_toggle();

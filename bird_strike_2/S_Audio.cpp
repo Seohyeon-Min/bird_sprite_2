@@ -1,3 +1,9 @@
+﻿/* GAM100
+
+Seohyeon Min
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
+
 #include "H_Audio.h"
 
 Music option_music;

@@ -1,3 +1,10 @@
+﻿/* GAM100
+
+Seohyeon Min
+Hyeonseong Bae
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
+
 #include <iostream>
 #include <raylib.h>
 #include "H_Crow.h"
@@ -43,7 +50,6 @@ int* return_BPM() {
 void IsOnBeat(bool for_T) {
     SecondTerm = 60.0 / BPM;
     Music music = return_music();
-    //std::cout << "  BPM:" << SecondTerm << "  time:" << GetMusicTimePlayed(stage1_music) << std::endl; // 33.7, 57.7
     double time = double(GetMusicTimePlayed(music));
     is_changed_j = false;
     static bool hasRun = false;
@@ -109,7 +115,7 @@ void continuous_beat() {
         }
 
         if ((continuous_count > return_order_counter() + 1) || return_is_colide()) {
-            drag.fail_drag(); //TODO: maintatin the func
+            drag.fail_drag();
             continuous_fail = true;
         }
 

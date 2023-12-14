@@ -1,3 +1,9 @@
+﻿/* GAM100
+
+Seohyeon Min
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
+
 #include <raylib.h>
 #include <iostream>
 #include <vector>
@@ -76,7 +82,6 @@ void Crow::draw(bool hover) {
 
 	}
 	else {
-		//DrawCircle(position.x, position.y, radius, BLACK);
 		DrawTexturePro(
 			Sprite_crow_outline_texture,
 			{
@@ -359,7 +364,7 @@ void ready_to_delete() {
 
 void delete_crow() {
 	for (int i = crows.size() - 1; i >= 0; i--) { //delete the crow
-		if (crows[i].marked == true && crows[i].order == erase_number) { //i need a counter to check the order of crow by it clicked
+		if (crows[i].marked == true && crows[i].order == erase_number) { 
 			Particle::make_particle(crows[i].get_position());
 			PlaySound(crow_blow);
 			deleted_position = crows[i].get_position();

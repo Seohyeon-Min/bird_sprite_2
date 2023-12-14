@@ -1,3 +1,9 @@
+﻿/* GAM100
+
+Seokhwa Hong
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
+
 #include <iostream>
 #include <fstream>
 #include <vector>

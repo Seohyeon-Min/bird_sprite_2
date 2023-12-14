@@ -1,3 +1,10 @@
+﻿/* GAM100
+
+Seokhwa Hong
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
+
+
 #ifndef DRAG_H
 #define DRAG_H
 #include <vector>

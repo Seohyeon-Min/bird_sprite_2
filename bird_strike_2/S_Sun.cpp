@@ -1,3 +1,11 @@
+ï»¿/* GAM100
+
+Seohyeon Min
+Hyeonseong Bae
+
+All content Â© 2023 DigiPen (USA) Corporation, all rights reserved. */
+
+
 #include <raylib.h>
 #include <iostream>
 #include "H_Sun.h"
@@ -8,13 +16,12 @@
 
 constexpr int initial_sun_y = 325;
 constexpr int sun_radius = 300;
-int max_time = 16;//90;
+int max_time = 90;//90;
 
 constexpr Color sun_color_1 = Color{ 247, 240, 234, 255 };
 constexpr Color sun_color_2 = Color{ 246, 236, 218, 255 };
 constexpr Color sun_color_3 = Color{ 253, 236, 196, 255 };
 constexpr Color sun_color_4 = Color{ 242, 178, 106, 255 };
-//double sun_drop_speed = (double)(((float)GetScreenHeight() + sun_radius - initial_sun_y) / max_time) / target_frame_rate; //ÇÁ·¹ÀÓ´ç ½ºÇÇµå
 
 
 float fullFrame = (target_frame_rate * max_time);
@@ -53,10 +60,6 @@ float fall;
 
 void draw_sun(float sun_y) {
 	DrawCircleGradient(GetScreenWidth() / 2, initial_sun_y + sun_y + 300, (SecondTerms() - GetMusicTimePlayed(stage1_music)) * (1300) + (1300), { 0,0,0, 200 }, { 0,0,0,0 });
-	//DrawCircle(window_width / 2, sun_y, sun_radius, sun_color_4);
-	//DrawCircle(window_width / 2, sun_y, sun_radius - 13, sun_color_3);
-	//DrawCircle(window_width / 2, sun_y, sun_radius - 24, sun_color_2);
-	//DrawCircle(window_width / 2, sun_y, sun_radius - 50, sun_color_1);
 	BeginBlendMode(BLEND_ADDITIVE);
 	DrawTexturePro(
 		sun_gradation_texture,
@@ -96,13 +99,10 @@ void draw_sun_stage_2() {
 	DrawRing({ (float)GetScreenWidth() / 2, 551 },
 		(SecondTerms() + SecondTerm - GetMusicTimePlayed(music)) * increase_rate + 500,
 		(SecondTerms() + SecondTerm - GetMusicTimePlayed(music)) * (increase_rate + ring_padding) + (500 + ring_padding),
-		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		0,
 		360,
 		0,
 		{ 251, 241, 232 ,150});
-	//DrawCircleGradient(window_width / 2, sun_y, (SecondTerms() - GetMusicTimePlayed(music)) * (800) + (800), { 0,0,0, 200 }, { 0,0,0,0 });
-	//DrawCircle(window_width / 2, sun_y, sun_radius, sun_color_4);
 
 	DrawTexturePro(
 		sun_stage_2_texture,

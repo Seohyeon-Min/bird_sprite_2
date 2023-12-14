@@ -1,3 +1,10 @@
+﻿/* GAM100
+
+Seokhwa Hong
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
+
+
 #include <iostream>
 #include "raylib.h"
 #include "H_Drag.h"
@@ -16,9 +23,7 @@ void beat_circle() {
 
 void mousedown() {
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
-        //DrawCircleGradient(GetMouseX(), GetMouseY(), mousecircleR, BLACK, dragmouse);
         DrawCircleLines(GetMouseX(), GetMouseY(), mouse_R, WHITE);
-        //DrawCircleGradient(GetMouseX(), GetMouseY(), 5, BLACK, BLACK);
         DrawCircle(GetMouseX(), GetMouseY(), mouse_R - 1, { 0,0,0,125 });
 
     }

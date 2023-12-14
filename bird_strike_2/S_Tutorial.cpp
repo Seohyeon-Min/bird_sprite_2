@@ -1,3 +1,10 @@
+﻿/* GAM100
+
+Seokhwa Hong
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
+
+
 #include <raylib.h>
 #include "H_Sun.h"
 #include "H_Image.h"

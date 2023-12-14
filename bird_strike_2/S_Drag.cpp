@@ -1,3 +1,9 @@
+癤�/* GAM100
+
+Seokhwa Hong
+
+All content 짤 2023 DigiPen (USA) Corporation, all rights reserved. */
+
 #include <raylib.h>
 #include <iostream>
 #include <vector>
@@ -87,7 +93,6 @@ void Drag::check_Fdrag(Vector2 pos) {
 }
 
 void Drag::check_Sdrag(Vector2 pos) {
-	//std::cout << "click" << std::endl;
 	Sdrag_position = pos;
 	mousepostion = Sdrag_position;
 	Switch *= -1;
@@ -122,9 +127,6 @@ void Drag::fail_drag() {
 
 void Drag::Fx() {
 
-
-	// Error : click never go to true
-
 	makeConDrag();
 	makeNewDrag();
 
@@ -139,17 +141,10 @@ void Drag::Fx() {
 		clines[i].condraw();
 	}
 
-
-	//double SecondTerm = 60.0 / BPM; //compute the term between beats
-	//double time = double(GetMusicTimePlayed(music));
-	//int beat_count = time / SecondTerm;
-
 	// Set your variables including SecondTerm value
 	extern double SecondTerm; // Replace this with your desired time delay
 
 	if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
-
-		//time_now = time;
 
 		clines.clear();
 		nlines.clear();
@@ -158,8 +153,6 @@ void Drag::Fx() {
 		Sdrag_position = { -1,-1 };
 		Firstpos = { -1,-1 };
 
-		//sleep(/*비트카운트가 바뀌는 순간까지 wait*/);
-		//일정한 간격으로 오르는 숫자가 바뀌는 순간을 알 수 있는 코드가 뭘까
 	}
 
 

@@ -1,3 +1,12 @@
+﻿/* GAM100
+
+Seohyeon Min
+Seokhwa Hong
+Hyeonseong Bae
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
+
+
 #include <iostream>
 #include <fstream>
 #include <algorithm>
@@ -18,6 +27,7 @@
 
 
 #define MAX_INPUT_CHARS     3
+
 
 GameState gamestate = GameState::Startloading;
 Crow crow;
@@ -79,7 +89,7 @@ void draw_loading() {
         call_flag1 = false;
     }
 
-    if (int(GetTime() < 3)) {
+    if (int(GetTime() <= 12)) {
         ClearBackground(WHITE);
 
         DrawTexturePro(
@@ -92,7 +102,7 @@ void draw_loading() {
 
     }
 
-    else if (int(GetTime()) > 3 && int(GetTime()) < 7) {
+    else if (int(GetTime()) > 12 && int(GetTime()) < 20) {
         ClearBackground(WHITE);
         DrawTexturePro(
             DigiPenlogo_texture,
@@ -480,7 +490,7 @@ void startloding() {
     SetSoundVolume(crow_blow, default_SFX);
     SetMusicVolume(stage1_music, default_music);
     draw_loading();
-    if (IsKeyReleased(MOUSE_BUTTON_LEFT) || IsKeyReleased(KEY_SPACE) || int(GetTime()) > 7) {
+    if (IsKeyReleased(MOUSE_BUTTON_LEFT) || IsKeyReleased(KEY_SPACE) || int(GetTime()) > 20) {
         PlaySound(fly_in);
         make_bars();
         gamestate = GameState::LobbyScreen;

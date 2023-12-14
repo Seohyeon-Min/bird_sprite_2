@@ -1,3 +1,12 @@
+﻿/* GAM100
+
+Seohyeon Min
+Seokhwa Hong
+Hyeonseong Bae
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
+
+
 #include "H_Image.h"
 
 Image capybara_image;

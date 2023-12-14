@@ -1,3 +1,10 @@
+﻿
+/* GAM100
+
+Seohyeon Min
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
+
 #ifndef CROW_H
 #define CROW_H
 #include <raylib.h> 

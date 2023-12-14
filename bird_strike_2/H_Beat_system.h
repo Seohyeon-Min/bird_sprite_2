@@ -1,3 +1,11 @@
+﻿/* GAM100
+
+Seohyeon Min
+Hyeonseong Bae
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
+
+
 #ifndef BEAT_SYSTEM_H
 #define BEAT_SYSTEM_H
 

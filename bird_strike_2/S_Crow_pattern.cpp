@@ -1,3 +1,9 @@
+﻿/* GAM100
+
+Hyeonseong Bae
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
+
 #include <iostream>
 #include <cmath>
 #include "raylib.h"
@@ -13,7 +19,6 @@ float up_to_ten;
 float SecondTerms_4th;
 
 constexpr int frequency = 4;
-//constexpr int range = 732;
 
 int at_beat_count = 0;
 int beat_count;
@@ -150,7 +155,6 @@ void Crow_pattern::draw() {
 
 		DrawLineV(Lhitbox_pos, Lhitbox_back, { 0, 0, 0, 0 });
 		DrawLineV(Rhitbox_pos, Rhitbox_back, { 0, 0, 0, 0 });
-		//DrawRectangle(Lhitbox_pos.x, Lhitbox_pos.y, hitbox_size * 2, hitbox_size, WHITE);
 
 		if (LR == 1) {//vertical
 			crow_pos.y += speed;

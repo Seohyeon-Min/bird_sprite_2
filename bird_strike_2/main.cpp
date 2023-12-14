@@ -1,3 +1,13 @@
+﻿
+/* GAM100
+
+Seohyeon Min
+Seokhwa Hong
+Hyeonseong Bae
+
+All content © 2023 DigiPen (USA) Corporation, all rights reserved. */
+
+
 #include <raylib.h>
 #include <iostream>
 #include "H_Sun.h"
@@ -10,8 +20,7 @@
 #include "H_Txt_read.h"
 #include "H_Tutorial.h"
 
-//Music music;
-//Sound crow_blow;
+
 Vector2 camerapos = { window_width / 2, window_height / 2 };
 
 bool clickEffectActive = false;
@@ -91,7 +100,6 @@ int main() {
             }
 
             else {
-                //camera.target = { window_width / 2 , window_height / 2 };
                 zoomEffectActive = false;
             }
         }
@@ -132,6 +140,7 @@ int main() {
             startloding();
             break;
         case GameState::LobbyScreen:
+
             UpdateMusicStream(lobby_music);
             lobbyscreen();
             break;
@@ -200,8 +209,18 @@ int main() {
     UnloadMusicStream(lobby_music);
     UnloadMusicStream(stage1_music);
     UnloadMusicStream(stage2_music);
+    UnloadMusicStream(tutorial_music);
     UnloadMusicStream(option_music);
     UnloadSound(crow_blow);
+    UnloadSound(fly_in);
+    UnloadSound(click_button);
+    UnloadSound(hover_button);
+    UnloadSound(crow_blow);
+    UnloadSound(to_two_phase);
+    UnloadSound(count_sound);
+
+
+
     UnloadFont(font);
     CloseAudioDevice();
 
