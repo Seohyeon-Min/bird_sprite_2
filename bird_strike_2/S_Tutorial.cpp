@@ -97,6 +97,8 @@ void tutorial() {
 	Crow crow;
 	Drag drag;
 
+	
+
 	ClearBackground({251,241,232,255});
 	Particle::update_particle();
 	Effect::make_effect();
@@ -113,10 +115,11 @@ void tutorial() {
 		continuous_beat();
 		crow._crow();
 		drag.Fx();
+		
 	}
 	switch (tutorial_count) {
 	case 0:
-		textbox("Hello!","Welcom to tutorial!", 1, 2);
+		textbox("Hello!","Welcome to the tutorial!", 1, 2);
 		if (IsKeyPressed(KEY_SPACE) ) tutorial_count += 1;
 		break;
 	case 1:
@@ -143,7 +146,7 @@ void tutorial() {
 		break;
 	case 5:
 		crow._crow();
-		textbox("If you want me to attack", "crow ", 3, 0);
+		textbox("If you want me to attack", "the crow ", 3, 0);
 		if (IsKeyPressed(KEY_SPACE)) tutorial_count += 1;
 		break;
 	case 6:
@@ -156,7 +159,7 @@ void tutorial() {
 		if (IsKeyPressed(KEY_SPACE)) tutorial_count += 1;
 		break;
 	case 8:
-		textbox("Let click that crow and attack!", " ", 4, 0);
+		textbox("Let's click that crow and attack!", " ", 4, 0);
 		if (return_continuous_fail()) {
 			tutorial_count += 1; 
 		}
@@ -195,11 +198,11 @@ void tutorial() {
 		if (IsKeyPressed(KEY_SPACE)) tutorial_count += 1;
 		break;
 	case 15:
-		textbox("You clear tutorial!", "Nice job! ", 1, 2);
+		textbox("You cleared the tutorial!", "Nice job! ", 1, 2);
 		if (IsKeyPressed(KEY_SPACE)) tutorial_count += 1;
 		break;
 	case 16:
-		textbox("You can do better on game!", "Let go~ ", 1, 2);
+		textbox("You can do better on the game!", "Let go~ ", 1, 2);
 		if (IsKeyPressed(KEY_SPACE)) {
 			tutorial_count = 0;
 			StopMusicStream(tutorial_music);

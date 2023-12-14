@@ -218,8 +218,8 @@ void draw_lobby_button() {
         }
         DrawRectangle(GetScreenWidth() / 2 - box_witdh / 2, (GetScreenHeight() / 44) * 34, box_witdh, box_height, box_color);
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
-            gamestate = GameState::Tutorial;
             PlaySound(click_button);
+            gamestate = GameState::Tutorial;
         }
     }
     else {
@@ -453,6 +453,10 @@ void draw_setting_button() {
         2,
         { 251, 241, 232, 255 });
 
+    if (CheckCollisionPointRec(GetMousePosition(), { (float)GetScreenWidth() / 2 - MeasureTextEx(font,"CREDIT", 50, 2).x / 2 - 15,   540,
+        MeasureTextEx(font,"CREDIT", 50, 2).x + 30,    MeasureTextEx(font,"CREDIT", 50, 2).y + 10 }) && IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
+        gamestate = GameState::Credit;
+    }
 
     if (CheckCollisionPointRec(GetMousePosition(), { 965, 66, 50, 50 }) && IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
         StopMusicStream(option_music);

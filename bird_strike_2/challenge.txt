@@ -5,4 +5,4 @@ Crazy_aimer 0
 Not_done 1
 Strike 0
 Bird_striker 1
-The_bird 0
+The_bird 1
