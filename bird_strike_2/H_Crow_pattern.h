@@ -31,10 +31,10 @@ public:
 	void aim_line();
 	void fire_crow();
 	void draw();
-	bool line_colide();
+	void line_colide();
 
 };
-
+bool return_is_colide();
 #endif 
 
 //int Crow_pattern::angle_decider(int x, int y) {

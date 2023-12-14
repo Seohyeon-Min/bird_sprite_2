@@ -109,7 +109,6 @@ void Crow_pattern::aim_line() {
 			end_pos.x = (float)GetScreenWidth() - (((float)GetScreenWidth() / 1000) * up_to_ten);
 			end_pos.y = (angle * (end_pos.x - (float)GetScreenWidth())) + start_pos.y;
 		}
-		std::cout << end_pos.x << std::endl;
 		DrawLineEx(start_pos, end_pos, 5, WHITE);
 
 
@@ -149,8 +148,8 @@ void Crow_pattern::draw() {
 		Rhitbox_pos = { crow_pos.x + hitbox_size, crow_pos.y };
 		Rhitbox_back = { crow_pos.x - hitbox_size, crow_pos.y + hitbox_size };
 
-		DrawLineV(Lhitbox_pos, Lhitbox_back, { 0, 0, 0, 255 });
-		DrawLineV(Rhitbox_pos, Rhitbox_back, { 0, 0, 0, 255 });
+		DrawLineV(Lhitbox_pos, Lhitbox_back, { 0, 0, 0, 0 });
+		DrawLineV(Rhitbox_pos, Rhitbox_back, { 0, 0, 0, 0 });
 		//DrawRectangle(Lhitbox_pos.x, Lhitbox_pos.y, hitbox_size * 2, hitbox_size, WHITE);
 
 		if (LR == 1) {//vertical
@@ -193,16 +192,32 @@ void Crow_pattern::draw() {
 	}
 }
 
-bool Crow_pattern::line_colide() {
+bool is_colide = false;
+int wait2 = 1;
+
+void Crow_pattern::line_colide() {
+	std::cout << is_colide << "  asf:" <<wait2<< std::endl;
 	for (int i = 0; i < clines.size(); i++) {
 		ConLine crow_lines = clines[i];
 
 		if (CheckCollisionLines(crow_lines.prepostion, crow_lines.postion, Lhitbox_pos, Lhitbox_back, nullptr) ||
-			CheckCollisionLines(crow_lines.prepostion, crow_lines.postion, Rhitbox_pos, Rhitbox_back, nullptr)) {
-			return true;
-		}
-		else {
-			return false;
+			CheckCollisionLines(crow_lines.prepostion, crow_lines.postion, Rhitbox_pos, Rhitbox_back, nullptr) ||
+			CheckCollisionLines(Lhitbox_pos, Lhitbox_back, crow_lines.prepostion, crow_lines.postion, nullptr) ||
+			CheckCollisionLines(Rhitbox_pos, Rhitbox_back, crow_lines.prepostion, crow_lines.postion, nullptr)) {
+			is_colide =  true;
 		}
 	}
+}
+
+
+bool return_is_colide() {
+	if (wait2 > 0 && is_colide) {
+		is_colide = true;
+		wait2--;
+	}
+	else {
+		is_colide = false;
+		wait2 = 1;
+	}
+	return is_colide;
 }

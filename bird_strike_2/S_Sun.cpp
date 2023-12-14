@@ -8,7 +8,7 @@
 
 constexpr int initial_sun_y = 325;
 constexpr int sun_radius = 300;
-int max_time = 8;//90;
+int max_time = 16;//90;
 
 constexpr Color sun_color_1 = Color{ 247, 240, 234, 255 };
 constexpr Color sun_color_2 = Color{ 246, 236, 218, 255 };

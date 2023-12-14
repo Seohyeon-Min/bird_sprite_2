@@ -7,6 +7,7 @@
 #include "H_Audio.h"
 #include "H_Image.h"
 #include "H_GameState.h"
+#include "H_Crow_pattern.h"
 
 constexpr double judge_offSet = 0.1;
 constexpr double judge_offSet_stage2 = 0.05;
@@ -95,7 +96,7 @@ void continuous_beat() {
     Drag drag;
     double time = double(GetMusicTimePlayed(music));
     int beat_count = time / SecondTerm;
-
+    
     int prev_beat = 0;
     int beat_count_now = 0;
 
@@ -107,7 +108,7 @@ void continuous_beat() {
             continuous_count++;
         }
 
-        if (continuous_count > return_order_counter() + 1) {
+        if ((continuous_count > return_order_counter() + 1) || return_is_colide()) {
             drag.fail_drag(); //TODO: maintatin the func
             continuous_fail = true;
         }

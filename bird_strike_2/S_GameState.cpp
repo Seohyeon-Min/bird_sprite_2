@@ -625,17 +625,7 @@ void stage_2() {
     crow_pattern_1.fire_crow();
     crow_pattern_1.aim_line();
     crow_pattern_1.draw();
-    if (crow_pattern_1.line_colide()) {
-        drag.fail_drag();
-        delete_crow();
-    }
-    //crow_pattern_2.fire_crow();
-    //crow_pattern_2.aim_line();
-    //crow_pattern_2.draw();
-    //if (crow_pattern_2.line_colide()) {
-    //    drag.fail_drag();
-    //    delete_crow();
-    //}
+    crow_pattern_1.line_colide();
     drag.Fx();
     player._player();
 
